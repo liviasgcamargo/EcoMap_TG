@@ -38,7 +38,7 @@ function App() {
       <Route path="/resultados-empresas" element={<ResultadoEmpresa/>}/>
       <Route path="/perfil-adm" element={<AdminLogin />} />
       <Route path="/gerenciar-info-administrador" element={<AdminDashboard />} />
-      <Route path="/pontos-sugeridos" element={<PontosSugeridos />} />
+      <Route path="/gerenciar-pontos-sugeridos" element={<PontosSugeridos />} />
       <Route path="/guia" element={<Guia />} />
       <Route path="/faq" element={<Faq />} />
       <Route path="/sobre-nos" element={<SobreNos />} />
