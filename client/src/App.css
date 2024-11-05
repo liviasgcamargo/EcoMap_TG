@@ -1,116 +1,112 @@
-/* Reset básico */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* Estilo geral da página*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
-/* Variáveis de cores */
-:root {
-    --primary-color: #4CAF50; /* Verde principal */
-    --secondary-color: #ffffff; /* Branco */
-    --background-color: #f0f4f3; /* Cinza claro de fundo */
-    --text-color: #333333; /* Preto para textos */
-    --accent-color: #f57c00; /* Laranja para destaques */
-    --footer-color: #2e7d32; /* Verde mais escuro para o rodapé */
-}
-
-/* Estilos globais */
+/* Corpo */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+  background-image: url('./assets/images/index.png');
+  background-size: cover;
+  background-position: top center; /* Garante que a imagem de fundo fique alinhada */
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* Faz como que a imagem de fundo role junto com a tela */
+  height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: var(--primary-color);
+
+
+/* Conteúdo principal do index*/
+
+.painelCentral {
+  /*Textos da página principal*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 50%;
+  margin: 40px 80px 50px 80px;
 }
 
-a {
-    color: var(--accent-color);
-    text-decoration: none;
+.painelCentral h1 {
+  /* Adiciona um espaçamento entre o texto principal e o sub-texto */
+  margin-bottom: 15px;
 }
 
-a:hover {
-    text-decoration: underline;
+.pontoProximo {
+  /* Texto principal */
+  font-size: 44px;
+  color: #435533;
 }
 
-/* Header */
-header {
-    background-color: var(--primary-color);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--secondary-color);
-}
-
-header h1 {
-    font-size: 1.5rem;
-}
-
-header nav a {
-    margin: 0 1rem;
-    color: var(--secondary-color);
-    font-weight: bold;
-}
-
-/* Main content */
-main {
-    text-align: center;
-    padding: 2rem;
-}
-
-main h2 {
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
+.encontrarPontos {
+  /*sub-texto */
+  font-size: 26px;
+  color: #405a41;
+  opacity: 0.6;
 }
 
 .btnPainel {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin: 0.5rem;
+  /* Botões de busca*/
+  width: 155px;
+  height: 45px;
+  border-radius: 9px;
+  background-color: #55703f;
+  color: #ffffff;
+  border-style: none;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0px 0px 15px 20px;
+  cursor: pointer;
 }
 
-.btnPainel:hover {
-    background-color: #388e3c;
+.btnPrincipais {
+  /* Container onde estão os botões de busca */
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+  margin: 0px 80px 0px 60px;
 }
 
-/* Cards */
-.container-cards {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
+
+
+/* Sugestão de ponto na pag index*/
+.naoRegistrado {
+  font-size: 26px;
+  color: #435533;
+  margin-bottom: 10px;
 }
 
-.card {
-    background-color: var(--secondary-color);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    width: 250px;
-    text-align: center;
+.sugerir {
+  font-size: 18px;
+  color: #405a41;
+  opacity: 0.6;
+  text-decoration: underline;
+  margin-bottom: 45px;
+  cursor: pointer;
 }
 
-.card img {
-    width: 50px;
-    margin-bottom: 1rem;
+.sugerir a {
+  color: #405a41;
+  text-decoration: underline;
 }
 
-.tituloCard {
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
+.sugerir a:visited {
+  color: #405a41;
 }
+
+.containerSugerir {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Fim da sugestão de ponto na pag index*/
+/* Fim do conteúdo principal do index*/
+
+
 
 /* Modal */
 .popup {
@@ -213,103 +209,7 @@ main h2 {
     text-decoration: underline;
 }
 
-/* Footer */
-footer {
-    background-color: var(--footer-color);
-    padding: 1rem;
-    color: var(--secondary-color);
-    text-align: center;
-    font-size: 0.9rem;
-    margin-top: 2rem;
-}
 
-footer a {
-    color: var(--secondary-color);
-}
-
-footer a:hover {
-    color: var(--accent-color);
-}
-
-footer .footer-links {
-    margin-top: 1rem;
-}
-
-footer .footer-links ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-footer .redes_sociais img {
-    width: 24px;
-    margin: 0 0.5rem;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .container-cards {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    header nav a {
-        margin: 0 0.5rem;
-    }
-
-    footer .footer-links ul {
-        flex-direction: column;
-    }
-}
-
-/* styles.css */
-
-/* Estilo para o contêiner de login */
-.login-container, .dashboard-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    text-align: center;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.login-container h2, .dashboard-container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.login-container label, .dashboard-container label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.login-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #28a745;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* styles.css */
 
 /* Estilos para a página de pontos sugeridos */
 .suggested-points-container {
@@ -353,7 +253,6 @@ button:hover {
 .suggested-point button:last-of-type:hover {
     background-color: #c82333;
 }
-
 /* styles.css */
 .popup-container {
     position: fixed;

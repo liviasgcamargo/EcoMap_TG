@@ -42,9 +42,9 @@ const BuscarPontoPopUp = ({ onClose }) => {
     };
 
     return (
-        <div className="popup">
-            <div className="popup-content">
-                <span className="close-button" onClick={onClose}>
+        <div className="modalPontoColeta">
+            <div className="modalContent">
+                <span className="closePontoColeta" onClick={onClose}>
                     &times;
                 </span>
                 <h2>Buscar Ponto de Descarte</h2>
@@ -62,7 +62,7 @@ const BuscarPontoPopUp = ({ onClose }) => {
                     <option value={20}>20 km</option>
                 </select>
                 <label>Tipos de Material:</label>
-                <div className="material-checkboxes">
+                <div className="dropdown-btn">
                     <label>
                         <input type="checkbox" value="1" onChange={handleMaterialChange} /> Papelão
                     </label>

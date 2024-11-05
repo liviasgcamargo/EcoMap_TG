@@ -1,0 +1,45 @@
+/* Navbar */
+.menu_navegacao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin-right: 40px;
+  }
+  
+  .menu_navegacao a {
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 6px;
+  }
+  
+  .menu_item {
+    color: #356037;
+  }
+  
+  .logoHeader {
+    margin-left: 70px;
+  }
+  
+  #btnContact {
+    font-size: 14px;
+    width: 129px;
+    height: 32.53px;
+    color: #ffffff;
+    background-color: #356037;
+    border-radius: 8px;
+    border-style: none;
+    font-weight: medium;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    line-height: 32.53px;
+  }
+  
+  #btnContact:hover {
+    background-color: #2a4f2d;
+  }
+  /* Fim da navbar */

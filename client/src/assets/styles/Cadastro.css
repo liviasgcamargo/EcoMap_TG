@@ -1,0 +1,255 @@
+/* Forms */
+form {
+    margin: auto;
+    width: 600px;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 1em;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  fieldset {
+    margin: 20px;
+    border: none;
+    padding: 0;
+  }
+  
+  .tipo-usuario { /* Radio button que define se é cadastro de pessoa física, empresa ou ONG */
+    display: flex;
+    margin-bottom: 1.3em;
+  }
+  
+  label { /* textos dos forms de cadastro e login */
+    display: flex;
+    align-items: start;
+    margin-right: 18px;
+    font-size: 17px;
+    color: #000000;
+  }
+  
+  input[type="radio"] { /* estilo dos radio buttons */
+    margin-right: 2px;
+    width: 19px;
+    height: 19px;
+    vertical-align: middle;
+  }
+  
+  input[type="email"] {
+    width: calc(100% - 12px);
+    height: 50px;
+    padding: .65em;
+    border-radius: 5px;
+    margin-bottom: 1.3em;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .senha-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.3em;
+  }
+  
+  .senha-item {
+    width: calc(50% - 10px);
+  }
+  
+  .senha-item input {
+    width: 100%;
+    height: 50px;
+    padding: .65em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .senha-item label {
+    margin-bottom: .5em;
+  }
+  
+  .container-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .btnCadastrar {
+    align-items: end;
+    width: 150px;
+    height: 45px;
+    color: #ffffff;
+    background-color: #405a41;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: none;
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+  }
+  
+  .btnCadastrar:hover {
+    background-color: #2a4f2d;
+  }
+  
+  p {
+    font-size: 22px;
+    color: #9a9999;
+    margin-bottom: 0.4em;
+  }
+  
+  #empresaFields select { /* Tudo o que tem #empresa, é porque está ligado com os campos que só aparecem quando o radio button de empresa está selecionado, essa programação já está pronta no javascript */
+    width: 100%;
+    height: 50px;
+    margin-bottom: 1.3em;
+    padding: 0.65em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  #empresaFields input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  #empresaFields label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 17px;
+  }
+  
+  #empresaFields input[type="text"],
+  #empresaFields input[type="tel"] {
+    width: calc(100% - 12px);
+    height: 50px;
+    padding: .65em;
+    border-radius: 5px;
+    margin-bottom: 1.3em;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .dropdown { /* dropdown do tipo de material */
+    position: relative;
+    display: none;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .dropbtn {
+    width: 100%;
+    height: 50px;
+    padding: 0.65em;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .dropdown-content label {
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .dropdown-content input[type="checkbox"] {
+    margin-right: 10px;
+  
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  #empresaFields label[for="descricao"],
+  #ongFields label[for="descricaoOng"] {
+    margin-top: 20px;
+  }
+  
+  textarea {
+    width: calc(100% - 12px);
+    padding: 0.65em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 1.3em;
+    resize: vertical;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .tipo-servico { /* Radio buttons que definem o tipo de serviço (se faz retirada e etc). */
+    display: flex;
+    margin-bottom: 1.3em;
+  }
+  
+  .tipo-servico label {
+    display: flex;
+    align-items: center;
+    margin-right: 18px;
+    font-size: 17px;
+    color: #000000;
+  }
+  
+  .tipo-servico input[type="radio"] {
+    margin-right: 0px;
+    width: 19px;
+    height: 19px;
+    vertical-align: middle;
+  }
+  
+  #ongFields {
+    margin-top: 20px;
+  }
+  
+  #ongFields label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 17px;
+  }
+  
+  #ongFields input[type="text"],
+  #ongFields input[type="tel"],
+  #ongFields select,
+  #ongFields textarea {
+    width: calc(100% - 12px);
+    height: 50px;
+    padding: .65em;
+    border-radius: 5px;
+    margin-bottom: 1.3em;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  #ongFields textarea {
+    height: auto;
+    resize: vertical;
+  }
+  
+  .login-redirect {
+    color: rgba(0, 0, 0, 0.5);
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  .login-redirect a {
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.5);
+  }

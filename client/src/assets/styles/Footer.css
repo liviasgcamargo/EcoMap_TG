@@ -1,0 +1,52 @@
+/* Footer */
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #55703f;
+    padding: 30px;
+  }
+  
+  footer p {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+  }
+  
+  .linhaFooter {
+    border: none;
+    border-top: 1px solid #fff;
+    margin: 10px 0;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .linksUteis {
+    font-size: 14px;
+    display: flex;
+    gap: 2rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .linksUteis a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .linksUteis a:hover {
+    text-decoration: underline;
+  }
+  
+  .redes_sociais {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+  }
+  
+  /* Fim do footer */
