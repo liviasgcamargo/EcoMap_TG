@@ -8,7 +8,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
     const [transactionType, setTransactionType] = useState("Compra");
-    const googleMapsApiKey = "AIzaSyBTvNmclwwco65CZaBlyneOmSEBjqAIaNo";
+    const googleMapsApiKey = "";
     const navigate = useNavigate();
 
     const handleMaterialChange = (event) => {

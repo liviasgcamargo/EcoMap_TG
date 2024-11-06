@@ -4,7 +4,7 @@ import axios from "axios";
 
 const ValidarONGPopup = ({ onClose }) => {
     const [ongs, setONGs] = useState([]);
-    const googleMapsApiKey = "AIzaSyBTvNmclwwco65CZaBlyneOmSEBjqAIaNo"; // Substitua pela sua chave da API do Google Maps
+    const googleMapsApiKey = ""; // Substitua pela sua chave da API do Google Maps
 
     // Função para buscar ONGs pendentes de validação
     const fetchONGsPendentes = async () => {

@@ -12,7 +12,7 @@ import userRoutes from "./routes/userRoutes.js";
 dotenv.config();
 
 const app = express();
-const GOOGLE_MAPS_API_KEY = "AIzaSyBTvNmclwwco65CZaBlyneOmSEBjqAIaNo";
+const GOOGLE_MAPS_API_KEY = "";
 
 const db = mysql.createConnection({
   host: "localhost",

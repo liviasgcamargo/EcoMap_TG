@@ -4,7 +4,7 @@ import axios from "axios";
 
 const ValidarEmpresaPopup = ({ onClose }) => {
     const [empresas, setEmpresas] = useState([]);
-    const googleMapsApiKey = "AIzaSyBTvNmclwwco65CZaBlyneOmSEBjqAIaNo"; // Substitua pela sua chave da API do Google Maps
+    const googleMapsApiKey = ""; // Substitua pela sua chave da API do Google Maps
 
     // Função para buscar empresas pendentes de validação
     const fetchEmpresasPendentes = async () => {
