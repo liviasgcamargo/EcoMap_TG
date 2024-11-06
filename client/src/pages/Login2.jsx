@@ -2,6 +2,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import '../assets/styles/Login.css'
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -32,6 +36,8 @@ const Login = () => {
     };
 
     return (
+        <>
+        <Navbar/>
         <div className="login-container">
             <h2>Login</h2>
             <form onSubmit={handleLogin}>
@@ -51,11 +57,23 @@ const Login = () => {
                     required
                 />
 
+                <p>
+                    <a href="esqueciSenha.html" className="esqueci-senha">
+                        Esqueci minha senha
+                    </a>
+                </p>
+                <p className="cadastro-redirect">
+                    Não tem uma conta? <Link to="/cadastrar">Cadastre-se</Link>
+                </p>
                 <button type="submit">Entrar</button>
             </form>
 
             {error && <p className="error-message">{error}</p>}
         </div>
+
+        <Footer/>
+
+        </>
     );
 };
 

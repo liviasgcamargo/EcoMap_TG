@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import '../assets/styles/Cadastro.css'
 
 const Cadastro = () => {
     const navigate = useNavigate();
@@ -67,6 +70,9 @@ const Cadastro = () => {
     };
 
     return (
+        <>
+        <Navbar/>
+
         <div className="cadastro-container">
             <h2>Cadastro de {categoria}</h2>
             <form onSubmit={handleSubmit}>
@@ -141,6 +147,10 @@ const Cadastro = () => {
                 <button type="submit">CADASTRAR</button>
             </form>
         </div>
+        
+        <Footer/>
+
+        </>
     );
 };
 

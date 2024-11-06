@@ -17,10 +17,10 @@ const Navbar = () => {
   <a className="menu_item" ><Link to="/sobre-nos">Sobre Nós</Link></a>
     
     <a id="btnContact">
-    <Link to="/Cadastrar">Cadastrar</Link>
+    <Link to="/Cadastro">Cadastrar</Link>
     </a>
     <a id="btnContact">
-    <Link to="/Login">Entrar</Link>
+    <Link to="/Login2">Entrar</Link>
     </a>
   </div>
 </nav>

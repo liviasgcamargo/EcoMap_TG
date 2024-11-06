@@ -9,7 +9,7 @@ import '../assets/styles/Footer.css'
 const Footer = () => {
   return (
     <div className="footer-content">
-      <p>© 2024 Ecomap</p>
+      <p className='footerP'>© 2024 Ecomap</p>
       <hr className="linhaFooter" />
       <div className="footer-links">
         <ul className="linksUteis">
