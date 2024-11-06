@@ -2,6 +2,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 }from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -21,8 +22,14 @@ import Guia from "./pages/Guia";
 import SobreNos from "./pages/SobreNos";
 import Login from "./pages/Login";
 import Cadastrar from "./pages/Cadastrar";
+import Cadastro from "./pages/Cadastro";
+import Perfil from "./pages/Perfil";
+import Login2 from "./pages/Login2";
 
 function App() {
+
+  const isAuthenticated = !!localStorage.getItem("token");
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -44,7 +51,13 @@ function App() {
       <Route path="/sobre-nos" element={<SobreNos />} />
       <Route path="/login" element={<Login />} />
       <Route path="/cadastrar" element={<Cadastrar />} />
-
+      <Route path="/pontos-sugeridos" element={<PontosSugeridos />} />
+      <Route path="/cadastro" element={<Cadastro />} />
+      <Route
+                    path="/perfil"
+                    element={isAuthenticated ? <Perfil /> : <Navigate to="/login2" />}
+                />
+      <Route path="/login2" element={<Login2 />} />
       </Routes>
       </BrowserRouter>
     </div>

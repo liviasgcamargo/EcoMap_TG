@@ -8,7 +8,7 @@ const AdicionarPontoPopup = ({ onClose }) => {
     const [cidade, setCidade] = useState("");
     const [estado, setEstado] = useState("");
     const [materiais, setMateriais] = useState([]);
-    const googleMapsApiKey = ""; // Substitua pela sua chave da API do Google Maps
+    const googleMapsApiKey = "AIzaSyBTvNmclwwco65CZaBlyneOmSEBjqAIaNo"; // Substitua pela sua chave da API do Google Maps
 
     const handleCheckboxChange = (event) => {
         const { value, checked } = event.target;

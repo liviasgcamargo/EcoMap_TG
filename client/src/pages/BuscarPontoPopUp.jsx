@@ -7,7 +7,7 @@ const BuscarPontoPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
-    const googleMapsApiKey = "";
+    const googleMapsApiKey = "AIzaSyBTvNmclwwco65CZaBlyneOmSEBjqAIaNo";
     const navigate = useNavigate();
 
     const handleMaterialChange = (event) => {

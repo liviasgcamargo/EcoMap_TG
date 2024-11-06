@@ -3,9 +3,16 @@ import express from "express";
 import mysql from "mysql2/promise";
 import cors from "cors";
 import axios from "axios";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import authenticateToken from "./middlewares/authenticateToken.js";
+import dotenv from "dotenv";
+import userRoutes from "./routes/userRoutes.js";
+
+dotenv.config();
 
 const app = express();
-const GOOGLE_MAPS_API_KEY = "";
+const GOOGLE_MAPS_API_KEY = "AIzaSyBTvNmclwwco65CZaBlyneOmSEBjqAIaNo";
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -26,6 +33,7 @@ export default bd;
 app.use(express.json());
 app.use(cors());
 
+app.use("/api", userRoutes);
 app.post("/buscar-pontos-coleta", async (req, res) => {
   const { latitude, longitude, raio, materiais } = req.body;
 
@@ -384,6 +392,154 @@ app.put("/validar-ong/:id", async (req, res) => {
   }
 });
 
-app.listen(8000, () => {
+// Resto do código
+app.post("/cadastrar", async (req, res) => {
+  const {
+      email,
+      senha,
+      nome_org,
+      CNPJ,
+      telefone,
+      descricao,
+      tipo_servico,
+      endereco,
+      cep,
+      cidade,
+      estado,
+      fk_id_categoria,
+      materiais,
+      tipo_transacao,
+      status_usuario,
+  } = req.body;
+
+  try {
+      const hashedPassword = await bcrypt.hash(senha, 10); // Hash da senha
+      // Insere o usuário na tabela Usuario
+      const [result] = await bd.execute(
+          `INSERT INTO Usuario (email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, fk_id_categoria, tipo_transacao, status_usuario) 
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          [email, hashedPassword, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, fk_id_categoria, tipo_transacao, status_usuario]
+      );
+
+      const usuarioId = result.insertId;
+
+      // Insere os tipos de materiais aceitos pelo usuário na tabela Usuario_tipoMaterial
+      const materialQueries = materiais.map((materialNome) => {
+          return bd.execute(
+              `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
+               SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
+              [usuarioId, materialNome]
+          );
+      });
+
+      await Promise.all(materialQueries);
+
+      res.json({ message: "Usuário cadastrado com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao cadastrar usuário:", error);
+      res.status(500).json({ error: "Erro ao cadastrar usuário" });
+  }
+});
+
+app.listen(8001, () => {
   console.log("Connected to backend!");
+});
+
+///////////////////////////////////////////////////////////
+
+app.get("/perfil", authenticateToken, async (req, res) => {
+  try {
+      const userId = req.user.id; // Agora `req.user` deve estar definido
+      const [rows] = await bd.execute(`SELECT * FROM Usuario WHERE id_usuario = ?`, [userId]);
+      res.json(rows[0]);
+  } catch (error) {
+      console.error("Erro ao buscar perfil:", error);
+      res.status(500).json({ error: "Erro ao buscar perfil" });
+  }
+});
+
+app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
+  try {
+      const userId = req.user.id;
+      const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
+      
+      const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
+
+      await bd.execute(
+          `UPDATE Usuario SET 
+              email = ?, 
+              ${hashedPassword ? "senha = ?," : ""}
+              nome_org = ?, 
+              CNPJ = ?, 
+              telefone = ?, 
+              descricao = ?, 
+              tipo_servico = ?, 
+              endereco = ?, 
+              cep = ?, 
+              cidade = ?, 
+              estado = ?, 
+              status_usuario = FALSE 
+          WHERE id_usuario = ?`,
+          [
+              email,
+              ...(hashedPassword ? [hashedPassword] : []),
+              nome_org,
+              CNPJ,
+              telefone,
+              descricao,
+              tipo_servico,
+              endereco,
+              cep,
+              cidade,
+              estado,
+              userId,
+          ]
+      );
+
+      await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
+      const materialQueries = materiais.map((materialNome) =>
+          bd.execute(
+              `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
+               SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
+              [userId, materialNome]
+          )
+      );
+      await Promise.all(materialQueries);
+
+      res.json({ message: "Perfil atualizado com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao atualizar perfil:", error);
+      res.status(500).json({ error: "Erro ao atualizar perfil" });
+  }
+});
+
+app.delete("/excluir-conta", authenticateToken, async (req, res) => {
+  try {
+      const userId = req.user.id;
+      await bd.execute(`DELETE FROM Usuario WHERE id_usuario = ?`, [userId]);
+      res.json({ message: "Conta excluída com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao excluir conta:", error);
+      res.status(500).json({ error: "Erro ao excluir conta" });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+      const [users] = await bd.execute("SELECT * FROM Usuario WHERE email = ?", [email]);
+      const user = users[0];
+
+      if (!user) return res.status(404).json({ error: "Usuário não encontrado" });
+
+      const isPasswordValid = await bcrypt.compare(senha, user.senha);
+      if (!isPasswordValid) return res.status(401).json({ error: "Senha incorreta" });
+
+      const token = jwt.sign({ id: user.id_usuario }, process.env.SECRET_KEY, { expiresIn: "1h" });
+      res.json({ token });
+  } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      res.status(500).json({ error: "Erro ao fazer login" });
+  }
 });
