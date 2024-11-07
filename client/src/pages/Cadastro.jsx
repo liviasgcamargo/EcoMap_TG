@@ -78,7 +78,7 @@ const Cadastro = () => {
             <form onSubmit={handleSubmit}>
                 <label>
                     Tipo de Cadastro:
-                    <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                    <select className="select-tipo-cadastro" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                         <option value="ONG">ONG</option>
                         <option value="Empresa">Empresa</option>
                     </select>
@@ -103,10 +103,10 @@ const Cadastro = () => {
                 <input type="text" name="telefone" value={formData.telefone} onChange={handleChange} required />
 
                 <label>Descrição:</label>
-                <textarea name="descricao" value={formData.descricao} onChange={handleChange} />
+                <textarea className="text-descricao" name="descricao" value={formData.descricao} onChange={handleChange} />
 
-                <label>Tipo de Serviço:</label>
-                <select name="tipo_servico" value={formData.tipo_servico} onChange={handleChange}>
+                <label className="tipoServico">Tipo de Serviço:</label>
+                <select className="form-tipo-servico" name="tipo_servico" value={formData.tipo_servico} onChange={handleChange}>
                     <option value="Retira no Local">Retira no Local</option>
                     <option value="Não Retira">Não Retira</option>
                 </select>
@@ -134,9 +134,9 @@ const Cadastro = () => {
                 </div>
 
                 {categoria === "Empresa" && (
-                    <label>
+                    <label className="tipo_transacao" >
                         Tipo de Transação:
-                        <select name="tipo_transacao" value={formData.tipo_transacao} onChange={handleChange}>
+                        <select className="form-tipo-transacao" name="tipo_transacao" value={formData.tipo_transacao} onChange={handleChange}>
                             <option value="Compra">Compra</option>
                             <option value="Venda">Venda</option>
                             <option value="Compra e Venda">Compra e Venda</option>
