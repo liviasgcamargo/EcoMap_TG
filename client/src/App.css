@@ -62,18 +62,19 @@ body {
 }
 
 .btnPrincipais {
-  /* Container onde estão os botões de busca */
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-  align-items: center;
-  margin: 0px 80px 0px 60px;
-}
+    /* Container onde estão os botões de busca */
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    align-items: center;
+    margin: 0px 80px 0px 60px;
+  }
 
 
 
 /* Sugestão de ponto na pag index*/
 .naoRegistrado {
+  display: flex;
   font-size: 26px;
   color: #435533;
   margin-bottom: 10px;
@@ -82,7 +83,6 @@ body {
 .sugerir {
   font-size: 18px;
   color: #405a41;
-  opacity: 0.6;
   text-decoration: underline;
   margin-bottom: 45px;
   cursor: pointer;
@@ -108,73 +108,7 @@ body {
 
 
 
-/* Modal */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.popup-content {
-    background-color: var(--secondary-color);
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    position: relative;
-    text-align: left;
-}
-
-.popup-content h2 {
-    margin-bottom: 1rem;
-}
-
-.popup-content label {
-    display: block;
-    margin: 0.5rem 0 0.3rem;
-    color: var(--text-color);
-}
-
-.popup-content input,
-.popup-content select {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-bottom: 1rem;
-}
-
-.popup-content .close-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    color: var(--text-color);
-    cursor: pointer;
-}
-
-/* Botão Buscar no Modal */
-.popup-content button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 0.8rem;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.popup-content button:hover {
-    background-color: #388e3c;
-}
 
 /* Resultados */
 .resultados-container {
@@ -253,7 +187,8 @@ body {
 .suggested-point button:last-of-type:hover {
     background-color: #c82333;
 }
-/* styles.css */
+
+
 .popup-container {
     position: fixed;
     top: 0;
@@ -282,7 +217,6 @@ body {
     cursor: pointer;
 }
 
-/* styles.css */
 .popup-container {
     position: fixed;
     top: 0;
@@ -318,4 +252,88 @@ body {
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+
+
+/* Modal */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: left;
+}
+
+.popup-content-title{
+    color: #435533;
+    display: flex;
+    font-size: 15px;
+    margin-bottom: 1rem;
+}
+
+.popup-content label {
+    display: block;
+    margin: 0.5rem 0 0.3rem;
+    color: #000000;
+}
+
+.popup-content input,
+.popup-content select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+.popup-content .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Botão Buscar no Modal */
+.popup-content button {
+    background-color: #55703F;
+    color: #fff;
+    padding: 0.8rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    background-color: #65844c;
+}
+
+.material-checkboxes{
+    display: flex;
+    flex-direction: row;
+}
+
+.radioEmpresa{
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
 }

@@ -1,6 +1,7 @@
 // SugerirPontoPopUp.js
 import React, { useState } from "react";
 import axios from "axios";
+import '../assets/styles/ModalSugerir.css'
 
 const SugerirPontoPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
@@ -39,7 +40,9 @@ const SugerirPontoPopUp = ({ onClose }) => {
                 <span className="close-button" onClick={onClose}>
                     &times;
                 </span>
-                <h2>Sugerir novo ponto de coleta</h2>
+                <div className="popup-content-title">
+                <h1>Sugerir novo ponto de coleta</h1>
+                </div>
                 <label>Endereço:</label>
                 <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Digite o endereço" />
                 <label>CEP:</label>

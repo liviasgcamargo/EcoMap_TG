@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import '../App.css';
-import BuscarPontoPopUp from "./BuscarPontoPopUp";
-import BuscarOngPopUp from "./BuscarOngPopUp";
-import BuscarEmpresaPopUp from "./BuscarEmpresaPopUp";
-import SugerirPontoPopUp from "./SugerirPontoPopUp";
+import BuscarPontoPopUp from "../components/BuscarPontoPopUp";
+import BuscarOngPopUp from "../components/BuscarOngPopUp";
+import BuscarEmpresaPopUp from "../components/BuscarEmpresaPopUp";
+import SugerirPontoPopUp from "../components/SugerirPontoPopUp";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Cards from "../components/Cards";
@@ -34,7 +34,6 @@ const Home = () => {
                         diferença. Escolha uma das opções abaixo para começar.
                     </p>
                 </div>
-                {/* Fim dos textos principais da tela principal */}
 
                 {/* Botões de consulta */}
                 <div className="btnPrincipais">
@@ -50,10 +49,6 @@ const Home = () => {
                 </div>
             </>
 
-
-
-
-
             {activePopup === "descarte" && <BuscarPontoPopUp onClose={closePopup} />}
             {activePopup === "doacao" && <BuscarOngPopUp onClose={closePopup} />}
             {activePopup === "compravenda" && <BuscarEmpresaPopUp onClose={closePopup} />}
@@ -61,7 +56,9 @@ const Home = () => {
             <Cards />
 
             <div className="containerSugerir">
-                <h2 className="naoRegistrado">Conhece algum ponto de entrega ainda não registrado?{" "}</h2>
+                <div className="naoRegistrado">
+                <h2>Conhece algum ponto de entrega ainda não registrado?{" "}</h2>
+                </div>
                 <span className="sugerir" onClick={() => openPopup("sugestao")}>
                     {activePopup === "sugestao" && <SugerirPontoPopUp onClose={closePopup} />}
                     Clique aqui para sugerir um novo endereço de coleta!
