@@ -56,9 +56,7 @@ const Home = () => {
             <Cards />
 
             <div className="containerSugerir">
-                <div className="naoRegistrado">
-                <h2>Conhece algum ponto de entrega ainda não registrado?{" "}</h2>
-                </div>
+                <p>Conhece algum ponto de entrega ainda não registrado?{" "}</p>
                 <span className="sugerir" onClick={() => openPopup("sugestao")}>
                     {activePopup === "sugestao" && <SugerirPontoPopUp onClose={closePopup} />}
                     Clique aqui para sugerir um novo endereço de coleta!

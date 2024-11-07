@@ -73,12 +73,7 @@ body {
 
 
 /* Sugestão de ponto na pag index*/
-.naoRegistrado {
-  display: flex;
-  font-size: 26px;
-  color: #435533;
-  margin-bottom: 10px;
-}
+
 
 .sugerir {
   font-size: 18px;
@@ -101,6 +96,13 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
+}
+
+.containerSugerir p{
+    color: #435533;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 /* Fim da sugestão de ponto na pag index*/
@@ -330,6 +332,7 @@ body {
 .material-checkboxes{
     display: flex;
     flex-direction: row;
+    gap: 10px; /* Espaço entre cada label */
 }
 
 .radioEmpresa{
@@ -337,3 +340,4 @@ body {
     align-items: baseline;
     gap: 20px;
 }
+
