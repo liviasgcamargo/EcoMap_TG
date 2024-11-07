@@ -1,9 +1,9 @@
-// BuscarOngPopUp.js
+// BuscarPontoPopUp.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const BuscarOngPopUp = ({ onClose }) => {
+const BuscarPontoPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
@@ -27,7 +27,7 @@ const BuscarOngPopUp = ({ onClose }) => {
             const { lat, lng } = geocodeResponse.data.results[0].geometry.location;
 
             // Envio das coordenadas e outros parâmetros ao backend
-            const response = await axios.post("http://localhost:8000/buscar-ongs", {
+            const response = await axios.post("http://localhost:8000/buscar-pontos-coleta", {
                 latitude: lat,
                 longitude: lng,
                 raio: radius,
@@ -35,9 +35,9 @@ const BuscarOngPopUp = ({ onClose }) => {
             });
 
             // Redireciona para a página de resultados com os dados obtidos
-            navigate("/resultados-ongs", { state: { resultados: response.data } });
+            navigate("/resultado-ponto-coleta", { state: { resultados: response.data } });
         } catch (error) {
-            console.error("Erro ao buscar ONGs próximas:", error);
+            console.error("Erro ao buscar pontos próximos:", error);
         }
     };
 
@@ -47,7 +47,9 @@ const BuscarOngPopUp = ({ onClose }) => {
                 <span className="close-button" onClick={onClose}>
                     &times;
                 </span>
-                <h2>Buscar ONGs</h2>
+                <div className="popup-content-title">
+                <h1>Buscar Ponto de Descarte</h1>
+                </div>
                 <label>Endereço:</label>
                 <input
                     type="text"
@@ -88,4 +90,4 @@ const BuscarOngPopUp = ({ onClose }) => {
     );
 };
 
-export default BuscarOngPopUp;
+export default BuscarPontoPopUp;

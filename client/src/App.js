@@ -6,10 +6,10 @@ import {
 }from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
-import BuscarPontoPopUp from "./pages/BuscarPontoPopUp";
-import BuscarOngPopUp from "./pages/BuscarOngPopUp";
-import BuscarEmpresaPopUp from "./pages/BuscarEmpresaPopUp";
-import SugerirPontoPopUp from "./pages/SugerirPontoPopUp";
+import BuscarPontoPopUp from "./components/BuscarPontoPopUp";
+import BuscarOngPopUp from "./components/BuscarOngPopUp";
+import BuscarEmpresaPopUp from "./components/BuscarEmpresaPopUp";
+import SugerirPontoPopUp from "./components/SugerirPontoPopUp";
 import AdicionarPontoPopup from "./pages/AdicionarPontoPopup";
 import ResultadoPontoColeta from "./pages/ResultadoPontoColeta";
 import ResultadoOng from "./pages/ResultadoOng";

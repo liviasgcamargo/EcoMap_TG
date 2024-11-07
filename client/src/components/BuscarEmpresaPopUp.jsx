@@ -46,10 +46,16 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
     return (
         <div className="popup">
             <div className="popup-content">
+                <div>
+
                 <span className="close-button" onClick={onClose}>
                     &times;
                 </span>
-                <h2>Buscar Empresas</h2>
+                </div>
+
+                <div className="popup-content-title">
+                <h1>Buscar Empresas</h1>
+                </div>
                 <label>Endereço:</label>
                 <input
                     type="text"
@@ -85,7 +91,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
                     </label>
                 </div>
                 <label>Tipo de Transação:</label>
-                <div>
+                <div className="radioEmpresa">
                     <label>
                         <input
                             type="radio"

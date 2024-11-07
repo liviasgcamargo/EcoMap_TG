@@ -62,18 +62,19 @@ body {
 }
 
 .btnPrincipais {
-  /* Container onde estão os botões de busca */
-  display: flex;
-  flex-direction: row;
-  cursor: pointer;
-  align-items: center;
-  margin: 0px 80px 0px 60px;
-}
+    /* Container onde estão os botões de busca */
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    align-items: center;
+    margin: 0px 80px 0px 60px;
+  }
 
 
 
 /* Sugestão de ponto na pag index*/
 .naoRegistrado {
+  display: flex;
   font-size: 26px;
   color: #435533;
   margin-bottom: 10px;
@@ -280,6 +281,7 @@ body {
 }
 
 .popup-content-title{
+    color: #435533;
     display: flex;
     font-size: 15px;
     margin-bottom: 1rem;
@@ -328,4 +330,10 @@ body {
 .material-checkboxes{
     display: flex;
     flex-direction: row;
+}
+
+.radioEmpresa{
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
 }

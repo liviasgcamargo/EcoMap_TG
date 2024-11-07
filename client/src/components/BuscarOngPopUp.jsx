@@ -1,9 +1,9 @@
-// BuscarPontoPopUp.jsx
+// BuscarOngPopUp.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const BuscarPontoPopUp = ({ onClose }) => {
+const BuscarOngPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
@@ -27,7 +27,7 @@ const BuscarPontoPopUp = ({ onClose }) => {
             const { lat, lng } = geocodeResponse.data.results[0].geometry.location;
 
             // Envio das coordenadas e outros parâmetros ao backend
-            const response = await axios.post("http://localhost:8000/buscar-pontos-coleta", {
+            const response = await axios.post("http://localhost:8000/buscar-ongs", {
                 latitude: lat,
                 longitude: lng,
                 raio: radius,
@@ -35,19 +35,21 @@ const BuscarPontoPopUp = ({ onClose }) => {
             });
 
             // Redireciona para a página de resultados com os dados obtidos
-            navigate("/resultado-ponto-coleta", { state: { resultados: response.data } });
+            navigate("/resultados-ongs", { state: { resultados: response.data } });
         } catch (error) {
-            console.error("Erro ao buscar pontos próximos:", error);
+            console.error("Erro ao buscar ONGs próximas:", error);
         }
     };
 
     return (
-        <div className="modalPontoColeta">
-            <div className="modalContent">
-                <span className="closePontoColeta" onClick={onClose}>
+        <div className="popup">
+            <div className="popup-content">
+                <span className="close-button" onClick={onClose}>
                     &times;
                 </span>
-                <h2>Buscar Ponto de Descarte</h2>
+                <div className="popup-content-title">
+                <h1>Buscar ONGs</h1>
+                </div>
                 <label>Endereço:</label>
                 <input
                     type="text"
@@ -62,7 +64,7 @@ const BuscarPontoPopUp = ({ onClose }) => {
                     <option value={20}>20 km</option>
                 </select>
                 <label>Tipos de Material:</label>
-                <div className="dropdown-btn">
+                <div className="material-checkboxes">
                     <label>
                         <input type="checkbox" value="1" onChange={handleMaterialChange} /> Papelão
                     </label>
@@ -88,4 +90,4 @@ const BuscarPontoPopUp = ({ onClose }) => {
     );
 };
 
-export default BuscarPontoPopUp;
+export default BuscarOngPopUp;
