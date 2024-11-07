@@ -34,7 +34,6 @@ const Home = () => {
                         diferença. Escolha uma das opções abaixo para começar.
                     </p>
                 </div>
-                {/* Fim dos textos principais da tela principal */}
 
                 {/* Botões de consulta */}
                 <div className="btnPrincipais">
