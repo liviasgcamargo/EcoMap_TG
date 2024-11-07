@@ -53,7 +53,7 @@ function App() {
                     path="/perfil"
                     element={isAuthenticated ? <Perfil /> : <Navigate to="/login2" />}
                 />
-      <Route path="/login" element={<Login2 />} />
+      <Route path="/login2" element={<Login2 />} />
       </Routes>
       </BrowserRouter>
     </div>
