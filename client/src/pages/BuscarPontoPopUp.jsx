@@ -42,9 +42,9 @@ const BuscarPontoPopUp = ({ onClose }) => {
     };
 
     return (
-        <div className="modalPontoColeta">
-            <div className="modalContent">
-                <span className="closePontoColeta" onClick={onClose}>
+        <div className="popup">
+            <div className="popup-content">
+                <span className="close-button" onClick={onClose}>
                     &times;
                 </span>
                 <h2>Buscar Ponto de Descarte</h2>
