@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
+
 const AdminLogin = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -18,6 +20,9 @@ const AdminLogin = () => {
     };
 
     return (
+
+        <>
+
         <div className="login-container">
             <h2>Login do Administrador</h2>
             <form onSubmit={handleLogin}>
@@ -38,6 +43,7 @@ const AdminLogin = () => {
                 <button type="submit">Entrar</button>
             </form>
         </div>
+        </>
     );
 };
 

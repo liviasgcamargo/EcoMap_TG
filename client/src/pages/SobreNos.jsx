@@ -1,6 +1,8 @@
 import React from 'react'
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
+import Linkedin from "../assets/images/icon_linkedin.png"
+import Icone1 from "../assets/images/icon-verde.png"
 import '../assets/styles/SobreNos.css'
 
 const SobreNos = () => {
@@ -8,11 +10,10 @@ const SobreNos = () => {
         <>
 
             <Navbar />
-
             <main className="heroSobre">
                 <section className="team">
                     <div className="member left">
-                        <img src="/img/icon-verde.png" alt="Integrante 1" />
+                        <img src={Icone1} alt="Integrante 1" />
                         <div className="info">
                             <h3>Lívia</h3>
                             <p>blablablablablabalblabalbalbal.</p>
