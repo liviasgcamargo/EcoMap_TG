@@ -20,7 +20,6 @@ import PontosSugeridos from "./pages/PontosSugeridos";
 import Faq from "./pages/Faq";
 import Guia from "./pages/Guia";
 import SobreNos from "./pages/SobreNos";
-import Cadastrar from "./pages/Cadastrar";
 import Cadastro from "./pages/Cadastro";
 import Perfil from "./pages/Perfil";
 import Login2 from "./pages/Login2";
@@ -48,7 +47,6 @@ function App() {
       <Route path="/guia" element={<Guia />} />
       <Route path="/faq" element={<Faq />} />
       <Route path="/sobre-nos" element={<SobreNos />} />
-      <Route path="/cadastrar" element={<Cadastrar />} />
       <Route path="/pontos-sugeridos" element={<PontosSugeridos />} />
       <Route path="/cadastro" element={<Cadastro />} />
       <Route

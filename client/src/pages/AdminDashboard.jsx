@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import AdicionarPontoPopup from "./AdicionarPontoPopup"; // Popup para adicionar pontos
 import ValidarEmpresaPopup from "./ValidarEmpresaPopup"; // Popup para validar empresas
 import ValidarONGPopup from "./ValidarONGPopup"; // Novo popup para validar ONGs
+import Logo from '../assets/images/logo.png'
+import { Link } from "react-router-dom";
+import '../assets/styles/AdminDashboard.css'
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -28,28 +31,36 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="dashboard-container">
-            <h2>Painel de Gerenciamento do Administrador</h2>
-            <button onClick={handleSuggestedPointsClick}>PONTOS SUGERIDOS</button>
-            <button onClick={handleAdicionarPontoClick}>ADICIONAR PONTO</button>
-            <button onClick={handleValidarEmpresaClick}>VALIDAR EMPRESA</button>
-            <button onClick={handleValidarONGClick}>VALIDAR ONG</button>
 
-            {/* Renderiza o popup de adicionar ponto */}
-            {showAdicionarPontoPopup && (
-                <AdicionarPontoPopup onClose={() => setShowAdicionarPontoPopup(false)} />
-            )}
+        <>
+            <img className="logoHeader" src={Logo} alt="Logo" />
+            <a id="btnContact">
+                <Link to="/Login2">Sair</Link>
+            </a>
 
-            {/* Renderiza o popup de validar empresa */}
-            {showValidarEmpresaPopup && (
-                <ValidarEmpresaPopup onClose={() => setShowValidarEmpresaPopup(false)} />
-            )}
+            <div className="dashboard-container">
+                <h2>Painel de Gerenciamento do Administrador</h2>
+                <button onClick={handleSuggestedPointsClick}>PONTOS SUGERIDOS</button>
+                <button onClick={handleAdicionarPontoClick}>ADICIONAR PONTO</button>
+                <button onClick={handleValidarEmpresaClick}>VALIDAR EMPRESA</button>
+                <button onClick={handleValidarONGClick}>VALIDAR ONG</button>
 
-            {/* Renderiza o popup de validar ONG */}
-            {showValidarONGPopup && (
-                <ValidarONGPopup onClose={() => setShowValidarONGPopup(false)} />
-            )}
-        </div>
+                {/* Renderiza o popup de adicionar ponto */}
+                {showAdicionarPontoPopup && (
+                    <AdicionarPontoPopup onClose={() => setShowAdicionarPontoPopup(false)} />
+                )}
+
+                {/* Renderiza o popup de validar empresa */}
+                {showValidarEmpresaPopup && (
+                    <ValidarEmpresaPopup onClose={() => setShowValidarEmpresaPopup(false)} />
+                )}
+
+                {/* Renderiza o popup de validar ONG */}
+                {showValidarONGPopup && (
+                    <ValidarONGPopup onClose={() => setShowValidarONGPopup(false)} />
+                )}
+            </div>
+        </>
     );
 };
 
