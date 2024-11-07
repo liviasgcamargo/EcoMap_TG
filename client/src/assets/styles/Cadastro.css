@@ -26,7 +26,6 @@ form {
   .tipo_transacao{
     margin-top: 1.3em;
     margin-bottom: 1.3em;
-    color: red;
   }
 
   .form-tipo-transacao{
@@ -36,7 +35,6 @@ form {
   }
 
   .tipoServico{
-    color: blue;
     margin-top: 1.3em;
   }
 
@@ -47,7 +45,6 @@ form {
   }
 
   .select-tipo-cadastro{
-    color: purple;
     margin-left: 5px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -57,3 +54,18 @@ form {
     border-radius: 5px;
     width: calc(100% - 12px);
   }
+
+  .material-options {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    margin-top: 3px;
+    margin-bottom: 1.3em;
+  }
+  
+  .material-options label {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+  }
+  
