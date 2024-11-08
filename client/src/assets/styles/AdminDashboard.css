@@ -53,3 +53,17 @@
     margin-bottom: 8px; /* Espaço entre a imagem e o texto */
   }
   
+
+  .material-options {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    margin-top: 3px;
+    margin-bottom: 1.3em;
+  }
+  
+  .material-options label {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+  }

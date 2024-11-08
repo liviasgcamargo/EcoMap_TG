@@ -61,7 +61,7 @@ const AdicionarPontoPopup = ({ onClose }) => {
         <div className="popup-container">
             <div className="popup-content">
                 <span className="close" onClick={onClose}>&times;</span>
-                <h2>Adicionar Novo Ponto de Coleta</h2>
+                <h1 className="popup-title">Adicionar Novo Ponto de Coleta</h1>
                 <label>Endereço:</label>
                 <input type="text" value={endereco} onChange={(e) => setEndereco(e.target.value)} />
                 
@@ -75,7 +75,7 @@ const AdicionarPontoPopup = ({ onClose }) => {
                 <input type="text" value={estado} onChange={(e) => setEstado(e.target.value)} />
 
                 <label>Tipos de Material Aceito:</label>
-                <div className="material-options">
+                <div className="material-popup">
                     <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
                     <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
                     <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>

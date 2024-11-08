@@ -10,7 +10,7 @@ import BuscarPontoPopUp from "./components/BuscarPontoPopUp";
 import BuscarOngPopUp from "./components/BuscarOngPopUp";
 import BuscarEmpresaPopUp from "./components/BuscarEmpresaPopUp";
 import SugerirPontoPopUp from "./components/SugerirPontoPopUp";
-import AdicionarPontoPopup from "./pages/AdicionarPontoPopup";
+import AdicionarPontoPopup from "./components/AdicionarPontoPopup";
 import ResultadoPontoColeta from "./pages/ResultadoPontoColeta";
 import ResultadoOng from "./pages/ResultadoOng";
 import ResultadoEmpresa from "./pages/ResultadoEmpresa";

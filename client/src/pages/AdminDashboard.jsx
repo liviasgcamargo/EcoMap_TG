@@ -1,9 +1,9 @@
 // AdminDashboard.js
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import AdicionarPontoPopup from "./AdicionarPontoPopup" // Popup para adicionar pontos
-import ValidarEmpresaPopup from "./ValidarEmpresaPopup" // Popup para validar empresas
-import ValidarONGPopup from "./ValidarONGPopup" // Novo popup para validar ONGs
+import AdicionarPontoPopup from "../components/AdicionarPontoPopup" // Popup para adicionar pontos
+import ValidarEmpresaPopup from "../components/ValidarEmpresaPopup" // Popup para validar empresas
+import ValidarONGPopup from "../components/ValidarONGPopup" // Novo popup para validar ONGs
 import Logo from '../assets/images/logo.png'
 import Sugeridos from '../assets/images/pontos-sugeridos.png'
 import AddPonto from '../assets/images/adicionar-ponto.png'
@@ -104,6 +104,7 @@ const AdminDashboard = () => {
                     <ValidarONGPopup onClose={() => setShowValidarONGPopup(false)} />
                 )}
             </div>
+
         </>
     );
 };

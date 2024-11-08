@@ -15,8 +15,6 @@ body {
   height: 100vh;
 }
 
-
-
 /* Conteúdo principal do index*/
 
 .painelCentral {
@@ -203,14 +201,7 @@ body {
     justify-content: center;
 }
 
-.popup-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    width: 100%;
-    position: relative;
-}
+
 
 .popup-content .close {
     position: absolute;
@@ -341,3 +332,21 @@ body {
     gap: 20px;
 }
 
+.popup-title{
+    color: #435533;
+    font-size: 25px;
+}
+
+.material-popup {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    margin-top: 3px;
+    margin-bottom: 1.3em;
+  }
+  
+  .material-popup label {
+    display: flex;
+    align-items: center; 
+    gap: 8px; 
+  }

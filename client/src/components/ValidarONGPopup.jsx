@@ -63,7 +63,7 @@ const ValidarONGPopup = ({ onClose }) => {
         <div className="popup-container">
             <div className="popup-content">
                 <span className="close" onClick={onClose}>&times;</span>
-                <h2>ONGs Pendentes de Validação</h2>
+                <h1 className="popup-title">ONGs Pendentes de Validação</h1>
 
                 {ongs.length === 0 ? (
                     <p>Nenhuma ONG pendente de validação.</p>

@@ -63,7 +63,7 @@ const ValidarEmpresaPopup = ({ onClose }) => {
         <div className="popup-container">
             <div className="popup-content">
                 <span className="close" onClick={onClose}>&times;</span>
-                <h2>Empresas Pendentes de Validação</h2>
+                <h1 className="popup-title">Empresas Pendentes de Validação</h1>
 
                 {empresas.length === 0 ? (
                     <p>Nenhuma empresa pendente de validação.</p>
