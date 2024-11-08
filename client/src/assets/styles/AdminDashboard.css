@@ -1,0 +1,55 @@
+.logoHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  margin-left: 70px;
+  }
+
+  .btn-sair {
+    font-size: 14px;
+    width: 129px;
+    height: 32.53px;
+    color: #ffffff;
+    background-color: #356037;
+    border-radius: 8px;
+    border-style: none;
+    font-weight: medium;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    line-height: 32.53px;
+  }
+  
+  .dashboard-container{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+  }
+
+  .btn-sair:hover {
+    background-color: #2a4f2d;
+  }
+
+  .btn-dashboard{
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column; /* Alinha o conteúdo em coluna */
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #fff; /* Opcional */
+    cursor: pointer;
+    width: 150px;
+  }
+  
+  .button-icon {
+    width: 40px; /* Ajuste o tamanho conforme necessário */
+    height: 40px;
+    margin-bottom: 8px; /* Espaço entre a imagem e o texto */
+  }
+  
