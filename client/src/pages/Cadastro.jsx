@@ -71,84 +71,121 @@ const Cadastro = () => {
 
     return (
         <>
-        <Navbar/>
+            <Navbar />
 
-        <div className="cadastro-container">
-            <h2>Cadastro de {categoria}</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Tipo de Cadastro:
-                    <select className="select-tipo-cadastro" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-                        <option value="ONG">ONG</option>
-                        <option value="Empresa">Empresa</option>
-                    </select>
-                </label>
-
-                <label>Email:</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-
-                <label>Senha:</label>
-                <input type="password" name="senha" value={formData.senha} onChange={handleChange} required />
-
-                <label>Confirme a Senha:</label>
-                <input type="password" name="confirmarSenha" value={formData.confirmarSenha} onChange={handleChange} required />
-
-                <label>Nome da Organização:</label>
-                <input type="text" name="nome_org" value={formData.nome_org} onChange={handleChange} required />
-
-                <label>CNPJ:</label>
-                <input type="text" name="CNPJ" value={formData.CNPJ} onChange={handleChange} required />
-
-                <label>Telefone:</label>
-                <input type="text" name="telefone" value={formData.telefone} onChange={handleChange} required />
-
-                <label>Descrição:</label>
-                <textarea className="text-descricao" name="descricao" value={formData.descricao} onChange={handleChange} />
-
-                <label className="tipoServico">Tipo de Serviço:</label>
-                <select className="form-tipo-servico" name="tipo_servico" value={formData.tipo_servico} onChange={handleChange}>
-                    <option value="Retira no Local">Retira no Local</option>
-                    <option value="Não Retira">Não Retira</option>
-                </select>
-
-                <label>Endereço:</label>
-                <input type="text" name="endereco" value={formData.endereco} onChange={handleChange} required />
-
-                <label>CEP:</label>
-                <input type="text" name="cep" value={formData.cep} onChange={handleChange} required />
-
-                <label>Cidade:</label>
-                <input type="text" name="cidade" value={formData.cidade} onChange={handleChange} required />
-
-                <label>Estado:</label>
-                <input type="text" name="estado" value={formData.estado} onChange={handleChange} required />
-
-                <label>Tipos de Material Aceito:</label>
-                <div className="material-options">
-                    <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
-                    <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
-                    <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
-                    <label><input type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
-                    <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
-                    <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
-                </div>
-
-                {categoria === "Empresa" && (
-                    <label className="tipo_transacao" >
-                        Tipo de Transação:
-                        <select className="form-tipo-transacao" name="tipo_transacao" value={formData.tipo_transacao} onChange={handleChange}>
-                            <option value="Compra">Compra</option>
-                            <option value="Venda">Venda</option>
-                            <option value="Compra e Venda">Compra e Venda</option>
+            <div className="cadastro-container">
+                <h2>Cadastro de {categoria}</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Tipo de Cadastro:
+                        <select className="select-tipo-cadastro" value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                            <option value="ONG">ONG</option>
+                            <option value="Empresa">Empresa</option>
                         </select>
                     </label>
-                )}
 
-                <button type="submit">CADASTRAR</button>
-            </form>
-        </div>
-        
-        <Footer/>
+                    <label>Email:</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+
+                    <label>Senha:</label>
+                    <input type="password" name="senha" value={formData.senha} onChange={handleChange} required />
+
+                    <label>Confirme a Senha:</label>
+                    <input type="password" name="confirmarSenha" value={formData.confirmarSenha} onChange={handleChange} required />
+
+                    <label>Nome da Organização:</label>
+                    <input type="text" name="nome_org" value={formData.nome_org} onChange={handleChange} required />
+
+                    <label>CNPJ:</label>
+                    <input type="text" name="CNPJ" value={formData.CNPJ} onChange={handleChange} required />
+
+                    <label>Telefone:</label>
+                    <input type="text" name="telefone" value={formData.telefone} onChange={handleChange} required />
+
+                    <label>Descrição:</label>
+                    <textarea className="text-descricao" name="descricao" value={formData.descricao} onChange={handleChange} />
+
+                    <label className="tipoServico">Tipo de Serviço:</label>
+                    <select className="form-cadastro-dropdown" name="tipo_servico" value={formData.tipo_servico} onChange={handleChange}>
+                        <option value="Retira no Local">Retira no Local</option>
+                        <option value="Não Retira">Não Retira</option>
+                    </select>
+
+                    <label>Endereço:</label>
+                    <input type="text" name="endereco" value={formData.endereco} onChange={handleChange} required />
+
+                    <label>CEP:</label>
+                    <input type="text" name="cep" value={formData.cep} onChange={handleChange} required />
+
+                    <label>Cidade:</label>
+                    <input type="text" name="cidade" value={formData.cidade} onChange={handleChange} required />
+
+                    <label htmlFor="estado">Estado</label>
+                    <select 
+                        className="form-cadastro-dropdown"
+                        id="estado"
+                        name="estado"
+                        value={formData.estado}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="">Selecione o estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+
+
+                    <label>Tipos de Material Aceito:</label>
+                    <div className="material-options">
+                        <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
+                        <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
+                        <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
+                        <label><input type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
+                        <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
+                        <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
+                    </div>
+
+                    {categoria === "Empresa" && (
+                        <label className="tipo_transacao" >
+                            Tipo de Transação:
+                            <select className="form-tipo-transacao" name="tipo_transacao" value={formData.tipo_transacao} onChange={handleChange}>
+                                <option value="Compra">Compra</option>
+                                <option value="Venda">Venda</option>
+                                <option value="Compra e Venda">Compra e Venda</option>
+                            </select>
+                        </label>
+                    )}
+
+                    <button type="submit">CADASTRAR</button>
+                </form>
+            </div>
+
+            <Footer />
 
         </>
     );
