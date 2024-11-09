@@ -22,7 +22,7 @@ import Guia from "./pages/Guia";
 import SobreNos from "./pages/SobreNos";
 import Cadastro from "./pages/Cadastro";
 import Perfil from "./pages/Perfil";
-import Login2 from "./pages/Login2";
+import Login from "./pages/Login";
 
 function App() {
 
@@ -49,11 +49,8 @@ function App() {
       <Route path="/sobre-nos" element={<SobreNos />} />
       <Route path="/pontos-sugeridos" element={<PontosSugeridos />} />
       <Route path="/cadastro" element={<Cadastro />} />
-      <Route
-                    path="/perfil"
-                    element={isAuthenticated ? <Perfil /> : <Navigate to="/login2" />}
-                />
-      <Route path="/login2" element={<Login2 />} />
+      <Route path="/perfil" element={isAuthenticated ? <Perfil /> : <Navigate to="/login" />} />
+      <Route path="/login" element={<Login />} />
       </Routes>
       </BrowserRouter>
     </div>

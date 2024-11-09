@@ -42,7 +42,7 @@ const AdminDashboard = () => {
                 <img className="logoHeader" src={Logo} alt="Logo" />
             </Link>            
             <a className="btn-sair">
-                <Link to="/Login2">Sair</Link>
+                <Link to="/Login">Sair</Link>
             </a>
         </nav>
 
