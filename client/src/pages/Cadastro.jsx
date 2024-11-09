@@ -175,8 +175,8 @@ const Cadastro = () => {
                             Tipo de Transação:
                             <select className="form-tipo-transacao" name="tipo_transacao" value={formData.tipo_transacao} onChange={handleChange}>
                                 <option value="Compra">Compra</option>
-                                <option value="Venda">Venda</option>
-                                <option value="Compra e Vende">Compra e Vende</option>
+                                <option value="Vende">Venda</option>
+                                <option value="Compra e Vende">Compra e Venda</option>
                             </select>
                         </label>
                     )}
