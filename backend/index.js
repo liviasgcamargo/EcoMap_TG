@@ -8,11 +8,12 @@ import jwt from "jsonwebtoken";
 import authenticateToken from "./middlewares/authenticateToken.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
+import pkg from "../client/src/components/ChaveAPIGoogleMaps.js"; // Importação padrão
+const { googleMapsApiKey } = pkg;
 
 dotenv.config();
 
 const app = express();
-const GOOGLE_MAPS_API_KEY = "";
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -146,7 +147,7 @@ app.post("/buscar-empresas", async (req, res) => {
 async function validarEndereco(endereco) {
   const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
       endereco
-  )}&key=${GOOGLE_MAPS_API_KEY}`;
+  )}&key=${googleMapsApiKey}`;
 
   const response = await axios.get(geocodeUrl);
   const data = response.data;

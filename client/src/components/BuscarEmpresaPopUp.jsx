@@ -2,13 +2,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { googleMapsApiKey } from "./ChaveAPIGoogleMaps";
 
 const BuscarEmpresaPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
     const [transactionType, setTransactionType] = useState("Compra");
-    const googleMapsApiKey = "";
     const navigate = useNavigate();
 
     const handleMaterialChange = (event) => {
