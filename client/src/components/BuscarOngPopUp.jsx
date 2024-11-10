@@ -35,7 +35,7 @@ const BuscarOngPopUp = ({ onClose }) => {
             });
 
             // Redireciona para a página de resultados com os dados obtidos
-            navigate("/resultados-ongs", { state: { resultados: response.data } });
+            navigate("/resultados-ongs", { state: { resultados: response.data, center: {lat, lng}}});
         } catch (error) {
             console.error("Erro ao buscar ONGs próximas:", error);
         }

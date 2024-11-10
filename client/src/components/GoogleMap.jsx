@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { googleMapsApiKey } from "./ChaveAPIGoogleMaps";
 
-const GoogleMap = ({ points }) => {
+const GoogleMap = ({ points, center }) => {
   const mapContainerRef = useRef(null);
   const scriptRef = useRef(false); // Ref para controlar o carregamento do script
 
@@ -20,7 +20,7 @@ const GoogleMap = ({ points }) => {
     // Função de inicialização do mapa
     window.initMap = () => {
       const map = new window.google.maps.Map(mapContainerRef.current, {
-        center: { lat: -23.48047, lng: -47.42596 }, // Posição inicial do mapa
+        center: center, // Posição inicial do mapa
         zoom: 12,
       });
 
@@ -45,7 +45,7 @@ const GoogleMap = ({ points }) => {
         scriptRef.current = false; // Reverter a referência
       }
     };
-  }, [points]);
+  }, [points. center]);
 
   return <div ref={mapContainerRef} style={{ width: "100%", height: "600px" }} />;
 };

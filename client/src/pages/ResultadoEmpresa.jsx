@@ -5,7 +5,7 @@ import GoogleMap from "../components/GoogleMap";
 
 const ResultadoEmpresa = () => {
     const location = useLocation();
-    const { resultados } = location.state || { resultados: [] };
+    const { resultados, center} = location.state;
 
     // Verificar se há resultados para evitar erros no mapa
     const points = resultados.map((point) => ({
@@ -38,7 +38,7 @@ const ResultadoEmpresa = () => {
                 )}
             </div>
             <div class='mapa'>
-                <GoogleMap points={points} />
+                <GoogleMap points={points} center={center} />
             </div>
         </div>
     );
