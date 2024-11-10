@@ -442,7 +442,7 @@ app.post("/cadastrar", async (req, res) => {
   }
 });
 
-app.listen(8001, () => {
+app.listen(8000, () => {
   console.log("Connected to backend!");
 });
 
