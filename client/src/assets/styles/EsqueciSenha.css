@@ -1,0 +1,22 @@
+p{
+    font-size: 15px;
+}
+
+button{
+    align-items: end;
+    width: 150px;
+    height: 45px;
+    color: #ffffff;
+    background-color: #405a41;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: none;
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+    margin-top: 8px;
+}
+

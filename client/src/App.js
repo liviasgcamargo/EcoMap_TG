@@ -23,6 +23,7 @@ import SobreNos from "./pages/SobreNos";
 import Cadastro from "./pages/Cadastro";
 import Perfil from "./pages/Perfil";
 import Login from "./pages/Login";
+import EsqueciSenha from "./pages/EsqueciSenha";
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/perfil" element={isAuthenticated ? <Perfil /> : <Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/esqueci-senha" element={<EsqueciSenha />} />
       </Routes>
       </BrowserRouter>
     </div>

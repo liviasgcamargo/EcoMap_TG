@@ -58,7 +58,7 @@ const Login = () => {
                 />
 
                 <p>
-                    <a href="esqueciSenha.html" className="esqueci-senha">
+                    <a href="esqueci-senha" className="esqueci-senha">
                         Esqueci minha senha
                     </a>
                 </p>
