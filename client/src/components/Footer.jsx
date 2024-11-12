@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Facebook from '../assets/images/icon_facebook.png'
 import Linkedin from '../assets/images/icon_linkedin.png'
 import Twitter from '../assets/images/icon_twitter.png'
@@ -14,13 +15,16 @@ const Footer = () => {
       <div className="footer-links">
         <ul className="linksUteis">
           <li>
-            <a href="">Home</a>
+            <a href=""><Link to="/">Home</Link></a>
           </li>
           <li>
-            <a href="">Sobre nós</a>
+            <a href=""><Link to="/sobre-nos">Sobre nós</Link></a>
           </li>
           <li>
             <a href="">Entre em contato</a>
+          </li>
+          <li>
+          <a href=""><Link to="/gerenciar-info-administrador">Administrador</Link></a>
           </li>
           
         </ul>

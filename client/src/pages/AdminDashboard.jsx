@@ -42,7 +42,7 @@ const AdminDashboard = () => {
                 <img className="logoHeader" src={Logo} alt="Logo" />
             </Link>            
             <a className="btn-sair">
-                <Link to="/Login">Sair</Link>
+                <Link to="/perfil-adm">Sair</Link>
             </a>
         </nav>
 
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
                         className="button-icon"
                         onClick={handleSuggestedPointsClick}
                     />
-                    Pontos Sugeridos
+                    <p className="titulo-btn-adm">Pontos Sugeridos</p>
                 </button>
 
                 <button className="btn-dashboard ">
@@ -66,7 +66,7 @@ const AdminDashboard = () => {
                         className="button-icon"
                         onClick={handleAdicionarPontoClick}
                     />
-                    Adicionar Ponto
+                    <p className="titulo-btn-adm">Adicionar Ponto</p>
                 </button>
 
                 <button className="btn-dashboard ">
@@ -76,7 +76,7 @@ const AdminDashboard = () => {
                         className="button-icon"
                         onClick={handleValidarEmpresaClick}
                     />
-                    Validar Empresa
+                    <p className="titulo-btn-adm">Validar Empresa</p>
                 </button>
 
                 <button className="btn-dashboard ">
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
                         className="button-icon"
                         onClick={handleValidarONGClick}
                     />
-                    Validar ONG
+                    <p className="titulo-btn-adm">Validar ONG</p>
                 </button>
 
                 {/* Renderiza o popup de adicionar ponto */}

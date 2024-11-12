@@ -2,6 +2,10 @@ import React from 'react'
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import Avatar from 'avataaars'
+import Github from '../assets/images/github-original.svg'
+import Linkedin from '../assets/images/linkedin-plain.svg'
+import "../assets/styles/SobreNos.css"
+
 
 function SobreNos() {
     return (
@@ -27,12 +31,18 @@ function SobreNos() {
                         skinColor='Pale'
                     />
                     <h4 className="titulo-sobre-nos">Lívia</h4>
-                    <div className="container">
-                        <p className="textoCard">
-                            
-                        </p>
+
+                    <div className='card-icon'>
+                        <a href="">
+                        <img src={Github} alt="" />
+                        </a>
+
+                        <a href="">
+                        <img src={Linkedin} alt="" />
+                        </a>
                     </div>
                 </div>
+
                 <div className="card">
                     <Avatar
                         avatarStyle='Transparent'
@@ -48,10 +58,7 @@ function SobreNos() {
                         skinColor='Pale'
                     />
                     <h4 className="titulo-sobre-nos">Rebeca</h4>
-                    <div className="container" >
-                        <p className="textoCard">
-                        </p>
-                    </div>
+                    
                 </div>
                 <div className="card">
                     <Avatar
@@ -69,10 +76,7 @@ function SobreNos() {
                         skinColor='Pale'
                     />
                     <h4 className="titulo-sobre-nos">Renan</h4>
-                    <div className="container">
-                        <p className="textoCard">
-                        </p>
-                    </div>
+                    
                 </div>
 
                 <div className="card">
@@ -90,10 +94,7 @@ function SobreNos() {
                         skinColor='Pale'
                     />
                     <h4 className="titulo-sobre-nos">Sara</h4>
-                    <div className="container">
-                        <p className="textoCard">
-                        </p>
-                    </div>
+                    
                 </div>
             </div>
 
