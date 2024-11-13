@@ -1,3 +1,3 @@
 module.exports = {
-    googleMapsApiKey: ''
+    googleMapsApiKey: 'AIzaSyBTvNmclwwco65CZaBlyneOmSEBjqAIaNo'
 };
