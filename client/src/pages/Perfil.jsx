@@ -147,6 +147,8 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Perfil = () => {
     const [perfil, setPerfil] = useState(null);
@@ -216,21 +218,13 @@ const Perfil = () => {
 
     return (
         <div>
-            <header>
-                <h1>EcoMap</h1>
-                <nav>
-                    <a href="/">Home</a>
-                    <a href="/guia">Guia de Reciclagem</a>
-                    <a href="/faq">Perguntas Frequentes</a>
-                    <a href="/perfil-adm">Sobre nós</a>
-                    <a href="/perfil">Perfil</a>
-                    <button onClick={handleLogout} className="logout-button">Sair</button>
-                </nav>
-            </header>
-        <div className="perfil-container">
+            <Navbar/>
+
             <h2>Perfil de {perfil.fk_id_categoria === 1 ? "Empresa" : "ONG"}</h2>
+        <div className="perfil-container">
 
             <div className="perfil-info">
+                <div className='info-cadastro-principais'>
                 <label>Email:</label>
                 <input 
                     type="email" 
@@ -248,7 +242,9 @@ const Perfil = () => {
                     onChange={handleChange} 
                     disabled={!editMode} 
                 />
+                </div>
 
+                <div className="info-cadastro-principais">
                 <label>Nome da Organização:</label>
                 <input 
                     type="text" 
@@ -266,7 +262,9 @@ const Perfil = () => {
                     onChange={handleChange} 
                     disabled={!editMode} 
                 />
-
+                </div>
+                
+<div  className="info-cadastro-principais">
                 <label>Telefone:</label>
                 <input 
                     type="text" 
@@ -283,7 +281,9 @@ const Perfil = () => {
                     onChange={handleChange} 
                     disabled={!editMode} 
                 />
+</div>
 
+<div className="info-cadastro-principais">
                 <label>Tipo de Serviço (Retira no local ou Não Retira):</label>
                 <select 
                     name="tipo_servico" 
@@ -303,6 +303,9 @@ const Perfil = () => {
                     onChange={handleChange} 
                     disabled={!editMode} 
                 />
+</div>
+
+<div className="info-cadastro-principais">
 
                 <label>CEP:</label>
                 <input 
@@ -321,7 +324,9 @@ const Perfil = () => {
                     onChange={handleChange} 
                     disabled={!editMode} 
                 />
+</div>
 
+<div className="info-cadastro-principais">
                 <label>Estado:</label>
                 <input 
                     type="text" 
@@ -340,6 +345,7 @@ const Perfil = () => {
                     onChange={handleChange} 
                     disabled={!editMode} 
                 />
+</div>
 
                 {editMode ? (
                     <div>
@@ -353,8 +359,10 @@ const Perfil = () => {
                 <button onClick={handleDelete}>Excluir Conta</button>
             </div>
         </div>
+        <Footer/>
         </div>
        
+
     );
 };
 
