@@ -1,3 +1,4 @@
+
 // index.js
 import express from "express";
 import mysql from "mysql2/promise";
@@ -16,16 +17,16 @@ dotenv.config();
 const app = express();
 
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "35.247.231.201",
   user: "root",
-  password: "123456",
+  password: "ecomap123",
   database: "ecomap",
 });
 
 const bd = mysql.createPool({
-  host: "localhost",
+  host: "35.247.231.201",
   user: "root",
-  password: "123456",
+  password: "ecomap123",
   database: "ecomap",
 });
 

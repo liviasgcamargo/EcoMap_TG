@@ -2,9 +2,9 @@
 import mysql from "mysql2/promise";
 
 const db = mysql.createPool({
-    host: "localhost",
+    host: "35.247.231.201",
     user: "root",
-    password: "123456",
+    password: "ecomap123",
     database: "ecomap"
 });
 

@@ -352,6 +352,15 @@ const Perfil = () => {
 
                     {editMode ? (
                         <div>
+                            <button onClick={handleSave}>Salvar</button>
+                            <button onClick={handleCancel}>Cancelar</button>
+                        </div>
+                    ) : (
+                        <button onClick={() => setEditMode(true)}>Editar Perfil</button>
+                    )}
+
+                    <button onClick={handleDelete}>Excluir Conta</button>
+                    <button onClick={handleLogout}>Sair</button>
                             <button className="btn-perfil" onClick={handleSave}>Salvar</button>
                             <button className="btn-perfil" onClick={handleCancel}>Cancelar</button>
                         </div>
