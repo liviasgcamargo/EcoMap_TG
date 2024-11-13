@@ -57,9 +57,11 @@ const PontosSugeridos = () => {
                         <p><strong>Latitude:</strong> {ponto.latitude}</p>
                         <p><strong>Longitude:</strong> {ponto.longitude}</p>
                         <p><strong>Materiais Aceitos:</strong> {ponto.materiais.join(", ")}</p>
-                        <button onClick={() => handleAprovar(ponto.id_pontoColeta)}>Aprovar</button>
-                        <button onClick={() => handleExcluir(ponto.id_pontoColeta)}>Excluir</button>
-                    </div>
+                        <div className="btn-sugeridos">
+                            <button onClick={() => handleAprovar(ponto.id_pontoColeta)}>Aprovar</button>
+                            <button onClick={() => handleExcluir(ponto.id_pontoColeta)}>Excluir</button>
+                        </div>
+                        </div>
                 ))
             )}
         </div>

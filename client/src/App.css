@@ -178,15 +178,22 @@ body {
 }
 
 .suggested-point {
-    border: 1px solid #ddd;
+    margin-bottom: 20px;
     padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #e9f1e2;
 }
 
 .suggested-point p {
     margin: 5px 0;
+    color: #405a41;
+}
+
+.btn-sugeridos{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
 }
 
 .suggested-point button {
@@ -194,22 +201,22 @@ body {
     padding: 8px 12px;
     font-size: 14px;
     color: #fff;
-    background-color: #28a745;
+    background-color: #55703F;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .suggested-point button:hover {
-    background-color: #218838;
+    background-color: #65844c;
 }
 
 .suggested-point button:last-of-type {
-    background-color: #dc3545;
+    background-color: #e24959;
 }
 
 .suggested-point button:last-of-type:hover {
-    background-color: #c82333;
+    background-color: #e75e65;
 }
 
 
@@ -224,26 +231,12 @@ body {
     align-items: center;
     justify-content: center;
 }
-
-
 
 .popup-content .close {
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
-}
-
-.popup-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .popup-content {
@@ -271,7 +264,20 @@ body {
     border-radius: 5px;
 }
 
+.empresa-item p{
+    color: #435533;
+}
 
+.ong-item{
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.ong-item p{
+    color: #435533;
+}
 
 /* Modal */
 .popup {
@@ -338,6 +344,7 @@ body {
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .popup-content button:hover {
@@ -374,3 +381,42 @@ body {
     align-items: center; 
     gap: 8px; 
   }
+
+  .btn-sugeridos{
+    color: white;
+}
+
+.perfil-container{
+    display: flex;
+    flex-direction: column;
+    /* margin:0 70px  20px 70px; */
+}
+
+.perfil-info{
+    margin: auto;
+    width:990px;
+    background-color: #d1ecba;
+}
+
+.perfil-info label{
+    margin: 10px;
+    font-weight: bold;
+    color: #405a41;
+}
+
+.perfil-info input{
+    margin-left:  10px;
+    align-items: center;
+}   
+
+.perfil-info button{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-cadastro-principais{
+    display: flex;
+    flex-direction: row;
+}
+
