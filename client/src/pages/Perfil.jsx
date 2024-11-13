@@ -149,6 +149,8 @@ import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import IconePerfil from "../assets/images/imagem-perfil.svg"
+import "../assets/styles/Perfil.css"
 
 const Perfil = () => {
     const [perfil, setPerfil] = useState(null);
@@ -218,12 +220,13 @@ const Perfil = () => {
 
     return (
         <div>
-            <Navbar/>
+            <Navbar />
 
             <h2>Perfil de {perfil.fk_id_categoria === 1 ? "Empresa" : "ONG"}</h2>
             <div className="perfil-container">
 
                 <div className="perfil-info">
+                    <img className="icone-perfil" src={IconePerfil} alt="" />
                     <div className='info-cadastro-principais'>
                         <label>Email:</label>
                         <input
@@ -358,6 +361,14 @@ const Perfil = () => {
 
                     <button onClick={handleDelete}>Excluir Conta</button>
                     <button onClick={handleLogout}>Sair</button>
+                            <button className="btn-perfil" onClick={handleSave}>Salvar</button>
+                            <button className="btn-perfil" onClick={handleCancel}>Cancelar</button>
+                        </div>
+                    ) : (
+                        <button className="btn-perfil" onClick={() => setEditMode(true)}>Editar Perfil</button>
+                    )}
+
+                    <button className="btn-perfil" onClick={handleDelete}>Excluir Conta</button>
                 </div>
             </div>
             <Footer />

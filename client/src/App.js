@@ -25,6 +25,7 @@ import Perfil from "./pages/Perfil";
 import Login from "./pages/Login";
 import EsqueciSenha from "./pages/EsqueciSenha";
 
+
 function App() {
 
   const isAuthenticated = !!localStorage.getItem("token");

@@ -103,7 +103,19 @@ const Cadastro = () => {
                     <input type="text" name="telefone" value={formData.telefone} onChange={handleChange} required />
 
                     <label>Descrição:</label>
-                    <textarea className="text-descricao" name="descricao" value={formData.descricao} onChange={handleChange} />
+                    {categoria === "Empresa" && (
+                        <label>
+                            <p>*Faça uma breve descrição da {categoria} e quais materiais compra e/ou vende.</p>
+                            <textarea className="text-descricao" name="descricao" value={formData.descricao} onChange={handleChange} />
+                        </label>
+                    )}
+
+                    {categoria === "ONG" && (
+                        <label>
+                            <p>*Faça uma breve descrição da {categoria} e preferência de materiais.</p>
+                            <textarea className="text-descricao" name="descricao" value={formData.descricao} onChange={handleChange} />
+                        </label>
+                    )}
 
                     <label className="tipoServico">Tipo de Serviço:</label>
                     <select className="form-cadastro-dropdown" name="tipo_servico" value={formData.tipo_servico} onChange={handleChange}>
@@ -121,7 +133,7 @@ const Cadastro = () => {
                     <input type="text" name="cidade" value={formData.cidade} onChange={handleChange} required />
 
                     <label htmlFor="estado">Estado</label>
-                    <select 
+                    <select
                         className="form-cadastro-dropdown"
                         id="estado"
                         name="estado"

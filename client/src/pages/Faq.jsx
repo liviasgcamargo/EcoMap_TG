@@ -47,14 +47,15 @@ const Faq = () => {
                             Quais materiais posso descartar nos ecopontos?
                         </label>
                         <div className="accordion__content">
-                            <p>
-                                Madeiras de construção civil. <br />
-                                Recicláveis. <br />
-                                Resíduos eletrônicos e eletrodomésticos. <br />
-                                Móveis velhos. <br />
-                                Entulho de obras. <br />
-                                Podas e vegetação.
-                            </p>
+                            <ul>
+                                <li>Madeiras de construção civil. </li> 
+                                <li>Recicláveis.</li> 
+                                <li>Resíduos eletrônicos e eletrodomésticos.</li> 
+                                <li>Móveis velhos.</li> 
+                                <li>Entulho de obras.</li> 
+                                <li>Podas e vegetação.</li>
+                            </ul>
+                  
                         </div>
                     </div>
                     <div>
@@ -68,17 +69,18 @@ const Faq = () => {
                             Quais materiais não são aceitos nos ecopontos?
                         </label>
                         <div className="accordion__content">
-                            <p>
-                                Resíduo domiciliar. <br />
-                                Óleo automotivo e seus frascos. <br />
-                                Tintas. <br />
-                                Resíduo infectante. <br />
-                                Lâmpadas. <br />
-                                Gesso. <br />
-                                Sucata de veículos. <br />
-                                Pneus. <br />
-                                Animais mortos.
-                            </p>
+                            <ul>
+                                <li>Resíduo domiciliar.</li> 
+                                <li>Óleo automotivo e seus frascos.</li> 
+                                <li>Tintas. </li>
+                                <li>Resíduo infectante.</li> 
+                                <li>Lâmpadas.</li> 
+                                <li>Gesso.</li> 
+                                <li>Sucata de veículos. </li>
+                                <li>Pneus.</li> 
+                                <li>Animais mortos.</li>
+                            </ul>
+                                
                         </div>
                     </div>
                     <div>
