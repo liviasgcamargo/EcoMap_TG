@@ -53,6 +53,7 @@ const Login = () => {
                 <input
                     type="password"
                     value={senha}
+                    placeholder="**********"
                     onChange={(e) => setSenha(e.target.value)}
                     required
                 />
