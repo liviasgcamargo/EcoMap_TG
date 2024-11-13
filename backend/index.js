@@ -9,27 +9,19 @@ import authenticateToken from "./middlewares/authenticateToken.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import pkg from "../client/src/components/ChaveAPIGoogleMaps.js"; // Importação padrão
+import db from "./db.js";
 const { googleMapsApiKey } = pkg;
 
 dotenv.config();
 
 const app = express();
 
-const db = mysql.createConnection({
+const bd = mysql.createConnection({
   host: "35.247.231.201",
   user: "root",
   password: "ecomap123",
   database: "ecomap",
 });
-
-const bd = mysql.createPool({
-  host: "35.247.231.201",
-  user: "root",
-  password: "ecomap123",
-  database: "ecomap",
-});
-
-export default bd;
 
 app.use(express.json());
 app.use(cors());
@@ -39,7 +31,7 @@ app.post("/buscar-pontos-coleta", async (req, res) => {
   const { latitude, longitude, raio, materiais } = req.body;
 
   try {
-    const connection = await db;
+    const connection = await bd;
     const query = `
       SELECT DISTINCT pc.*, 
       (6371 * acos(cos(radians(?)) * cos(radians(pc.latitude)) * cos(radians(pc.longitude) - radians(?)) 
@@ -64,7 +56,7 @@ app.post("/buscar-ongs", async (req, res) => {
   const { latitude, longitude, raio, materiais } = req.body;
 
   try {
-    const connection = await db;
+    const connection = await bd;
     const query = `
       SELECT DISTINCT ong.*, 
       (6371 * acos(cos(radians(?)) * cos(radians(ong.latitude)) * cos(radians(ong.longitude) - radians(?)) 
@@ -89,7 +81,7 @@ app.post("/buscar-empresas", async (req, res) => {
   const { latitude, longitude, raio, materiais, tipoTransacao } = req.body;
 
   try {
-    const connection = await db;
+    const connection = await bd;
     const query = `
       SELECT DISTINCT emp.*, 
       (6371 * acos(cos(radians(?)) * cos(radians(emp.latitude)) * cos(radians(emp.longitude) - radians(?)) 
@@ -116,7 +108,7 @@ app.post("/buscar-empresas", async (req, res) => {
 //   const { endereco, cep, cidade, estado, materiais } = req.body;
 
 //   try {
-//     const connection = await db;
+//     const connection = await bd;
 
 //     // Insere o ponto de coleta com status_ponto = FALSE
 //     const [result] = await connection.execute(
@@ -179,7 +171,7 @@ app.post("/sugerir-ponto", async (req, res) => {
       }
 
       const { latitude, longitude, enderecoFormatado } = validacao;
-      const connection = await db;
+      const connection = await bd;
 
       // Insere o ponto de coleta com status_ponto = FALSE
       const [result] = await connection.execute(
@@ -209,7 +201,7 @@ app.post("/sugerir-ponto", async (req, res) => {
 // app.js
 app.get("/pontos-sugeridos", async (req, res) => {
   try {
-      const [rows] = await bd.execute(`
+      const [rows] = await db.execute(`
           SELECT p.id_pontoColeta, p.endereco, p.cep, p.cidade, p.estado, p.latitude, p.longitude,
               GROUP_CONCAT(t.nome_tipoMaterial) AS materiais
           FROM Ponto_coleta p
@@ -228,7 +220,7 @@ app.get("/pontos-sugeridos", async (req, res) => {
 app.put("/aprovar-ponto/:id", async (req, res) => {
   const { id } = req.params;
   try {
-      await bd.execute("UPDATE Ponto_coleta SET status_ponto = TRUE WHERE id_pontoColeta = ?", [id]);
+      await db.execute("UPDATE Ponto_coleta SET status_ponto = TRUE WHERE id_pontoColeta = ?", [id]);
       res.json({ message: "Ponto aprovado com sucesso!" });
   } catch (error) {
       console.error("Erro ao aprovar ponto:", error);
@@ -239,8 +231,8 @@ app.put("/aprovar-ponto/:id", async (req, res) => {
 app.delete("/excluir-ponto/:id", async (req, res) => {
   const { id } = req.params;
   try {
-      await bd.execute("DELETE FROM PontoColeta_TipoMaterial WHERE fk_id_pontoColeta = ?", [id]);
-      await bd.execute("DELETE FROM Ponto_coleta WHERE id_pontoColeta = ?", [id]);
+      await db.execute("DELETE FROM PontoColeta_TipoMaterial WHERE fk_id_pontoColeta = ?", [id]);
+      await db.execute("DELETE FROM Ponto_coleta WHERE id_pontoColeta = ?", [id]);
       res.json({ message: "Ponto excluído com sucesso!" });
   } catch (error) {
       console.error("Erro ao excluir ponto:", error);
@@ -255,7 +247,7 @@ app.post("/adicionar-ponto", async (req, res) => {
 
   try {
       // Insere o novo ponto de coleta no banco com status TRUE
-      const [result] = await bd.execute(
+      const [result] = await db.execute(
           `INSERT INTO Ponto_coleta (endereco, cep, cidade, estado, latitude, longitude, status_ponto) VALUES (?, ?, ?, ?, ?, ?, TRUE)`,
           [endereco, cep, cidade, estado, latitude, longitude]
       );
@@ -264,7 +256,7 @@ app.post("/adicionar-ponto", async (req, res) => {
 
       // Insere os tipos de materiais aceitos pelo ponto de coleta
       const materialQueries = materiais.map((materialNome) => {
-          return bd.execute(
+          return db.execute(
               `INSERT INTO PontoColeta_TipoMaterial (fk_id_pontoColeta, fk_id_tipoMaterial) 
                SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
               [pontoColetaId, materialNome]
@@ -285,7 +277,7 @@ app.post("/adicionar-ponto", async (req, res) => {
 //   const { endereco, cep, cidade, estado, latitude, longitude, materiais } = req.body;
 
 //   try {
-//       //const connection = await db.getConnection();
+//       //const connection = await bd.getConnection();
 
 //       // Insere o novo ponto de coleta no banco com status TRUE
 //       const [result] = await bd.execute(
@@ -316,7 +308,7 @@ app.post("/adicionar-ponto", async (req, res) => {
 // Endpoint para buscar empresas pendentes de validação
 app.get("/empresas-pendentes", async (req, res) => {
   try {
-      const [rows] = await bd.execute(`
+      const [rows] = await db.execute(`
           SELECT id_usuario, email, nome_org, CNPJ, telefone, descricao, tipo_servico, tipo_transacao, endereco, cep, cidade, estado 
           FROM Usuario
           WHERE status_usuario = FALSE AND fk_id_categoria = 1
@@ -334,7 +326,7 @@ app.put("/validar-empresa/:id", async (req, res) => {
   const { endereco, cep, cidade, estado, latitude, longitude } = req.body;
 
   try {
-      await bd.execute(
+      await db.execute(
           `UPDATE Usuario SET 
               endereco = ?, 
               cep = ?, 
@@ -356,7 +348,7 @@ app.put("/validar-empresa/:id", async (req, res) => {
 // Endpoint para buscar ONGs pendentes de validação
 app.get("/ongs-pendentes", async (req, res) => {
   try {
-      const [rows] = await bd.execute(`
+      const [rows] = await db.execute(`
           SELECT id_usuario, email, nome_org, CNPJ, telefone, descricao, tipo_servico, tipo_transacao, endereco, cep, cidade, estado 
           FROM Usuario
           WHERE status_usuario = FALSE AND fk_id_categoria = 2
@@ -374,7 +366,7 @@ app.put("/validar-ong/:id", async (req, res) => {
   const { endereco, cep, cidade, estado, latitude, longitude } = req.body;
 
   try {
-      await bd.execute(
+      await db.execute(
           `UPDATE Usuario SET 
               endereco = ?, 
               cep = ?, 
@@ -416,7 +408,7 @@ app.post("/cadastrar", async (req, res) => {
   try {
       const hashedPassword = await bcrypt.hash(senha, 10); // Hash da senha
       // Insere o usuário na tabela Usuario
-      const [result] = await bd.execute(
+      const [result] = await db.execute(
           `INSERT INTO Usuario (email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, fk_id_categoria, tipo_transacao, status_usuario) 
            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
           [email, hashedPassword, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, fk_id_categoria, tipo_transacao, status_usuario]
@@ -426,7 +418,7 @@ app.post("/cadastrar", async (req, res) => {
 
       // Insere os tipos de materiais aceitos pelo usuário na tabela Usuario_tipoMaterial
       const materialQueries = materiais.map((materialNome) => {
-          return bd.execute(
+          return db.execute(
               `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
                SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
               [usuarioId, materialNome]
@@ -451,7 +443,7 @@ app.listen(8000, () => {
 app.get("/perfil", authenticateToken, async (req, res) => {
   try {
       const userId = req.user.id; // Agora `req.user` deve estar definido
-      const [rows] = await bd.execute(`SELECT * FROM Usuario WHERE id_usuario = ?`, [userId]);
+      const [rows] = await db.execute(`SELECT * FROM Usuario WHERE id_usuario = ?`, [userId]);
       res.json(rows[0]);
   } catch (error) {
       console.error("Erro ao buscar perfil:", error);
@@ -466,7 +458,7 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
       
       const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
 
-      await bd.execute(
+      await db.execute(
           `UPDATE Usuario SET 
               email = ?, 
               ${hashedPassword ? "senha = ?," : ""}
@@ -497,9 +489,9 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
           ]
       );
 
-      await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
+      await db.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
       const materialQueries = materiais.map((materialNome) =>
-          bd.execute(
+          db.execute(
               `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
                SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
               [userId, materialNome]
@@ -517,7 +509,7 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
 app.delete("/excluir-conta", authenticateToken, async (req, res) => {
   try {
       const userId = req.user.id;
-      await bd.execute(`DELETE FROM Usuario WHERE id_usuario = ?`, [userId]);
+      await db.execute(`DELETE FROM Usuario WHERE id_usuario = ?`, [userId]);
       res.json({ message: "Conta excluída com sucesso!" });
   } catch (error) {
       console.error("Erro ao excluir conta:", error);
@@ -529,7 +521,7 @@ app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
 
   try {
-      const [users] = await bd.execute("SELECT * FROM Usuario WHERE email = ?", [email]);
+      const [users] = await db.execute("SELECT * FROM Usuario WHERE email = ?", [email]);
       const user = users[0];
 
       if (!user) return res.status(404).json({ error: "Usuário não encontrado" });
