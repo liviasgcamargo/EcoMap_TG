@@ -9,7 +9,7 @@ const ValidarONGPopup = ({ onClose }) => {
     // Função para buscar ONGs pendentes de validação
     const fetchONGsPendentes = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/ongs-pendentes");
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/ongs-pendentes`);
             setONGs(response.data);
         } catch (error) {
             console.error("Erro ao buscar ONGs pendentes:", error);
@@ -39,7 +39,7 @@ const ValidarONGPopup = ({ onClose }) => {
                 const cep = addressComponents.find(component => component.types.includes("postal_code"))?.long_name || ong.cep;
 
                 // Atualiza o status da ONG no banco de dados e adiciona o endereço completo, latitude e longitude
-                await axios.put(`http://localhost:8000/validar-ong/${ong.id_usuario}`, {
+                await axios.put(`${process.env.REACT_APP_API_URL}/validar-ong/${ong.id_usuario}`, {
                     endereco: enderecoFormatado,
                     cep: cep,
                     cidade: cidade,

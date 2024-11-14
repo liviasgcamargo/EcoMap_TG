@@ -29,7 +29,7 @@ const Perfil = () => {
     useEffect(() => {
         const fetchPerfil = async () => {
             try {
-                const response = await api.get("/perfil");
+                const response = await api.get(`${process.env.REACT_APP_API_URL}/perfil`);
                 setPerfil(response.data);
                 setOriginalPerfil(response.data);
             } catch (error) {

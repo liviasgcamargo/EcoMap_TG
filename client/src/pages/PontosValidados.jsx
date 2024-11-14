@@ -13,7 +13,7 @@ const PontosValidados = () => {
 
     const fetchPontosValidados = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/pontos-validados");
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/pontos-validados`);
             const data = response.data.map((ponto) => ({
                 ...ponto,
                 materiais: ponto.materiais ? ponto.materiais.split(",") : [],
@@ -38,7 +38,7 @@ const PontosValidados = () => {
                 ...editPonto,
                 materiais: editPonto.materiais.map(material => material) // Envia os materiais como array
             };
-            await axios.put(`http://localhost:8000/atualizar-ponto/${id}`, updatedPonto);
+            await axios.put(`${process.env.REACT_APP_API_URL}/atualizar-ponto/${id}`, updatedPonto);
             alert("Ponto atualizado com sucesso!");
             setEditPonto(null);
             fetchPontosValidados();
@@ -49,7 +49,7 @@ const PontosValidados = () => {
 
     const handleExcluir = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/excluir-ponto/${id}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL}/excluir-ponto/${id}`);
             alert("Ponto excluído com sucesso!");
             fetchPontosValidados();
         } catch (error) {

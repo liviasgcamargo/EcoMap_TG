@@ -27,7 +27,7 @@ const BuscarPontoPopUp = ({ onClose }) => {
             const { lat, lng } = geocodeResponse.data.results[0].geometry.location;
 
             // Envio das coordenadas e outros parâmetros ao backend
-            const response = await axios.post("http://localhost:8000/buscar-pontos-coleta", {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/buscar-pontos-coleta`, {
                 latitude: lat,
                 longitude: lng,
                 raio: radius,

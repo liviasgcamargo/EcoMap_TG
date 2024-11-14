@@ -19,7 +19,7 @@ const SugerirPontoPopUp = ({ onClose }) => {
 
     const handleSubmit = async () => {
         try {
-            await axios.post("http://localhost:8000/sugerir-ponto", {
+            await axios.post(`${process.env.REACT_APP_API_URL}/sugerir-ponto`, {
                 endereco: address,
                 cep: cep,
                 cidade: city,

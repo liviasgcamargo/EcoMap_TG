@@ -36,7 +36,7 @@ const AdicionarPontoPopup = ({ onClose }) => {
                 const cep = addressComponents.find(component => component.types.includes("postal_code"))?.long_name || "";
 
                 // Insere o ponto de coleta no banco de dados com os dados validados e o status como TRUE
-                await axios.post("http://localhost:8000/adicionar-ponto", {
+                await axios.post(`${process.env.REACT_APP_API_URL}/adicionar-ponto`, {
                     endereco: enderecoFormatado,
                     cep: cep,
                     cidade: cidade,

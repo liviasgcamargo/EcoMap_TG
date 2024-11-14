@@ -19,7 +19,7 @@ const Login = () => {
 
         try {
             // Envia a requisição de login para o backend
-            const response = await axios.post("http://localhost:8000/login", {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
                 email,
                 senha,
             });

@@ -7,7 +7,7 @@ const PontosSugeridos = () => {
 
     const fetchPontosSugeridos = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/pontos-sugeridos");
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/pontos-sugeridos`);
             const data = response.data.map(ponto => ({
                 ...ponto,
                 materiais: ponto.materiais ? ponto.materiais.split(",") : [] // Converte a string em array
@@ -24,7 +24,7 @@ const PontosSugeridos = () => {
 
     const handleAprovar = async (id) => {
         try {
-            await axios.put(`http://localhost:8000/aprovar-ponto/${id}`);
+            await axios.put(`${process.env.REACT_APP_API_URL}/aprovar-ponto/${id}`);
             alert("Ponto aprovado com sucesso!");
             fetchPontosSugeridos();
         } catch (error) {
@@ -34,7 +34,7 @@ const PontosSugeridos = () => {
 
     const handleExcluir = async (id) => {
         try {
-            await axios.delete(`http://localhost:8000/excluir-ponto/${id}`);
+            await axios.delete(`${process.env.REACT_APP_API_URL}/excluir-ponto/${id}`);
             alert("Ponto excluído com sucesso!");
             fetchPontosSugeridos();
         } catch (error) {
