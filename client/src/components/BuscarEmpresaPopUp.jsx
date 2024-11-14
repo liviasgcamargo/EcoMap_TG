@@ -28,7 +28,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
             const { lat, lng } = geocodeResponse.data.results[0].geometry.location;
 
             // Envio das coordenadas e outros parâmetros ao backend
-            const response = await axios.post("http://localhost:8000/buscar-empresas", {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/buscar-empresas`, {
                 latitude: lat,
                 longitude: lng,
                 raio: radius,

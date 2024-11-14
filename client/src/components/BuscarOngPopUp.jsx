@@ -27,7 +27,7 @@ const BuscarOngPopUp = ({ onClose }) => {
             const { lat, lng } = geocodeResponse.data.results[0].geometry.location;
 
             // Envio das coordenadas e outros parâmetros ao backend
-            const response = await axios.post("http://localhost:8000/buscar-ongs", {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/buscar-ongs`, {
                 latitude: lat,
                 longitude: lng,
                 raio: radius,
