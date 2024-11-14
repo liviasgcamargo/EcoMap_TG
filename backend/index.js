@@ -112,38 +112,6 @@ app.post("/buscar-empresas", async (req, res) => {
   }
 });
 
-// // Endpoint para sugestão de novo ponto de coleta
-// app.post("/sugerir-ponto", async (req, res) => {
-//   const { endereco, cep, cidade, estado, materiais } = req.body;
-
-//   try {
-//     const connection = await db;
-
-//     // Insere o ponto de coleta com status_ponto = FALSE
-//     const [result] = await connection.execute(
-//       `INSERT INTO Ponto_coleta (endereco, cep, cidade, estado, status_ponto) VALUES (?, ?, ?, ?, FALSE)`,
-//       [endereco, cep, cidade, estado]
-//     );
-    
-//     const pontoColetaId = result.insertId;
-
-//     // Associa os tipos de materiais aceitos ao ponto de coleta sugerido
-//     const materialQueries = materiais.map((materialId) => {
-//       return connection.execute(
-//         `INSERT INTO PontoColeta_TipoMaterial (fk_id_pontoColeta, fk_id_tipoMaterial) VALUES (?, ?)`,
-//         [pontoColetaId, materialId]
-//       );
-//     });
-
-//     await Promise.all(materialQueries);
-
-//     res.json({ message: "Ponto de coleta sugerido com sucesso!" });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Erro ao sugerir ponto de coleta" });
-//   }
-// });
-
 // Função para validar o endereço usando a API de Geocoding do Google Maps
 async function validarEndereco(endereco) {
   const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
@@ -281,39 +249,6 @@ app.post("/adicionar-ponto", async (req, res) => {
   }
 });
 
-
-// app.post("/adicionar-ponto", async (req, res) => {
-//   const { endereco, cep, cidade, estado, latitude, longitude, materiais } = req.body;
-
-//   try {
-//       //const connection = await db.getConnection();
-
-//       // Insere o novo ponto de coleta no banco com status TRUE
-//       const [result] = await bd.execute(
-//           `INSERT INTO Ponto_coleta (endereco, cep, cidade, estado, latitude, longitude, status_ponto) VALUES (?, ?, ?, ?, ?, ?, TRUE)`,
-//           [endereco, cep, cidade, estado, latitude, longitude]
-//       );
-
-//       const pontoColetaId = result.insertId;
-
-//       // Insere os tipos de materiais aceitos pelo ponto de coleta
-//       const materialQueries = materiais.map((materialNome) => {
-//           return bd.execute(
-//               `INSERT INTO PontoColeta_TipoMaterial (fk_id_pontoColeta, fk_id_tipoMaterial) 
-//                SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
-//               [pontoColetaId, materialNome]
-//           );
-//       });
-
-//       await Promise.all(materialQueries);
-
-//       res.json({ message: "Ponto de coleta adicionado com sucesso!" });
-//   } catch (error) {
-//       console.error("Erro ao adicionar ponto de coleta:", error);
-//       res.status(500).json({ error: "Erro ao adicionar ponto de coleta" });
-//   }
-// });
-
 // Endpoint para buscar empresas pendentes de validação
 app.get("/empresas-pendentes", async (req, res) => {
   try {
@@ -449,82 +384,82 @@ app.listen(8000, () => {
 
 ///////////////////////////////////////////////////////////
 
-app.get("/perfil", authenticateToken, async (req, res) => {
-  try {
-      const userId = req.user.id; // Agora `req.user` deve estar definido
-      const [rows] = await bd.execute(`SELECT * FROM Usuario WHERE id_usuario = ?`, [userId]);
-      res.json(rows[0]);
-  } catch (error) {
-      console.error("Erro ao buscar perfil:", error);
-      res.status(500).json({ error: "Erro ao buscar perfil" });
-  }
-});
+// app.get("/perfil", authenticateToken, async (req, res) => {
+//   try {
+//       const userId = req.user.id; // Agora `req.user` deve estar definido
+//       const [rows] = await bd.execute(`SELECT * FROM Usuario WHERE id_usuario = ?`, [userId]);
+//       res.json(rows[0]);
+//   } catch (error) {
+//       console.error("Erro ao buscar perfil:", error);
+//       res.status(500).json({ error: "Erro ao buscar perfil" });
+//   }
+// });
 
-app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
-  try {
-      const userId = req.user.id;
-      const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
+// app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
+//   try {
+//       const userId = req.user.id;
+//       const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
       
-      const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
+//       const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
 
-      await bd.execute(
-          `UPDATE Usuario SET 
-              email = ?, 
-              ${hashedPassword ? "senha = ?," : ""}
-              nome_org = ?, 
-              CNPJ = ?, 
-              telefone = ?, 
-              descricao = ?, 
-              tipo_servico = ?, 
-              endereco = ?, 
-              cep = ?, 
-              cidade = ?, 
-              estado = ?, 
-              status_usuario = FALSE 
-          WHERE id_usuario = ?`,
-          [
-              email,
-              ...(hashedPassword ? [hashedPassword] : []),
-              nome_org,
-              CNPJ,
-              telefone,
-              descricao,
-              tipo_servico,
-              endereco,
-              cep,
-              cidade,
-              estado,
-              userId,
-          ]
-      );
+//       await bd.execute(
+//           `UPDATE Usuario SET 
+//               email = ?, 
+//               ${hashedPassword ? "senha = ?," : ""}
+//               nome_org = ?, 
+//               CNPJ = ?, 
+//               telefone = ?, 
+//               descricao = ?, 
+//               tipo_servico = ?, 
+//               endereco = ?, 
+//               cep = ?, 
+//               cidade = ?, 
+//               estado = ?, 
+//               status_usuario = FALSE 
+//           WHERE id_usuario = ?`,
+//           [
+//               email,
+//               ...(hashedPassword ? [hashedPassword] : []),
+//               nome_org,
+//               CNPJ,
+//               telefone,
+//               descricao,
+//               tipo_servico,
+//               endereco,
+//               cep,
+//               cidade,
+//               estado,
+//               userId,
+//           ]
+//       );
 
-      await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
-      const materialQueries = materiais.map((materialNome) =>
-          bd.execute(
-              `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
-               SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
-              [userId, materialNome]
-          )
-      );
-      await Promise.all(materialQueries);
+//       await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
+//       const materialQueries = materiais.map((materialNome) =>
+//           bd.execute(
+//               `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
+//                SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
+//               [userId, materialNome]
+//           )
+//       );
+//       await Promise.all(materialQueries);
 
-      res.json({ message: "Perfil atualizado com sucesso!" });
-  } catch (error) {
-      console.error("Erro ao atualizar perfil:", error);
-      res.status(500).json({ error: "Erro ao atualizar perfil" });
-  }
-});
+//       res.json({ message: "Perfil atualizado com sucesso!" });
+//   } catch (error) {
+//       console.error("Erro ao atualizar perfil:", error);
+//       res.status(500).json({ error: "Erro ao atualizar perfil" });
+//   }
+// });
 
-app.delete("/excluir-conta", authenticateToken, async (req, res) => {
-  try {
-      const userId = req.user.id;
-      await bd.execute(`DELETE FROM Usuario WHERE id_usuario = ?`, [userId]);
-      res.json({ message: "Conta excluída com sucesso!" });
-  } catch (error) {
-      console.error("Erro ao excluir conta:", error);
-      res.status(500).json({ error: "Erro ao excluir conta" });
-  }
-});
+// app.delete("/excluir-conta", authenticateToken, async (req, res) => {
+//   try {
+//       const userId = req.user.id;
+//       await bd.execute(`DELETE FROM Usuario WHERE id_usuario = ?`, [userId]);
+//       res.json({ message: "Conta excluída com sucesso!" });
+//   } catch (error) {
+//       console.error("Erro ao excluir conta:", error);
+//       res.status(500).json({ error: "Erro ao excluir conta" });
+//   }
+// });
 
 app.post("/login", async (req, res) => {
   const { email, senha } = req.body;

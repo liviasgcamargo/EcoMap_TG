@@ -58,6 +58,12 @@ router.put("/atualizar-perfil", authenticateToken, async (req, res) => {
             ]
         );
 
+        // Verifique se 'materiais' está definido e é um array
+        if (!Array.isArray(materiais)) {
+            return res.status(400).json({ error: "Materiais deve ser um array." });
+        }
+
+        // Remover materiais antigos e inserir novos materiais
         await db.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
         const materialQueries = materiais.map((materialNome) =>
             db.execute(
