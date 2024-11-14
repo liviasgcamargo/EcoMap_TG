@@ -4,7 +4,7 @@
   margin: 0 auto;
   padding: 20px;
   color: #333;
-  background-color: #f9f9f9;
+  background-color: #A8B88D;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 40px;
@@ -173,4 +173,10 @@
 .dicas-reciclagem h1{
     font-size: 18px;
     color: #405a41;
+}
+
+.creditos-divisoria{
+    font-size: 8px;
+    text-decoration: none;
+    color: #333;
 }

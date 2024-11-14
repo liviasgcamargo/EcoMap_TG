@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Lixeira from "../assets/images/lixeira.svg"
-import Divider from "../assets/images/divider.svg"
+import Divider from "../assets/images/Divider.svg"
 import '../assets/styles/Guia.css';
 
 const Guia = () => {
@@ -129,6 +129,7 @@ const Guia = () => {
           </ul>
         </div>
 
+      <a className='creditos-divisoria' href="https://www.svgbackgrounds.com/elements/svg-shape-dividers/">SVG Shape Dividers by SVGBackgrounds.com</a>
       </div>
 
       <Footer />
