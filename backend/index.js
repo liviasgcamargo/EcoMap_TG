@@ -5,7 +5,7 @@ import cors from "cors";
 import axios from "axios";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-//import authenticateToken from "./middlewares/authenticateToken.js";
+import authenticateToken from "./middlewares/authenticateToken.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import pkg from "../client/src/components/ChaveAPIGoogleMaps.js"; // Importação padrão
