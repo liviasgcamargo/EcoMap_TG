@@ -13,6 +13,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: scroll; /* Faz como que a imagem de fundo role junto com a tela */
   height: 100vh;
+  background-color: #dcebba;
 }
 
 /* Conteúdo principal do index*/

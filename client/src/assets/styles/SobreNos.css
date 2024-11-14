@@ -1,11 +1,43 @@
-.titulo-sobre-nos{
-    margin-top: 8px;
-    font-size: 25px;
+.titulo-sobre-nos {
+  margin-top: 8px;
+  font-size: 25px;
+  color: #3e583c;
 }
 
-.card-icon{
-    width: 40px;
-    height: 40px;
-    margin-top: 10px;
-    
+.card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.card-icon a {
+  display: inline-block;
+}
+
+.card-icon img {
+  margin-top: 10px;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.card-icon img:hover {
+  transform: scale(1.1);
+}
+
+.card-sobre-nos {
+  color: #ffffff;
+  border-radius: 7px;
+  text-align: center;
+  width: 220px;
+  height: auto;
+  transition: 0.3s ease-in;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 15px;
+  background-color: #a8b88d;
 }
