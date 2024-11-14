@@ -22,6 +22,10 @@ const AdminDashboard = () => {
         navigate("/gerenciar-pontos-sugeridos");
     };
 
+    const handlePontosValidadosClick = () => {
+        navigate("/gerenciar-pontos-validados");
+    };
+
     const handleAdicionarPontoClick = () => {
         setShowAdicionarPontoPopup(true); // Mostra o popup de adição de ponto
     };
@@ -57,6 +61,16 @@ const AdminDashboard = () => {
                         onClick={handleSuggestedPointsClick}
                     />
                     <p className="titulo-btn-adm">Pontos Sugeridos</p>
+                </button>
+
+                <button className="btn-dashboard ">
+                    <img
+                        src={Sugeridos}
+                        alt="Ícone do botão"
+                        className="button-icon"
+                        onClick={handlePontosValidadosClick}
+                    />
+                    <p className="titulo-btn-adm">Pontos Validados</p>
                 </button>
 
                 <button className="btn-dashboard ">

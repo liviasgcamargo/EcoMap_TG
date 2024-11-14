@@ -1,4 +1,3 @@
-
 // index.js
 import express from "express";
 import mysql from "mysql2/promise";
@@ -6,7 +5,7 @@ import cors from "cors";
 import axios from "axios";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import authenticateToken from "./middlewares/authenticateToken.js";
+//import authenticateToken from "./middlewares/authenticateToken.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import pkg from "../client/src/components/ChaveAPIGoogleMaps.js"; // Importação padrão
@@ -36,18 +35,22 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api", userRoutes);
+
 app.post("/buscar-pontos-coleta", async (req, res) => {
   const { latitude, longitude, raio, materiais } = req.body;
 
   try {
     const connection = await db;
     const query = `
-      SELECT DISTINCT pc.*, 
+      SELECT pc.*, 
       (6371 * acos(cos(radians(?)) * cos(radians(pc.latitude)) * cos(radians(pc.longitude) - radians(?)) 
-      + sin(radians(?)) * sin(radians(pc.latitude)))) AS distance 
+      + sin(radians(?)) * sin(radians(pc.latitude)))) AS distance,
+      GROUP_CONCAT(tm.nome_tipoMaterial) AS materiais_aceitos
       FROM Ponto_coleta AS pc
       JOIN PontoColeta_TipoMaterial AS ptm ON pc.id_pontoColeta = ptm.fk_id_pontoColeta
+      JOIN Tipo_material AS tm ON ptm.fk_id_tipoMaterial = tm.id_tipoMaterial
       WHERE ptm.fk_id_tipoMaterial IN (${materiais.join(",")})
+      GROUP BY pc.id_pontoColeta
       HAVING distance < ?
       ORDER BY distance
     `;
@@ -59,6 +62,7 @@ app.post("/buscar-pontos-coleta", async (req, res) => {
     res.status(500).json({ error: "Erro ao buscar pontos de coleta" });
   }
 });
+
 
 // Endpoint para buscar ONGs próximas
 app.post("/buscar-ongs", async (req, res) => {
@@ -478,5 +482,84 @@ app.post("/login", async (req, res) => {
   } catch (error) {
       console.error("Erro ao fazer login:", error);
       res.status(500).json({ error: "Erro ao fazer login" });
+  }
+});
+
+
+// backend/index.js
+
+// Endpoint para buscar pontos validados
+app.get("/pontos-validados", async (req, res) => {
+  try {
+      const [rows] = await bd.execute(`
+          SELECT pc.*, GROUP_CONCAT(tm.nome_tipoMaterial) AS materiais
+          FROM Ponto_coleta pc
+          JOIN PontoColeta_TipoMaterial ptm ON pc.id_pontoColeta = ptm.fk_id_pontoColeta
+          JOIN Tipo_material tm ON ptm.fk_id_tipoMaterial = tm.id_tipoMaterial
+          WHERE pc.status_ponto = TRUE
+          GROUP BY pc.id_pontoColeta
+      `);
+      res.json(rows);
+  } catch (error) {
+      console.error("Erro ao buscar pontos validados:", error);
+      res.status(500).json({ error: "Erro ao buscar pontos validados" });
+  }
+});
+
+// Endpoint para atualizar um ponto de coleta
+// Endpoint para atualizar um ponto de coleta com validação de endereço
+app.put("/atualizar-ponto/:id", async (req, res) => {
+  const { id } = req.params;
+  const { endereco, cep, cidade, estado, materiais } = req.body;
+  const enderecoCompleto = `${endereco}, ${cidade}, ${estado}, ${cep}`;
+
+  try {
+      // Valida o endereço usando a API do Google Maps
+      const validacao = await validarEndereco(enderecoCompleto);
+
+      if (!validacao.valido) {
+          return res.status(400).json({ error: "Endereço inválido. Verifique as informações e tente novamente." });
+      }
+
+      const { latitude, longitude, enderecoFormatado } = validacao;
+
+      // Atualiza o ponto no banco de dados com as novas coordenadas e endereço formatado
+      await bd.execute(
+          `UPDATE Ponto_coleta SET endereco = ?, cep = ?, cidade = ?, estado = ?, latitude = ?, longitude = ? WHERE id_pontoColeta = ?`,
+          [enderecoFormatado, cep, cidade, estado, latitude, longitude, id]
+      );
+
+      // Remove os materiais antigos
+      await bd.execute(`DELETE FROM PontoColeta_TipoMaterial WHERE fk_id_pontoColeta = ?`, [id]);
+
+      // Adiciona os novos materiais
+      const materialQueries = materiais.map((materialNome) => {
+          return bd.execute(
+              `INSERT INTO PontoColeta_TipoMaterial (fk_id_pontoColeta, fk_id_tipoMaterial)
+               SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
+              [id, materialNome]
+          );
+      });
+      await Promise.all(materialQueries);
+
+      res.json({ message: "Ponto atualizado com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao atualizar ponto:", error);
+      res.status(500).json({ error: "Erro ao atualizar ponto" });
+  }
+});
+
+
+// Endpoint para excluir um ponto de coleta
+app.delete("/excluir-ponto/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+      // Remove associações de materiais antes de excluir o ponto
+      await bd.execute(`DELETE FROM PontoColeta_TipoMaterial WHERE fk_id_pontoColeta = ?`, [id]);
+      await bd.execute(`DELETE FROM Ponto_coleta WHERE id_pontoColeta = ?`, [id]);
+      res.json({ message: "Ponto excluído com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao excluir ponto:", error);
+      res.status(500).json({ error: "Erro ao excluir ponto" });
   }
 });
