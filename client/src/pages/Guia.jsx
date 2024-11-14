@@ -69,25 +69,25 @@ const Guia = () => {
           <ul className='ul-materiais-reciclagem'>
             <li className='li-materiais-reciclagem'>
               <strong>Papel:</strong> Jornais, revistas, papelão,impressos em geral, cadernos e livros. <br /><br />
-              Não pode: Papel higiênico, guardanapos, fitas e etiquetas adesivas, fotografias e papéis plastificados.
+              <strong> Não Pode </strong> Papel higiênico, guardanapos, fitas e etiquetas adesivas, fotografias e papéis plastificados.
             </li>
 
             <li className='li-materiais-reciclagem'>
               <strong>Plástico:</strong> Sacolas, garrafas PET, embalagens em geral, copos descartáveis e canos de PVC. <br /><br />
 
-              Não pode: Embalagens de balas e de doces, embalagens de produtos tóxicos.
+              <strong> Não Pode </strong> Embalagens de balas e de doces, embalagens de produtos tóxicos.
             </li>
 
 
             <li className='li-materiais-reciclagem'>
               <strong>Vidro:</strong> Garrafas, embalagens em geral, potes, copos, vidros planos e lisos. <br /><br />
 
-              Não pode: Espelhos, cerâmica, tubos de TV ou monitores, vidros temperados, lâmpadas de LED e fluorescentes.
+              <strong> Não Pode </strong> Espelhos, cerâmica, tubos de TV ou monitores, vidros temperados, lâmpadas de LED e fluorescentes.
             </li>
             <li className='li-materiais-reciclagem'>
               <strong>Metal:</strong> Latas de alumínio ou de ferro, clipes, papel alumínio e grampos para papel ou para cabelo. <br /><br />
 
-              Não pode: Embalagens de marmitex, esponjas de aço, pilhas, baterias e eletroeletrônicos.
+              <strong> Não Pode </strong> Embalagens de marmitex, esponjas de aço, pilhas, baterias e eletroeletrônicos.
             </li>
 
             <li className='li-materiais-reciclagem'>
