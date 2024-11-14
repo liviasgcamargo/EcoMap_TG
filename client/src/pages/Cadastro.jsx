@@ -55,7 +55,7 @@ const Cadastro = () => {
         }
 
         try {
-            await axios.post("http://localhost:8000/cadastrar", {
+            await axios.post(`${process.env.REACT_APP_API_URL}/cadastrar`, {
                 ...formData,
                 fk_id_categoria,
                 status_usuario: false,
