@@ -25,12 +25,10 @@ router.put("/atualizar-perfil", authenticateToken, async (req, res) => {
     const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
 
     try {
-        const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
-
         await db.execute(
             `UPDATE Usuario SET 
                 email = ?, 
-                ${hashedPassword ? "senha = ?," : ""}
+                senha = ?,
                 nome_org = ?, 
                 CNPJ = ?, 
                 telefone = ?, 
@@ -44,7 +42,7 @@ router.put("/atualizar-perfil", authenticateToken, async (req, res) => {
             WHERE id_usuario = ?`,
             [
                 email,
-                ...(hashedPassword ? [hashedPassword] : []),
+                senha,
                 nome_org,
                 CNPJ,
                 telefone,
@@ -80,6 +78,8 @@ router.put("/atualizar-perfil", authenticateToken, async (req, res) => {
         res.status(500).json({ error: "Erro ao atualizar perfil" });
     }
 });
+
+
 
 // Excluir conta do usuário
 router.delete("/excluir-conta", authenticateToken, async (req, res) => {
