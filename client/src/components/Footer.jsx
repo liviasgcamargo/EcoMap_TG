@@ -24,7 +24,7 @@ const Footer = () => {
             <a href="">Entre em contato</a>
           </li>
           <li>
-          <a href=""><Link to="/gerenciar-info-administrador">Administrador</Link></a>
+          <a href=""><Link to="/perfil-adm">Administrador</Link></a>
           </li>
           
         </ul>

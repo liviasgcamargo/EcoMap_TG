@@ -24,6 +24,7 @@ import Cadastro from "./pages/Cadastro";
 import Perfil from "./pages/Perfil";
 import Login from "./pages/Login";
 import EsqueciSenha from "./pages/EsqueciSenha";
+import PontosValidados from "./pages/PontosValidados";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
       <Route path="/perfil-adm" element={<AdminLogin />} />
       <Route path="/gerenciar-info-administrador" element={<AdminDashboard />} />
       <Route path="/gerenciar-pontos-sugeridos" element={<PontosSugeridos />} />
+      <Route path="/gerenciar-pontos-validados" element={<PontosValidados />} />
       <Route path="/guia" element={<Guia />} />
       <Route path="/faq" element={<Faq />} />
       <Route path="/sobre-nos" element={<SobreNos />} />

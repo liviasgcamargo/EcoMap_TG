@@ -5,12 +5,14 @@
     justify-content: space-between;
     padding: 12px;
     margin-right: 40px;
+    color: #356037;
   }
   
   .menu_navegacao a {
     text-decoration: none;
     font-weight: bold;
     margin: 0 6px;
+    color: inherit;
   }
   
   .menu_item {

@@ -1,6 +1,9 @@
+// frontend/src/pages/ResultadoPontoColeta.js
 import React from "react";
 import { useLocation } from "react-router-dom";
 import GoogleMap from "../components/GoogleMap";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const ResultadoPontoColeta = () => {
     const location = useLocation();
@@ -14,16 +17,19 @@ const ResultadoPontoColeta = () => {
     }));
 
     return (
-        <div class='resultados-mapa-container'>
-            <div class='resultados-container'>
+        <div>
+ <Navbar />
+        <div className="resultados-mapa-container">
+            <div className="resultados-container">
                 <h2>Pontos de Coleta Próximos</h2>
                 {resultados.length === 0 ? (
                     <p>Nenhum ponto de coleta encontrado.</p>
                 ) : (
                     resultados.map((point) => (
                         <div key={point.id_pontoColeta} className="card">
-                            <p>{point.endereco}</p>
-                            <p>Distância: {point.distance.toFixed(2)} km</p>
+                            <p><strong>Endereço:</strong> {point.endereco}</p>
+                            <p><strong>Distância:</strong> {point.distance.toFixed(2)} km</p>
+                            <p><strong>Materiais Aceitos:</strong> {point.materiais_aceitos}</p>
                             <a
                                 href={`https://www.google.com/maps/search/?api=1&query=${point.latitude},${point.longitude}`}
                                 target="_blank"
@@ -35,9 +41,11 @@ const ResultadoPontoColeta = () => {
                     ))
                 )}
             </div>
-            <div class='mapa'>
-                <GoogleMap points={points} center={center}/>
+            <div className="mapa">
+                <GoogleMap points={points} center={center} />
             </div>
+        </div>
+        <Footer />
         </div>
     );
 };

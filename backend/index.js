@@ -1,4 +1,3 @@
-
 // index.js
 import express from "express";
 import mysql from "mysql2/promise";
@@ -6,7 +5,7 @@ import cors from "cors";
 import axios from "axios";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import authenticateToken from "./middlewares/authenticateToken.js";
+//import authenticateToken from "./middlewares/authenticateToken.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
 import pkg from "../client/src/components/ChaveAPIGoogleMaps.js"; // Importação padrão
@@ -36,18 +35,22 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api", userRoutes);
+
 app.post("/buscar-pontos-coleta", async (req, res) => {
   const { latitude, longitude, raio, materiais } = req.body;
 
   try {
     const connection = await db;
     const query = `
-      SELECT DISTINCT pc.*, 
+      SELECT pc.*, 
       (6371 * acos(cos(radians(?)) * cos(radians(pc.latitude)) * cos(radians(pc.longitude) - radians(?)) 
-      + sin(radians(?)) * sin(radians(pc.latitude)))) AS distance 
+      + sin(radians(?)) * sin(radians(pc.latitude)))) AS distance,
+      GROUP_CONCAT(tm.nome_tipoMaterial) AS materiais_aceitos
       FROM Ponto_coleta AS pc
       JOIN PontoColeta_TipoMaterial AS ptm ON pc.id_pontoColeta = ptm.fk_id_pontoColeta
+      JOIN Tipo_material AS tm ON ptm.fk_id_tipoMaterial = tm.id_tipoMaterial
       WHERE ptm.fk_id_tipoMaterial IN (${materiais.join(",")})
+      GROUP BY pc.id_pontoColeta
       HAVING distance < ?
       ORDER BY distance
     `;
@@ -59,6 +62,7 @@ app.post("/buscar-pontos-coleta", async (req, res) => {
     res.status(500).json({ error: "Erro ao buscar pontos de coleta" });
   }
 });
+
 
 // Endpoint para buscar ONGs próximas
 app.post("/buscar-ongs", async (req, res) => {
@@ -111,38 +115,6 @@ app.post("/buscar-empresas", async (req, res) => {
     res.status(500).json({ error: "Erro ao buscar empresas próximas" });
   }
 });
-
-// // Endpoint para sugestão de novo ponto de coleta
-// app.post("/sugerir-ponto", async (req, res) => {
-//   const { endereco, cep, cidade, estado, materiais } = req.body;
-
-//   try {
-//     const connection = await db;
-
-//     // Insere o ponto de coleta com status_ponto = FALSE
-//     const [result] = await connection.execute(
-//       `INSERT INTO Ponto_coleta (endereco, cep, cidade, estado, status_ponto) VALUES (?, ?, ?, ?, FALSE)`,
-//       [endereco, cep, cidade, estado]
-//     );
-    
-//     const pontoColetaId = result.insertId;
-
-//     // Associa os tipos de materiais aceitos ao ponto de coleta sugerido
-//     const materialQueries = materiais.map((materialId) => {
-//       return connection.execute(
-//         `INSERT INTO PontoColeta_TipoMaterial (fk_id_pontoColeta, fk_id_tipoMaterial) VALUES (?, ?)`,
-//         [pontoColetaId, materialId]
-//       );
-//     });
-
-//     await Promise.all(materialQueries);
-
-//     res.json({ message: "Ponto de coleta sugerido com sucesso!" });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Erro ao sugerir ponto de coleta" });
-//   }
-// });
 
 // Função para validar o endereço usando a API de Geocoding do Google Maps
 async function validarEndereco(endereco) {
@@ -281,39 +253,6 @@ app.post("/adicionar-ponto", async (req, res) => {
   }
 });
 
-
-// app.post("/adicionar-ponto", async (req, res) => {
-//   const { endereco, cep, cidade, estado, latitude, longitude, materiais } = req.body;
-
-//   try {
-//       //const connection = await db.getConnection();
-
-//       // Insere o novo ponto de coleta no banco com status TRUE
-//       const [result] = await bd.execute(
-//           `INSERT INTO Ponto_coleta (endereco, cep, cidade, estado, latitude, longitude, status_ponto) VALUES (?, ?, ?, ?, ?, ?, TRUE)`,
-//           [endereco, cep, cidade, estado, latitude, longitude]
-//       );
-
-//       const pontoColetaId = result.insertId;
-
-//       // Insere os tipos de materiais aceitos pelo ponto de coleta
-//       const materialQueries = materiais.map((materialNome) => {
-//           return bd.execute(
-//               `INSERT INTO PontoColeta_TipoMaterial (fk_id_pontoColeta, fk_id_tipoMaterial) 
-//                SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
-//               [pontoColetaId, materialNome]
-//           );
-//       });
-
-//       await Promise.all(materialQueries);
-
-//       res.json({ message: "Ponto de coleta adicionado com sucesso!" });
-//   } catch (error) {
-//       console.error("Erro ao adicionar ponto de coleta:", error);
-//       res.status(500).json({ error: "Erro ao adicionar ponto de coleta" });
-//   }
-// });
-
 // Endpoint para buscar empresas pendentes de validação
 app.get("/empresas-pendentes", async (req, res) => {
   try {
@@ -449,82 +388,82 @@ app.listen(8000, () => {
 
 ///////////////////////////////////////////////////////////
 
-app.get("/perfil", authenticateToken, async (req, res) => {
-  try {
-      const userId = req.user.id; // Agora `req.user` deve estar definido
-      const [rows] = await bd.execute(`SELECT * FROM Usuario WHERE id_usuario = ?`, [userId]);
-      res.json(rows[0]);
-  } catch (error) {
-      console.error("Erro ao buscar perfil:", error);
-      res.status(500).json({ error: "Erro ao buscar perfil" });
-  }
-});
+// app.get("/perfil", authenticateToken, async (req, res) => {
+//   try {
+//       const userId = req.user.id; // Agora `req.user` deve estar definido
+//       const [rows] = await bd.execute(`SELECT * FROM Usuario WHERE id_usuario = ?`, [userId]);
+//       res.json(rows[0]);
+//   } catch (error) {
+//       console.error("Erro ao buscar perfil:", error);
+//       res.status(500).json({ error: "Erro ao buscar perfil" });
+//   }
+// });
 
-app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
-  try {
-      const userId = req.user.id;
-      const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
+// app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
+//   try {
+//       const userId = req.user.id;
+//       const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
       
-      const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
+//       const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
 
-      await bd.execute(
-          `UPDATE Usuario SET 
-              email = ?, 
-              ${hashedPassword ? "senha = ?," : ""}
-              nome_org = ?, 
-              CNPJ = ?, 
-              telefone = ?, 
-              descricao = ?, 
-              tipo_servico = ?, 
-              endereco = ?, 
-              cep = ?, 
-              cidade = ?, 
-              estado = ?, 
-              status_usuario = FALSE 
-          WHERE id_usuario = ?`,
-          [
-              email,
-              ...(hashedPassword ? [hashedPassword] : []),
-              nome_org,
-              CNPJ,
-              telefone,
-              descricao,
-              tipo_servico,
-              endereco,
-              cep,
-              cidade,
-              estado,
-              userId,
-          ]
-      );
+//       await bd.execute(
+//           `UPDATE Usuario SET 
+//               email = ?, 
+//               ${hashedPassword ? "senha = ?," : ""}
+//               nome_org = ?, 
+//               CNPJ = ?, 
+//               telefone = ?, 
+//               descricao = ?, 
+//               tipo_servico = ?, 
+//               endereco = ?, 
+//               cep = ?, 
+//               cidade = ?, 
+//               estado = ?, 
+//               status_usuario = FALSE 
+//           WHERE id_usuario = ?`,
+//           [
+//               email,
+//               ...(hashedPassword ? [hashedPassword] : []),
+//               nome_org,
+//               CNPJ,
+//               telefone,
+//               descricao,
+//               tipo_servico,
+//               endereco,
+//               cep,
+//               cidade,
+//               estado,
+//               userId,
+//           ]
+//       );
 
-      await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
-      const materialQueries = materiais.map((materialNome) =>
-          bd.execute(
-              `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
-               SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
-              [userId, materialNome]
-          )
-      );
-      await Promise.all(materialQueries);
+//       await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
+//       const materialQueries = materiais.map((materialNome) =>
+//           bd.execute(
+//               `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
+//                SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
+//               [userId, materialNome]
+//           )
+//       );
+//       await Promise.all(materialQueries);
 
-      res.json({ message: "Perfil atualizado com sucesso!" });
-  } catch (error) {
-      console.error("Erro ao atualizar perfil:", error);
-      res.status(500).json({ error: "Erro ao atualizar perfil" });
-  }
-});
+//       res.json({ message: "Perfil atualizado com sucesso!" });
+//   } catch (error) {
+//       console.error("Erro ao atualizar perfil:", error);
+//       res.status(500).json({ error: "Erro ao atualizar perfil" });
+//   }
+// });
 
-app.delete("/excluir-conta", authenticateToken, async (req, res) => {
-  try {
-      const userId = req.user.id;
-      await bd.execute(`DELETE FROM Usuario WHERE id_usuario = ?`, [userId]);
-      res.json({ message: "Conta excluída com sucesso!" });
-  } catch (error) {
-      console.error("Erro ao excluir conta:", error);
-      res.status(500).json({ error: "Erro ao excluir conta" });
-  }
-});
+// app.delete("/excluir-conta", authenticateToken, async (req, res) => {
+//   try {
+//       const userId = req.user.id;
+//       await bd.execute(`DELETE FROM Usuario WHERE id_usuario = ?`, [userId]);
+//       res.json({ message: "Conta excluída com sucesso!" });
+//   } catch (error) {
+//       console.error("Erro ao excluir conta:", error);
+//       res.status(500).json({ error: "Erro ao excluir conta" });
+//   }
+// });
 
 app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
@@ -543,5 +482,84 @@ app.post("/login", async (req, res) => {
   } catch (error) {
       console.error("Erro ao fazer login:", error);
       res.status(500).json({ error: "Erro ao fazer login" });
+  }
+});
+
+
+// backend/index.js
+
+// Endpoint para buscar pontos validados
+app.get("/pontos-validados", async (req, res) => {
+  try {
+      const [rows] = await bd.execute(`
+          SELECT pc.*, GROUP_CONCAT(tm.nome_tipoMaterial) AS materiais
+          FROM Ponto_coleta pc
+          JOIN PontoColeta_TipoMaterial ptm ON pc.id_pontoColeta = ptm.fk_id_pontoColeta
+          JOIN Tipo_material tm ON ptm.fk_id_tipoMaterial = tm.id_tipoMaterial
+          WHERE pc.status_ponto = TRUE
+          GROUP BY pc.id_pontoColeta
+      `);
+      res.json(rows);
+  } catch (error) {
+      console.error("Erro ao buscar pontos validados:", error);
+      res.status(500).json({ error: "Erro ao buscar pontos validados" });
+  }
+});
+
+// Endpoint para atualizar um ponto de coleta
+// Endpoint para atualizar um ponto de coleta com validação de endereço
+app.put("/atualizar-ponto/:id", async (req, res) => {
+  const { id } = req.params;
+  const { endereco, cep, cidade, estado, materiais } = req.body;
+  const enderecoCompleto = `${endereco}, ${cidade}, ${estado}, ${cep}`;
+
+  try {
+      // Valida o endereço usando a API do Google Maps
+      const validacao = await validarEndereco(enderecoCompleto);
+
+      if (!validacao.valido) {
+          return res.status(400).json({ error: "Endereço inválido. Verifique as informações e tente novamente." });
+      }
+
+      const { latitude, longitude, enderecoFormatado } = validacao;
+
+      // Atualiza o ponto no banco de dados com as novas coordenadas e endereço formatado
+      await bd.execute(
+          `UPDATE Ponto_coleta SET endereco = ?, cep = ?, cidade = ?, estado = ?, latitude = ?, longitude = ? WHERE id_pontoColeta = ?`,
+          [enderecoFormatado, cep, cidade, estado, latitude, longitude, id]
+      );
+
+      // Remove os materiais antigos
+      await bd.execute(`DELETE FROM PontoColeta_TipoMaterial WHERE fk_id_pontoColeta = ?`, [id]);
+
+      // Adiciona os novos materiais
+      const materialQueries = materiais.map((materialNome) => {
+          return bd.execute(
+              `INSERT INTO PontoColeta_TipoMaterial (fk_id_pontoColeta, fk_id_tipoMaterial)
+               SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
+              [id, materialNome]
+          );
+      });
+      await Promise.all(materialQueries);
+
+      res.json({ message: "Ponto atualizado com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao atualizar ponto:", error);
+      res.status(500).json({ error: "Erro ao atualizar ponto" });
+  }
+});
+
+
+// Endpoint para excluir um ponto de coleta
+app.delete("/excluir-ponto/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+      // Remove associações de materiais antes de excluir o ponto
+      await bd.execute(`DELETE FROM PontoColeta_TipoMaterial WHERE fk_id_pontoColeta = ?`, [id]);
+      await bd.execute(`DELETE FROM Ponto_coleta WHERE id_pontoColeta = ?`, [id]);
+      res.json({ message: "Ponto excluído com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao excluir ponto:", error);
+      res.status(500).json({ error: "Erro ao excluir ponto" });
   }
 });
