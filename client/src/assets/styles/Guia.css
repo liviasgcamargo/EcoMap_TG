@@ -1,56 +1,176 @@
-/* Estilos Gerais */
-.container {
-    font-family: Arial, sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    color: #333;
-  }
-  
-  /* Estilo das Seções */
-  .section {
-    margin-bottom: 40px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
-    font-size: 24px;
-    color: #4CAF50;
-    margin-bottom: 20px;
-  }
-  
-  .item-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .list-item {
-    margin: 10px 0;
-    padding: 10px;
-    background: #ffffff;
-    border-radius: 5px;
-    transition: background 0.3s;
-  }
-  
-  .list-item:hover {
-    background: #e7f7ee;
-  }
-  
-  .highlight {
-    font-weight: bold;
-    color: #4CAF50;
-  }
-  
-  /* Informações Educativas */
-  .educational-info {
-    padding: 20px;
-    background-color: #e0f7fa;
-    border-left: 4px solid #26c6da;
-    margin-top: 20px;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
+.infographic-container {
+  font-family: Arial, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.infographic-title {
+  text-align: center;
+  font-size: 28px;
+  color: #405a41;
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  display: flex;
+  text-align: center;
+}
+
+.section-text {
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: justify;
+  color: #405a41;
+}
+
+.recycling-bins {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.bin {
+  text-align: center;
+}
+
+.bin-label {
+  font-weight: bold;
+  margin-top: 8px;
+  display: block;
+}
+
+.bin-color {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.icone-lixo {
+  width: 45px;
+}
+
+.blue {
+  background-color: #2196f3;
+}
+.red {
+  background-color: #f44336;
+}
+.green {
+  background-color: #4caf50;
+}
+.yellow {
+  background-color: #ffeb3b;
+}
+.brown {
+  background-color: #795548;
+}
+.gray {
+  background-color: #9e9e9e;
+}
+
+.lista-beneficios {
+  list-style-type: none;
+  padding: 0;
+}
+
+.lista-beneficios li {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #405a41;
+}
+
+.recyclables {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recyclables-list,
+.non-recyclables-list {
+  width: 45%;
+}
+
+.subsection-title {
+  font-size: 18px;
+  color: #405a41;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.recyclables-list ul,
+.non-recyclables-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recyclables-list li,
+.non-recyclables-list li {
+  margin: 8px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.ul-materiais-reciclagem {
+  display: flex;
+  margin: 10px 15px;
+  list-style: none;
+  gap: 5px;
+  text-align: center;
+}
+
+.li-materiais-reciclagem {
+  border: 1px solid #405a41; 
+  border-radius: 8px; 
+  padding: 10px 15px; 
+  margin: 8px 0; 
+  background-color: #f9f9f9; 
+  font-size: 14px; 
+  color: #333; 
+  transition: background 0.3s; 
+}
+
+.li-materiais-reciclagem:hover {
+  background-color: #658166; 
+  color: #ffffff;
+}
+
+.beneficios-coleta-img {
+  background-color: #658166;
+}
+
+.dicas-reciclagem {
+  text-align: justify;
+  color: #405a41;
+
+}
+
+.dicas-reciclagem li {
+  list-style-type: none;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.dicas-reciclagem h1{
+    font-size: 18px;
+    color: #405a41;
+}
