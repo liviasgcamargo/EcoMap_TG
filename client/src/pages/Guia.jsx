@@ -1,62 +1,138 @@
 import React from 'react'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Lixeira from "../assets/images/lixeira.svg"
+import Divider from "../assets/images/Divider.svg"
 import '../assets/styles/Guia.css';
 
 const Guia = () => {
   return (
     <>
-    
-    <Navbar/>
+      <Navbar />
 
-    <h2>Guia de Reciclagem</h2>
-    
-    <div className="container">
-      {/* Categorias de Materiais Recicláveis */}
-      <div className="section">
-        <h2 >Categorias de Materiais Recicláveis</h2>
-        <ul className="item-list">
-          <li className="list-item"><span className="highlight">Papel:</span> Jornais, revistas, caixas de papelão, folhas de caderno</li>
-          <li className="list-item"><span className="highlight">Plástico:</span> Garrafas PET, sacolas plásticas, embalagens de produtos de limpeza</li>
-          <li className="list-item"><span className="highlight">Vidro:</span> Garrafas de vidro, potes de vidro (não incluir espelhos, vidro temperado)</li>
-          <li className="list-item"><span className="highlight">Metal:</span> Latas de alumínio, embalagens de aço, panelas (sem cabos plásticos)</li>
-          <li className="list-item"><span className="highlight">Eletrônicos:</span> Pilhas, baterias, pequenos aparelhos eletrônicos</li>
-        </ul>
-      </div>
+      <div className="infographic-container">
 
-      {/* Diretrizes de Reciclagem */}
-      <div className="section">
-        <h2 className="title">Diretrizes de Reciclagem</h2>
-        <ul className="item-list">
-          <li className="list-item">🔄 Lave os materiais antes de descartar, especialmente embalagens com restos de comida</li>
-          <li className="list-item">🔄 Separe por tipo de material para facilitar o trabalho de reciclagem</li>
-          <li className="list-item">🔄 Retire tampas e rótulos sempre que possível</li>
-          <li className="list-item">❌ Evite reciclar objetos compostos por vários materiais diferentes</li>
-        </ul>
-      </div>
-
-      {/* Tipos de Recicláveis e Não Recicláveis */}
-      <div className="section">
-        <h2 className="title">Tipos de Recicláveis e Não Recicláveis</h2>
-        <ul className="item-list">
-          <li className="list-item"><span className="highlight">Recicláveis:</span> Garrafas plásticas, papéis (não engordurados), potes de vidro, latas de alumínio</li>
-          <li className="list-item"><span className="highlight">Não Recicláveis:</span> Papel engordurado, sacos de salgadinho metalizados, espelhos, pilhas sem tratamento especial</li>
-        </ul>
-      </div>
-
-      {/* Informações Educativas */}
-      <div className="section">
-        <h2 className="title">Informações Educativas sobre Reciclagem</h2>
-        <div className="educational-info">
-          <p><span className="highlight">Benefícios da Reciclagem:</span> Economia de recursos, redução da poluição, geração de empregos</p>
-          <p><span className="highlight">Tempo de Decomposição:</span> Plástico (450 anos), papel (6 meses), alumínio (200 anos)</p>
+        <div className="section">
+          <img src={Divider} alt="" />
+          <h2 className="section-title">O que é Coleta Seletiva?</h2>
+          <p className="section-text">
+            Coleta seletiva é o recolhimento de materiais recicláveis (papel, plástico, metal) que não devem ser misturados ao lixo comum
+             das residências ou local de trabalho. Trata-se de um cuidado dado ao resíduo que começa com a separação dos materiais em 
+             orgânicos e inorgânicos, e, em seguida, com a disposição correta para o reaproveitamento e reciclagem.
+            De forma a sensibilizar as pessoas para questão do correto tratamento que os resíduos sólidos produzidos no dia-a-dia devem 
+            receber, seja nos ambientes públicos ou privados, a coleta seletiva também funciona como um processo de educação ambiental, 
+            na medida em que conscientiza as pessoas sobre os problemas do desperdício de recursos naturais e da poluição causada pelo 
+            lixo </p>
         </div>
+
+        <div className="section">
+        <img src={Divider} alt="" />
+          <h2 className="section-title">Cores dos Recipientes de Reciclagem</h2>
+          <div className="recycling-bins">
+            <div className="bin bin-paper">
+              <span className="bin-label">Papel</span>
+              <div className="bin-color blue">
+                <img className="icone-lixo" src={Lixeira} alt="" />
+              </div>
+            </div>
+            <div className="bin bin-plastic">
+              <span className="bin-label">Plástico</span>
+              <div className="bin-color red">
+                <img className="icone-lixo" src={Lixeira} alt="" />
+              </div>
+            </div>
+            <div className="bin bin-glass">
+              <span className="bin-label">Vidro</span>
+              <div className="bin-color green">
+                <img className="icone-lixo" src={Lixeira} alt="" />
+              </div>
+            </div>
+            <div className="bin bin-metal">
+              <span className="bin-label">Metal</span>
+              <div className="bin-color yellow">
+                <img className="icone-lixo" src={Lixeira} alt="" />
+              </div>
+            </div>
+            <div className="bin bin-organic">
+              <span className="bin-label">Orgânico</span>
+              <div className="bin-color brown">
+                <img className="icone-lixo" src={Lixeira} alt="" />
+              </div>
+            </div>
+            <div className="bin bin-other">
+              <span className="bin-label">Não Recicláveis</span>
+              <div className="bin-color gray">
+                <img className="icone-lixo" src={Lixeira} alt="" />
+              </div>
+            </div>
+          </div>
+          <ul className='ul-materiais-reciclagem'>
+            <li className='li-materiais-reciclagem'>
+              <strong>Papel:</strong> Jornais, revistas, papelão,impressos em geral, cadernos e livros. <br /><br />
+              <strong> Não Pode </strong> Papel higiênico, guardanapos, fitas e etiquetas adesivas, fotografias e papéis plastificados.
+            </li>
+
+            <li className='li-materiais-reciclagem'>
+              <strong>Plástico:</strong> Sacolas, garrafas PET, embalagens em geral, copos descartáveis e canos de PVC. <br /><br />
+
+              <strong> Não Pode </strong> Embalagens de balas e de doces, embalagens de produtos tóxicos.
+            </li>
+
+
+            <li className='li-materiais-reciclagem'>
+              <strong>Vidro:</strong> Garrafas, embalagens em geral, potes, copos, vidros planos e lisos. <br /><br />
+
+              <strong> Não Pode </strong> Espelhos, cerâmica, tubos de TV ou monitores, vidros temperados, lâmpadas de LED e fluorescentes.
+            </li>
+            <li className='li-materiais-reciclagem'>
+              <strong>Metal:</strong> Latas de alumínio ou de ferro, clipes, papel alumínio e grampos para papel ou para cabelo. <br /><br />
+
+              <strong> Não Pode </strong> Embalagens de marmitex, esponjas de aço, pilhas, baterias e eletroeletrônicos.
+            </li>
+
+            <li className='li-materiais-reciclagem'>
+              <strong>Orgânico:</strong> todo tipo de resíduo de origem biológica: restos de alimentos, cascas de legumes e frutas, folhas e vegetais, etc.
+            </li>
+
+            <li className='li-materiais-reciclagem'>
+              <strong>Não recicláveis:</strong> materiais que não podem ser reciclados ou o processo de reciclagem é mais difícil. Como etiquetas, espelhos, adesivos, etc.
+            </li>
+          </ul>
+
+          <div className='dicas-reciclagem'>
+            <h1><strong>Dicas:</strong></h1>
+            <ul>
+              <li> → Limpe cada item, como forma de evitar a proliferação de insetos e microorganismos, que podem deteriorar o material a ser reciclado.</li>
+              <li> → No caso dos papéis, evite amassá-los.</li>
+              <li> → Embalagens de papelão, como as de pizza, não podem estar sujas de molho ou engorduradas. Nesse caso, descarte a parte “suja” como lixo não reciclável e encaminhe a parte limpa para reciclagem.</li>
+              <li> → Com embalagens de vidro, especialmente se estiverem quebradas, é necessário um cuidado extra na hora de embalar, para não ferir os trabalhadores que irão manuseá-las.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div className="section">
+        <img src={Divider} alt="" />
+          <h2 className="section-title">Benefícios da Coleta Seletiva</h2>
+          <ul className="lista-beneficios">
+            <li> → Reduz a poluição ambiental e o desperdício.</li>
+            <li> → Conserva recursos naturais ao permitir a reciclagem.</li>
+            <li> → Gera empregos em indústrias de reciclagem.</li>
+            <li> → Promove a conscientização ambiental.</li>
+            <li> → Melhoria da limpeza e qualidade do ambiente de trabalho;</li>
+            <li> → Diminuição da exploração de recursos naturais renováveis e não renováveis;</li>
+            <li> → Diminuição do impacto ambiental na geração de resíduos: poluição do solo, da água e do ar;</li>
+            <li> → Diminuição da proliferação de doenças e da contaminação dos alimentos;</li>
+            <li> → Diminuição de custos no processo de destinação de resíduos;</li>
+            <li> → Possibilidade de venda dos materiais recicláveis, gerando renda à organização;</li>
+            <li> → Parceria com organizações comunitárias, gerando inclusão social.</li>
+          </ul>
+        </div>
+
+      <a className='creditos-divisoria' href="https://www.svgbackgrounds.com/elements/svg-shape-dividers/">SVG Shape Dividers by SVGBackgrounds.com</a>
       </div>
-    </div>
 
-    <Footer/>
-
-
+      <Footer />
     </>
   )
 }

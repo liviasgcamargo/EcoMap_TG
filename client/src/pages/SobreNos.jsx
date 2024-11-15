@@ -16,7 +16,7 @@ function SobreNos() {
         <h2>Sobre nós</h2>
 
             <div className="container-cards">
-                <div className="card">
+                <div className="card-sobre-nos">
                     <Avatar
                         avatarStyle='Transparent'
                         topType='LongHairCurly'
@@ -43,7 +43,7 @@ function SobreNos() {
                     </div>
                 </div>
 
-                <div className="card">
+                <div className="card-sobre-nos">
                     <Avatar
                         avatarStyle='Transparent'
                         topType='LongHairCurly'
@@ -59,8 +59,17 @@ function SobreNos() {
                     />
                     <h4 className="titulo-sobre-nos">Rebeca</h4>
                     
+                    <div className='card-icon'>
+                        <a href="">
+                        <img src={Github} alt="" />
+                        </a>
+
+                        <a href="">
+                        <img src={Linkedin} alt="" />
+                        </a>
+                    </div>
                 </div>
-                <div className="card">
+                <div className="card-sobre-nos">
                     <Avatar
                         avatarStyle='Transparent'
                         topType='ShortHairShortWaved'
@@ -77,9 +86,18 @@ function SobreNos() {
                     />
                     <h4 className="titulo-sobre-nos">Renan</h4>
                     
+                    <div className='card-icon'>
+                        <a href="">
+                        <img src={Github} alt="" />
+                        </a>
+
+                        <a href="">
+                        <img src={Linkedin} alt="" />
+                        </a>
+                    </div>
                 </div>
 
-                <div className="card">
+                <div className="card-sobre-nos">
                     <Avatar
                         avatarStyle='Transparent'
                         topType='LongHairStraight'
@@ -95,6 +113,15 @@ function SobreNos() {
                     />
                     <h4 className="titulo-sobre-nos">Sara</h4>
                     
+                    <div className='card-icon'>
+                        <a href="">
+                        <img src={Github} alt="" />
+                        </a>
+
+                        <a href="">
+                        <img src={Linkedin} alt="" />
+                        </a>
+                    </div>
                 </div>
             </div>
 
