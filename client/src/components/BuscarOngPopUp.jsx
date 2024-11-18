@@ -83,6 +83,21 @@ const BuscarOngPopUp = ({ onClose }) => {
                     <label>
                         <input type="checkbox" value="6" onChange={handleMaterialChange} /> Eletrônico
                     </label>
+                    <label>
+                        <input type="checkbox" value="7" onChange={handleMaterialChange} /> Roupa
+                    </label>
+                    <label>
+                        <input type="checkbox" value="8" onChange={handleMaterialChange} /> Alimento
+                    </label>
+                    <label>
+                        <input type="checkbox" value="9" onChange={handleMaterialChange} /> Brinquedo
+                    </label>
+                    <label>
+                        <input type="checkbox" value="10" onChange={handleMaterialChange} /> Produto de Higiene
+                    </label>
+                    <label>
+                        <input type="checkbox" value="11" onChange={handleMaterialChange} /> Móveis
+                    </label>
                 </div>
                 <button onClick={handleSearch}>BUSCAR</button>
             </div>

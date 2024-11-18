@@ -50,6 +50,7 @@ app.post("/buscar-pontos-coleta", async (req, res) => {
       JOIN PontoColeta_TipoMaterial AS ptm ON pc.id_pontoColeta = ptm.fk_id_pontoColeta
       JOIN Tipo_material AS tm ON ptm.fk_id_tipoMaterial = tm.id_tipoMaterial
       WHERE ptm.fk_id_tipoMaterial IN (${materiais.join(",")})
+      AND pc.status_ponto = TRUE
       GROUP BY pc.id_pontoColeta
       HAVING distance < ?
       ORDER BY distance
@@ -64,7 +65,7 @@ app.post("/buscar-pontos-coleta", async (req, res) => {
 });
 
 
-// Endpoint para buscar ONGs próximas
+//Endpoint para buscar ONGs próximas
 app.post("/buscar-ongs", async (req, res) => {
   const { latitude, longitude, raio, materiais } = req.body;
 
@@ -73,11 +74,16 @@ app.post("/buscar-ongs", async (req, res) => {
     const query = `
       SELECT DISTINCT ong.*, 
       (6371 * acos(cos(radians(?)) * cos(radians(ong.latitude)) * cos(radians(ong.longitude) - radians(?)) 
-      + sin(radians(?)) * sin(radians(ong.latitude)))) AS distance 
+      + sin(radians(?)) * sin(radians(ong.latitude)))) AS distance ,
+      GROUP_CONCAT(tm.nome_tipoMaterial) AS materiais_aceitos ,
+      ong.telefone AS contato
       FROM Usuario AS ong
       JOIN Usuario_tipoMaterial AS utm ON ong.id_usuario = utm.fk_id_usuario
+      JOIN Tipo_material AS tm ON utm.fk_id_tipoMaterial = tm.id_tipoMaterial
       WHERE utm.fk_id_tipoMaterial IN (${materiais.join(",")}) 
         AND ong.fk_id_categoria = 2
+        AND ong.status_usuario = TRUE
+      GROUP BY ong.id_usuario
       HAVING distance < ?
       ORDER BY distance
     `;
@@ -98,12 +104,17 @@ app.post("/buscar-empresas", async (req, res) => {
     const query = `
       SELECT DISTINCT emp.*, 
       (6371 * acos(cos(radians(?)) * cos(radians(emp.latitude)) * cos(radians(emp.longitude) - radians(?)) 
-      + sin(radians(?)) * sin(radians(emp.latitude)))) AS distance 
+      + sin(radians(?)) * sin(radians(emp.latitude)))) AS distance,
+      GROUP_CONCAT(tm.nome_tipoMaterial) AS materiais_aceitos ,
+      emp.telefone AS contato
       FROM Usuario AS emp
       JOIN Usuario_tipoMaterial AS utm ON emp.id_usuario = utm.fk_id_usuario
+      JOIN Tipo_material AS tm ON utm.fk_id_tipoMaterial = tm.id_tipoMaterial
       WHERE utm.fk_id_tipoMaterial IN (${materiais.join(",")}) 
         AND emp.tipo_transacao = ?  -- Filtra pelo tipo de transação (Compra, Vende ou Ambos)
         AND emp.fk_id_categoria = 1  -- Supondo que a categoria 1 representa empresas de reciclagem
+        AND emp.status_usuario = TRUE
+      GROUP BY emp.id_usuario
       HAVING distance < ?
       ORDER BY distance
     `;

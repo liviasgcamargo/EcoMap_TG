@@ -11,6 +11,7 @@ const Perfil = () => {
     const [perfil, setPerfil] = useState(null);
     const [originalPerfil, setOriginalPerfil] = useState(null);
     const [editMode, setEditMode] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const navigate = useNavigate();
 
     const estados = [
@@ -29,9 +30,17 @@ const Perfil = () => {
     useEffect(() => {
         const fetchPerfil = async () => {
             try {
-                const response = await api.get(`${process.env.REACT_APP_API_URL}/perfil`);
-                setPerfil(response.data);
-                setOriginalPerfil(response.data);
+                const response = await api.get("/perfil");
+                
+                // Verifique se a API está retornando "materiais" como um array; 
+                // caso contrário, converta para array vazio.
+                const perfilData = {
+                    ...response.data,
+                    materiais: response.data.materiais || []
+                };
+                
+                setPerfil(perfilData);
+                setOriginalPerfil(perfilData);
             } catch (error) {
                 console.error("Erro ao buscar perfil:", error);
                 navigate("/login");
@@ -62,6 +71,7 @@ const Perfil = () => {
             alert("Perfil atualizado com sucesso! O administrador precisa validar as alterações.");
             setEditMode(false);
             setOriginalPerfil(perfil);
+            setPasswordVisible(false);
         } catch (error) {
             console.error("Erro ao atualizar perfil:", error);
             alert("Erro ao atualizar perfil. Tente novamente.");
@@ -71,6 +81,7 @@ const Perfil = () => {
     const handleCancel = () => {
         setPerfil(originalPerfil);
         setEditMode(false);
+        setPasswordVisible(false);
     };
 
     const handleDelete = async () => {
@@ -96,13 +107,20 @@ const Perfil = () => {
             <div className="perfil-container">
                 <div className="perfil-info">
                     <img className="icone-perfil" src={IconePerfil} alt="" />
-                    
+
                     <div className="info-cadastro-principais">
                         <label>Email:</label>
                         <input type="email" name="email" value={perfil.email || ''} onChange={handleChange} disabled={!editMode} />
 
                         <label>Senha:</label>
-                        <input type="password" name="senha" placeholder="Nova senha" onChange={handleChange} disabled={!editMode} />
+                        <input
+                            type={passwordVisible ? "text" : "password"}
+                            name="senha"
+                            value={passwordVisible ? perfil.senha || '' : "*****"}
+                            placeholder="Nova senha"
+                            onChange={handleChange}
+                            disabled={!editMode}
+                        />
                     </div>
 
                     <div className="info-cadastro-principais">
@@ -149,7 +167,7 @@ const Perfil = () => {
                         </select>
 
                         <label>Tipos de Material Aceito:</label>
-                        <div>
+                        <div className="info-materiais">
                             {materiaisDisponiveis.map((material) => (
                                 <label key={material}>
                                     <input
@@ -167,11 +185,11 @@ const Perfil = () => {
 
                     {editMode ? (
                         <div>
-                            <button onClick={handleSave}>Salvar</button>
+                            <button onClick={() => { setPasswordVisible(true); handleSave(); }}>Salvar</button>
                             <button onClick={handleCancel}>Cancelar</button>
                         </div>
                     ) : (
-                        <button onClick={() => setEditMode(true)}>Editar Perfil</button>
+                        <button onClick={() => { setEditMode(true); setPasswordVisible(true); }}>Editar Perfil</button>
                     )}
 
                     <button onClick={handleDelete}>Excluir Conta</button>

@@ -41,7 +41,8 @@ body {
 .encontrarPontos {
   /*sub-texto */
   font-size: 26px;
-  color: #405a41;
+  color: #000000;
+  /* color: #405a41; */
   opacity: 0.6;
 }
 
@@ -133,6 +134,7 @@ body {
     color: var(--primary-color);
     margin-bottom: 1rem;
     margin-left: 0;
+    color: #356037;
 }
 
 .resultados-container .card {
@@ -147,6 +149,7 @@ body {
 
 .resultados-container .card p {
     margin-bottom: 0.5rem;
+    color: black;
 }
 
 .resultados-container .card a {

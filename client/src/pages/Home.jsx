@@ -52,13 +52,13 @@ const Home = () => {
             {activePopup === "descarte" && <BuscarPontoPopUp onClose={closePopup} />}
             {activePopup === "doacao" && <BuscarOngPopUp onClose={closePopup} />}
             {activePopup === "compravenda" && <BuscarEmpresaPopUp onClose={closePopup} />}
-
+            {activePopup === "sugestao" && <SugerirPontoPopUp onClose={closePopup} />}
+            
             <Cards />
 
             <div className="containerSugerir">
                 <p>Conhece algum ponto de entrega ainda não registrado?{" "}</p>
                 <span className="sugerir" onClick={() => openPopup("sugestao")}>
-                    {activePopup === "sugestao" && <SugerirPontoPopUp onClose={closePopup} />}
                     Clique aqui para sugerir um novo endereço de coleta!
                 </span>
             </div>

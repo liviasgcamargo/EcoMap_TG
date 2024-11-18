@@ -171,9 +171,25 @@ const Cadastro = () => {
                         <option value="TO">Tocantins</option>
                     </select>
 
-
                     <label>Tipos de Material Aceito:</label>
-                    <div className="material-options">
+                    {categoria === "ONG" && (
+                        <div className="material-options">
+                            <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
+                            <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
+                            <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
+                            <label><input type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
+                            <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
+                            <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
+                            <label><input type="checkbox" value="Roupa" onChange={handleCheckboxChange} /> Roupa</label>
+                            <label><input type="checkbox" value="Alimento" onChange={handleCheckboxChange} /> Alimento</label>
+                            <label><input type="checkbox" value="Brinquedo" onChange={handleCheckboxChange} /> Brinquedo</label>
+                            <label><input type="checkbox" value="ProdutoHigiene" onChange={handleCheckboxChange} /> Produto de Higiene</label>
+                            <label><input type="checkbox" value="Moveis" onChange={handleCheckboxChange} /> Móveis</label>
+                        </div>
+                    )}
+
+                    {categoria === "Empresa" && (
+                        <div className="material-options">
                         <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
                         <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
                         <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
@@ -181,6 +197,7 @@ const Cadastro = () => {
                         <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
                         <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
                     </div>
+                    )}
 
                     {categoria === "Empresa" && (
                         <label className="tipo_transacao" >
