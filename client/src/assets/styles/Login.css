@@ -20,7 +20,7 @@ form {
   justify-content: space-between;
 }
 
-label { /* textos dos forms de cadastro e login */
+label { 
   display: flex;
   align-items: start;
   margin-right: 18px;
@@ -73,7 +73,7 @@ p {
   text-decoration: underline;
 }
 
-.cadastro-redirect { /* Link caso a pessoa não tenha cadastro */
+.cadastro-redirect { 
   text-align: start;
   margin-bottom: 20px;
   font-size: 14px;
