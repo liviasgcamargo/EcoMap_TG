@@ -70,7 +70,7 @@ const AdminDashboard = () => {
                         className="button-icon"
                         onClick={handlePontosValidadosClick}
                     />
-                    <p className="titulo-btn-adm">Pontos Validados</p>
+                    <p className="titulo-btn-adm">Gerenciar Pontos</p>
                 </button>
 
                 <button className="btn-dashboard ">
