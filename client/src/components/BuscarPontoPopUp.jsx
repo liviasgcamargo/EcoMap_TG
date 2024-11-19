@@ -35,7 +35,7 @@ const BuscarPontoPopUp = ({ onClose }) => {
             });
 
             // Redireciona para a página de resultados com os dados obtidos
-            navigate("/resultado-ponto-coleta", { state: { resultados: response.data, center: {lat, lng} } });
+            navigate("/resultado-ponto-coleta", { state: { resultados: response.data, center: {lat, lng}, raio: radius } });
         } catch (error) {
             console.error("Erro ao buscar pontos próximos:", error);
         }
