@@ -175,8 +175,12 @@
     color: #405a41;
 }
 
-.creditos-divisoria{
-    font-size: 8px;
-    text-decoration: none;
-    color: #333;
+.creditos-faq{
+  font-size: 8px;
+  text-decoration: none;
+  color: #333;
+}
+
+.container-creditos h1{
+font-size: 10px;
 }
