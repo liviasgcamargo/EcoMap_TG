@@ -1,7 +1,12 @@
-// SugerirPontoPopUp.js
 import React, { useState } from "react";
 import axios from "axios";
 import '../assets/styles/ModalSugerir.css'
+
+const estadosBrasileiros = [
+  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", 
+  "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", 
+  "SP", "SE", "TO"
+];
 
 const SugerirPontoPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
@@ -41,7 +46,7 @@ const SugerirPontoPopUp = ({ onClose }) => {
                     &times;
                 </span>
                 <div className="popup-content-title">
-                <h1>Sugerir novo ponto de coleta</h1>
+                    <h1>Sugerir novo ponto de coleta</h1>
                 </div>
                 <label>Endereço:</label>
                 <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Digite o endereço" />
@@ -50,7 +55,14 @@ const SugerirPontoPopUp = ({ onClose }) => {
                 <label>Cidade:</label>
                 <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Digite a cidade" />
                 <label>Estado:</label>
-                <input type="text" value={state} onChange={(e) => setState(e.target.value)} placeholder="Digite o estado" />
+                <select className='estados-pop-up' value={state} onChange={(e) => setState(e.target.value)}>
+                    <option value="">Selecione o Estado</option>
+                    {estadosBrasileiros.map((estado) => (
+                        <option key={estado} value={estado}>
+                            {estado}
+                        </option>
+                    ))}
+                </select>
                 <label>Tipos de Material:</label>
                 <div className="material-checkboxes">
                     <label>
