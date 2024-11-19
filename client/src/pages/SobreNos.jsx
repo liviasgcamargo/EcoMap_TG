@@ -13,8 +13,13 @@ function SobreNos() {
 
             <Navbar />
 
-        <h2>Sobre nós</h2>
-
+            <h2>Sobre nós</h2>
+            <p className='descricao-sobre-nos'>
+                Somos um grupo de estudantes de Análise e Desenvolvimento de Sistemas da FATEC Sorocaba, e criamos esta plataforma
+                para conectar você aos pontos de coleta mais próximos. Acreditamos que pequenas ações podem gerar grandes mudanças, e
+                que o conhecimento sobre o destino correto dos materiais recicláveis é um passo essencial para um futuro mais sustentável.
+                Vamos reciclar, reaproveitar e construir um futuro mais verde para as próximas gerações!
+            </p>
             <div className="container-cards">
                 <div className="card-sobre-nos">
                     <Avatar
@@ -34,11 +39,11 @@ function SobreNos() {
 
                     <div className='card-icon'>
                         <a href="">
-                        <img src={Github} alt="" />
+                            <img src={Github} alt="" />
                         </a>
 
                         <a href="">
-                        <img src={Linkedin} alt="" />
+                            <img src={Linkedin} alt="" />
                         </a>
                     </div>
                 </div>
@@ -58,14 +63,14 @@ function SobreNos() {
                         skinColor='Pale'
                     />
                     <h4 className="titulo-sobre-nos">Rebeca</h4>
-                    
+
                     <div className='card-icon'>
                         <a href="">
-                        <img src={Github} alt="" />
+                            <img src={Github} alt="" />
                         </a>
 
                         <a href="">
-                        <img src={Linkedin} alt="" />
+                            <img src={Linkedin} alt="" />
                         </a>
                     </div>
                 </div>
@@ -85,14 +90,14 @@ function SobreNos() {
                         skinColor='Pale'
                     />
                     <h4 className="titulo-sobre-nos">Renan</h4>
-                    
+
                     <div className='card-icon'>
                         <a href="">
-                        <img src={Github} alt="" />
+                            <img src={Github} alt="" />
                         </a>
 
                         <a href="">
-                        <img src={Linkedin} alt="" />
+                            <img src={Linkedin} alt="" />
                         </a>
                     </div>
                 </div>
@@ -112,14 +117,14 @@ function SobreNos() {
                         skinColor='Pale'
                     />
                     <h4 className="titulo-sobre-nos">Sara</h4>
-                    
+
                     <div className='card-icon'>
                         <a href="">
-                        <img src={Github} alt="" />
+                            <img src={Github} alt="" />
                         </a>
 
                         <a href="">
-                        <img src={Linkedin} alt="" />
+                            <img src={Linkedin} alt="" />
                         </a>
                     </div>
                 </div>

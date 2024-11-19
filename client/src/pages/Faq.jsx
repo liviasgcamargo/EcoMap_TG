@@ -41,55 +41,6 @@ const Faq = () => {
                         <input
                             type="checkbox"
                             name="example_accordion"
-                            id="section2"
-                            className="accordion__input"
-                        />
-                        <label htmlFor="section2" className="accordion__label">
-                            Quais materiais posso descartar nos ecopontos?
-                        </label>
-                        <div className="accordion__content">
-                            <ul>
-                                <li>Madeiras de construção civil. </li>
-                                <li>Recicláveis.</li>
-                                <li>Resíduos eletrônicos e eletrodomésticos.</li>
-                                <li>Móveis velhos.</li>
-                                <li>Entulho de obras.</li>
-                                <li>Podas e vegetação.</li>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="example_accordion"
-                            id="section3"
-                            className="accordion__input"
-                        />
-                        <label htmlFor="section3" className="accordion__label">
-                            Quais materiais não são aceitos nos ecopontos?
-                        </label>
-                        <div className="accordion__content">
-                            <ul>
-                                <li>Resíduo domiciliar.</li>
-                                <li>Óleo automotivo e seus frascos.</li>
-                                <li>Tintas. </li>
-                                <li>Resíduo infectante.</li>
-                                <li>Lâmpadas.</li>
-                                <li>Gesso.</li>
-                                <li>Sucata de veículos. </li>
-                                <li>Pneus.</li>
-                                <li>Animais mortos.</li>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <div>
-                        <input
-                            type="checkbox"
-                            name="example_accordion"
                             id="section4"
                             className="accordion__input"
                         />
@@ -156,32 +107,15 @@ const Faq = () => {
                             className="accordion__input"
                         />
 
+
                         <label htmlFor="section7" className="accordion__label">
-                            É possível fazer a coleta de materiais diretamente no meu endereço?                        </label>
+                            Os pontos de coleta têm um horário de funcionamento?                        </label>
                         <div className="accordion__content">
                             <p>
-                                Alguns pontos de coleta oferecem serviços de coleta no local, especialmente para materiais grandes ou em grande quantidade. Consulte as informações do ponto de coleta ou entre em contato diretamente para saber se essa opção está disponível.
+                                Sim! Cada ponto de coleta tem seu próprio horário de funcionamento, que pode variar. Ao consultar um ponto específico, você encontrará as informações de horário para garantir que você possa levar seus materiais durante o período de coleta.
                             </p>
                         </div>
 
-                        <div>
-                            <input
-                                type="checkbox"
-                                name="example_accordion"
-                                id="section8"
-                                className="accordion__input"
-                            />
-
-
-                            <label htmlFor="section8" className="accordion__label">
-                                Os pontos de coleta têm um horário de funcionamento?                        </label>
-                            <div className="accordion__content">
-                                <p>
-                                    Sim! Cada ponto de coleta tem seu próprio horário de funcionamento, que pode variar. Ao consultar um ponto específico, você encontrará as informações de horário para garantir que você possa levar seus materiais durante o período de coleta.
-                                </p>
-                            </div>
-
-                        </div>
                     </div>
 
                 </div>
