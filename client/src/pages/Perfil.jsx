@@ -12,6 +12,10 @@ const Perfil = () => {
     const [originalPerfil, setOriginalPerfil] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [changePasswordMode, setChangePasswordMode] = useState(false);
+    const [senhaAtual, setSenhaAtual] = useState("");
+    const [novaSenha, setNovaSenha] = useState("");
+    const [confirmarSenha, setConfirmarSenha] = useState("");
     const navigate = useNavigate();
 
     const estados = [
@@ -21,6 +25,7 @@ const Perfil = () => {
     ];
 
     const materiaisDisponiveis = ["Papelão", "Plástico", "Vidro", "Metal", "Orgânico", "Eletrônico"];
+    const materiaisDisponiveisOng = ["Papelão", "Plástico", "Vidro", "Metal", "Orgânico", "Eletrônico", "Roupa", "Alimento", "Brinquedo", "Produto de Higiene", "Móveis"];
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -78,6 +83,32 @@ const Perfil = () => {
         }
     };
 
+    const handleChangePassword = async () => {
+        if (novaSenha !== confirmarSenha) {
+            alert("A nova senha e a confirmação não coincidem.");
+            return;
+        }
+
+        try {
+            await api.post("/alterar-senha", { senhaAtual, novaSenha });
+            alert("Senha alterada com sucesso!");
+            setChangePasswordMode(false);
+            setSenhaAtual("");
+            setNovaSenha("");
+            setConfirmarSenha("");
+        } catch (error) {
+            console.error("Erro ao alterar senha:", error);
+            alert("Erro ao alterar senha. Verifique a senha atual.");
+        }
+    };
+
+    const handleCancelChangePassword = () => {
+        setChangePasswordMode(false);
+        setSenhaAtual("");
+        setNovaSenha("");
+        setConfirmarSenha("");
+    };
+
     const handleCancel = () => {
         setPerfil(originalPerfil);
         setEditMode(false);
@@ -112,7 +143,7 @@ const Perfil = () => {
                         <label>Email:</label>
                         <input type="email" name="email" value={perfil.email || ''} onChange={handleChange} disabled={!editMode} />
 
-                        <label>Senha:</label>
+                        {/* <label>Senha:</label>
                         <input
                             type={passwordVisible ? "text" : "password"}
                             name="senha"
@@ -120,7 +151,7 @@ const Perfil = () => {
                             placeholder="Nova senha"
                             onChange={handleChange}
                             disabled={!editMode}
-                        />
+                        /> */}
                     </div>
 
                     <div className="info-cadastro-principais">
@@ -167,7 +198,8 @@ const Perfil = () => {
                         </select>
 
                         <label>Tipos de Material Aceito:</label>
-                        <div className="info-materiais">
+                        {perfil.fk_id_categoria === 1 && (
+                            <div className="info-materiais">
                             {materiaisDisponiveis.map((material) => (
                                 <label key={material}>
                                     <input
@@ -181,7 +213,60 @@ const Perfil = () => {
                                 </label>
                             ))}
                         </div>
+                        )}
+                        
+                        {perfil.fk_id_categoria === 2 && (
+                            <div className="info-materiais">
+                            {materiaisDisponiveisOng.map((material) => (
+                                <label key={material}>
+                                    <input
+                                        type="checkbox"
+                                        value={material}
+                                        checked={perfil.materiais && perfil.materiais.includes(material)}
+                                        onChange={handleMaterialChange}
+                                        disabled={!editMode}
+                                    />{" "}
+                                    {material}
+                                </label>
+                            ))}
+                        </div>
+                        )}
+
                     </div>
+
+                    {!changePasswordMode ? (
+                        <>
+                            <button onClick={() => setEditMode(true)}>Editar Perfil</button>
+                            <button onClick={() => setChangePasswordMode(true)}>Alterar Senha</button>
+                        </>
+                    ) : (
+                        <div className="alterar-senha-container">
+                            <h3>Alterar Senha</h3>
+                            <label>Senha Atual:</label>
+                            <input
+                                type="password"
+                                value={senhaAtual}
+                                onChange={(e) => setSenhaAtual(e.target.value)}
+                            />
+
+                            <label>Nova Senha:</label>
+                            <input
+                                type="password"
+                                value={novaSenha}
+                                onChange={(e) => setNovaSenha(e.target.value)}
+                            />
+
+                            <label>Confirmar Nova Senha:</label>
+                            <input
+                                type="password"
+                                value={confirmarSenha}
+                                onChange={(e) => setConfirmarSenha(e.target.value)}
+                            />
+
+                            <button onClick={handleChangePassword}>Salvar Nova Senha</button>
+                            <button onClick={handleCancelChangePassword}>Cancelar</button>
+                        </div>
+                    )}
 
                     {editMode ? (
                         <div>
@@ -189,7 +274,8 @@ const Perfil = () => {
                             <button onClick={handleCancel}>Cancelar</button>
                         </div>
                     ) : (
-                        <button onClick={() => { setEditMode(true); setPasswordVisible(true); }}>Editar Perfil</button>
+                         <button onClick={() => { setEditMode(true); setPasswordVisible(true); }}>Editar Perfil</button>
+
                     )}
 
                     <button onClick={handleDelete}>Excluir Conta</button>

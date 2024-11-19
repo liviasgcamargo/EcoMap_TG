@@ -400,10 +400,31 @@ app.listen(8000, () => {
 ///////////////////////////////////////////////////////////
 
 app.get("/perfil", authenticateToken, async (req, res) => {
+  const userId = req.user.id;
+
   try {
-      const userId = req.user.id; // Agora `req.user` deve estar definido
-      const [rows] = await bd.execute(`SELECT * FROM Usuario WHERE id_usuario = ?`, [userId]);
-      res.json(rows[0]);
+      const [userRows] = await bd.execute("SELECT * FROM Usuario WHERE id_usuario = ?", [userId]);
+
+      // Verificar se o usuário existe
+      if (userRows.length === 0) {
+          return res.status(404).json({ error: "Usuário não encontrado" });
+      }
+
+      const user = userRows[0];
+
+      // Obter materiais do usuário
+      const [materialRows] = await bd.execute(
+          `SELECT tm.nome_tipoMaterial 
+           FROM Usuario_tipoMaterial AS utm
+           JOIN Tipo_material AS tm ON utm.fk_id_tipoMaterial = tm.id_tipoMaterial
+           WHERE utm.fk_id_usuario = ?`, 
+           [userId]
+      );
+
+      // Adicionar materiais ao objeto de usuário
+      user.materiais = materialRows.map(row => row.nome_tipoMaterial);
+
+      res.json(user);
   } catch (error) {
       console.error("Erro ao buscar perfil:", error);
       res.status(500).json({ error: "Erro ao buscar perfil" });
@@ -411,70 +432,132 @@ app.get("/perfil", authenticateToken, async (req, res) => {
 });
 
 app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
-  try {
-      const userId = req.user.id;
-      const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
+  const userId = req.user.id;
+    const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
 
-      const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
+    try {
+        const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
 
-      await bd.execute(
-          `UPDATE Usuario SET 
-              email = ?, 
-              ${hashedPassword ? "senha = ?," : ""}
-              nome_org = ?, 
-              CNPJ = ?, 
-              telefone = ?, 
-              descricao = ?, 
-              tipo_servico = ?, 
-              endereco = ?, 
-              cep = ?, 
-              cidade = ?, 
-              estado = ?, 
-              status_usuario = FALSE 
-          WHERE id_usuario = ?`,
-          [
-              email,
-              ...(hashedPassword ? [hashedPassword] : []),
-              nome_org,
-              CNPJ,
-              telefone,
-              descricao,
-              tipo_servico,
-              endereco,
-              cep,
-              cidade,
-              estado,
-              userId,
-          ]
-      );
+        await bd.execute(
+            `UPDATE Usuario SET 
+                email = ?, 
+                ${hashedPassword ? "senha = ?," : ""}
+                nome_org = ?, 
+                CNPJ = ?, 
+                telefone = ?, 
+                descricao = ?, 
+                tipo_servico = ?, 
+                endereco = ?, 
+                cep = ?, 
+                cidade = ?, 
+                estado = ?, 
+                status_usuario = FALSE 
+            WHERE id_usuario = ?`,
+            [
+                email,
+                ...(hashedPassword ? [hashedPassword] : []),
+                nome_org,
+                CNPJ,
+                telefone,
+                descricao,
+                tipo_servico,
+                endereco,
+                cep,
+                cidade,
+                estado,
+                userId,
+            ]
+        );
 
-      await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
-      const materialQueries = materiais.map((materialNome) =>
-          bd.execute(
-              `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
-               SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
-              [userId, materialNome]
-          )
-      );
-      await Promise.all(materialQueries);
+        // Verifique se 'materiais' está definido e é um array
+        if (!Array.isArray(materiais)) {
+            return res.status(400).json({ error: "Materiais deve ser um array." });
+        }
 
-      res.json({ message: "Perfil atualizado com sucesso!" });
-  } catch (error) {
-      console.error("Erro ao atualizar perfil:", error);
-      res.status(500).json({ error: "Erro ao atualizar perfil" });
-  }
+        // Remover materiais antigos e inserir novos materiais
+        await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
+
+        if (materiais.length > 0) {
+            const materialQueries = materiais.map((materialNome) =>
+              bd.execute(
+                    `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
+                     SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
+                    [userId, materialNome]
+                )
+            );
+            await Promise.all(materialQueries);
+        }
+
+        res.json({ message: "Perfil atualizado com sucesso!" });
+    } catch (error) {
+        console.error("Erro ao atualizar perfil:", error);
+        res.status(500).json({ error: "Erro ao atualizar perfil" });
+    }
 });
 
 app.delete("/excluir-conta", authenticateToken, async (req, res) => {
+  const userId = req.user.id;
+
+    try {
+        await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [userId]);
+        res.json({ message: "Conta excluída com sucesso!" });
+    } catch (error) {
+        console.error("Erro ao excluir conta:", error);
+        res.status(500).json({ error: "Erro ao excluir conta" });
+    }
+});
+
+// Endpoint para obter senha real
+// app.get("/senha-decifrada", authenticateToken, async (req, res) => {
+//   const userId = req.user.id;
+
+//   try {
+//       const [rows] = await bd.execute("SELECT senha FROM Usuario WHERE id_usuario = ?", [userId]);
+
+//       if (rows.length === 0) {
+//           return res.status(404).json({ error: "Usuário não encontrado" });
+//       }
+
+//       // Retorna a senha real
+//       res.json({ senha: rows[0].senha });
+//   } catch (error) {
+//       console.error("Erro ao buscar senha:", error);
+//       res.status(500).json({ error: "Erro ao buscar senha" });
+//   }
+// });
+
+app.post("/alterar-senha", authenticateToken, async (req, res) => {
+  const userId = req.user.id; // O ID do usuário autenticado
+  const { senhaAtual, novaSenha } = req.body;
+
   try {
-      const userId = req.user.id;
-      await bd.execute(`DELETE FROM Usuario WHERE id_usuario = ?`, [userId]);
-      res.json({ message: "Conta excluída com sucesso!" });
+      // Busca a senha atual do usuário no banco de dados
+      const [rows] = await bd.execute("SELECT senha FROM Usuario WHERE id_usuario = ?", [userId]);
+      if (rows.length === 0) {
+          return res.status(404).json({ error: "Usuário não encontrado" });
+      }
+
+      const senhaHash = rows[0].senha;
+
+      // Verifica se a senha atual fornecida pelo usuário está correta
+      const isPasswordMatch = await bcrypt.compare(senhaAtual, senhaHash);
+      if (!isPasswordMatch) {
+          return res.status(400).json({ error: "Senha atual incorreta" });
+      }
+
+      // Gera o hash da nova senha
+      const novaSenhaHash = await bcrypt.hash(novaSenha, 10);
+
+      // Atualiza a senha no banco de dados
+      await bd.execute("UPDATE Usuario SET senha = ? WHERE id_usuario = ?", [novaSenhaHash, userId]);
+
+      res.json({ message: "Senha alterada com sucesso" });
   } catch (error) {
-      console.error("Erro ao excluir conta:", error);
-      res.status(500).json({ error: "Erro ao excluir conta" });
+      console.error("Erro ao alterar senha:", error);
+      res.status(500).json({ error: "Erro ao alterar senha" });
   }
 });
+
 
 app.post("/login", async (req, res) => {
   const { email, senha } = req.body;
