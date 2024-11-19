@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Lixeira from "../assets/images/lixeira.svg"
-import Divider from "../assets/images/divider.svg"
+import Divider from "../assets/images/Divider.svg"
 import '../assets/styles/Guia.css';
 
 const Guia = () => {
