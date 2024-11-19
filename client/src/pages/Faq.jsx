@@ -12,7 +12,7 @@ const Faq = () => {
             <>
                 <h2>Perguntas Frequentes</h2>
                 <div className="heroFAQ">
-                    <p>
+                    <p className='paragrafo-faq'>
                         Bem-vindo à nossa seção de Perguntas Frequentes! Aqui, você encontrará
                         respostas para as dúvidas mais comuns sobre como localizar e utilizar os
                         pontos de descarte de coleta seletiva em sua região. <br />
@@ -36,6 +36,7 @@ const Faq = () => {
                             </p>
                         </div>
                     </div>
+
                     <div>
                         <input
                             type="checkbox"
@@ -48,16 +49,17 @@ const Faq = () => {
                         </label>
                         <div className="accordion__content">
                             <ul>
-                                <li>Madeiras de construção civil. </li> 
-                                <li>Recicláveis.</li> 
-                                <li>Resíduos eletrônicos e eletrodomésticos.</li> 
-                                <li>Móveis velhos.</li> 
-                                <li>Entulho de obras.</li> 
+                                <li>Madeiras de construção civil. </li>
+                                <li>Recicláveis.</li>
+                                <li>Resíduos eletrônicos e eletrodomésticos.</li>
+                                <li>Móveis velhos.</li>
+                                <li>Entulho de obras.</li>
                                 <li>Podas e vegetação.</li>
                             </ul>
-                  
+
                         </div>
                     </div>
+
                     <div>
                         <input
                             type="checkbox"
@@ -70,19 +72,20 @@ const Faq = () => {
                         </label>
                         <div className="accordion__content">
                             <ul>
-                                <li>Resíduo domiciliar.</li> 
-                                <li>Óleo automotivo e seus frascos.</li> 
+                                <li>Resíduo domiciliar.</li>
+                                <li>Óleo automotivo e seus frascos.</li>
                                 <li>Tintas. </li>
-                                <li>Resíduo infectante.</li> 
-                                <li>Lâmpadas.</li> 
-                                <li>Gesso.</li> 
+                                <li>Resíduo infectante.</li>
+                                <li>Lâmpadas.</li>
+                                <li>Gesso.</li>
                                 <li>Sucata de veículos. </li>
-                                <li>Pneus.</li> 
+                                <li>Pneus.</li>
                                 <li>Animais mortos.</li>
                             </ul>
-                                
+
                         </div>
                     </div>
+
                     <div>
                         <input
                             type="checkbox"
@@ -111,7 +114,76 @@ const Faq = () => {
                                 resíduos.
                             </p>
                         </div>
+
                     </div>
+
+                    <div>
+                        <input
+                            type="checkbox"
+                            name="example_accordion"
+                            id="section5"
+                            className="accordion__input"
+                        />
+                        <label htmlFor="section5" className="accordion__label">
+                            É possível fazer a coleta de materiais diretamente no meu endereço?                        </label>
+                        <div className="accordion__content">
+                            <p>
+                                Alguns pontos de coleta oferecem serviços de coleta no local, especialmente para materiais grandes ou em grande quantidade. Consulte o site do ponto de coleta ou entre em contato diretamente para saber se essa opção está disponível.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input
+                            type="checkbox"
+                            name="example_accordion"
+                            id="section6"
+                            className="accordion__input"
+                        />
+                        <label htmlFor="section6" className="accordion__label">
+                            Os pontos de coleta seletiva são gratuitos?                                              </label>
+                        <div className="accordion__content">
+                            <p>
+                                Sim, os pontos de coleta seletiva são gratuitos. Você pode levar os seus materiais recicláveis sem custos. No entanto, é importante verificar com o ponto específico, pois alguns podem cobrar por serviços adicionais, como o transporte de grandes volumes.                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input
+                            type="checkbox"
+                            name="example_accordion"
+                            id="section7"
+                            className="accordion__input"
+                        />
+
+                        <label htmlFor="section7" className="accordion__label">
+                            É possível fazer a coleta de materiais diretamente no meu endereço?                        </label>
+                        <div className="accordion__content">
+                            <p>
+                                Alguns pontos de coleta oferecem serviços de coleta no local, especialmente para materiais grandes ou em grande quantidade. Consulte as informações do ponto de coleta ou entre em contato diretamente para saber se essa opção está disponível.
+                            </p>
+                        </div>
+
+                        <div>
+                            <input
+                                type="checkbox"
+                                name="example_accordion"
+                                id="section8"
+                                className="accordion__input"
+                            />
+
+
+                            <label htmlFor="section8" className="accordion__label">
+                                Os pontos de coleta têm um horário de funcionamento?                        </label>
+                            <div className="accordion__content">
+                                <p>
+                                    Sim! Cada ponto de coleta tem seu próprio horário de funcionamento, que pode variar. Ao consultar um ponto específico, você encontrará as informações de horário para garantir que você possa levar seus materiais durante o período de coleta.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </>
 
