@@ -32,7 +32,11 @@ const bd = mysql.createPool({
 export default bd;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://ecomap.lat', // Permita apenas seu domínio frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+}));
 
 app.use("/api", userRoutes);
 
@@ -309,11 +313,11 @@ app.put("/recusar-empresa/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-      await bd.execute("UPDATE Usuario SET status_usuario = NULL WHERE id_usuario = ?", [id]);
-      res.json({ message: "Empresa recusada com sucesso!" });
+    await bd.execute("UPDATE Usuario SET status_usuario = NULL WHERE id_usuario = ?", [id]);
+    res.json({ message: "Empresa recusada com sucesso!" });
   } catch (error) {
-      console.error("Erro ao recusar empresa:", error);
-      res.status(500).json({ error: "Erro ao recusar empresa" });
+    console.error("Erro ao recusar empresa:", error);
+    res.status(500).json({ error: "Erro ao recusar empresa" });
   }
 });
 
@@ -322,11 +326,11 @@ app.delete("/excluir-empresa/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-      await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
-      res.json({ message: "Empresa excluída com sucesso!" });
+    await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
+    res.json({ message: "Empresa excluída com sucesso!" });
   } catch (error) {
-      console.error("Erro ao excluir empresa:", error);
-      res.status(500).json({ error: "Erro ao excluir empresa" });
+    console.error("Erro ao excluir empresa:", error);
+    res.status(500).json({ error: "Erro ao excluir empresa" });
   }
 });
 
@@ -376,11 +380,11 @@ app.put("/recusar-ong/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-      await bd.execute("UPDATE Usuario SET status_usuario = NULL WHERE id_usuario = ?", [id]);
-      res.json({ message: "ONG recusada com sucesso!" });
+    await bd.execute("UPDATE Usuario SET status_usuario = NULL WHERE id_usuario = ?", [id]);
+    res.json({ message: "ONG recusada com sucesso!" });
   } catch (error) {
-      console.error("Erro ao recusar ong:", error);
-      res.status(500).json({ error: "Erro ao recusar ong" });
+    console.error("Erro ao recusar ong:", error);
+    res.status(500).json({ error: "Erro ao recusar ong" });
   }
 });
 
@@ -389,11 +393,11 @@ app.delete("/excluir-ong/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-      await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
-      res.json({ message: "Ong excluída com sucesso!" });
+    await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
+    res.json({ message: "Ong excluída com sucesso!" });
   } catch (error) {
-      console.error("Erro ao excluir ong:", error);
-      res.status(500).json({ error: "Erro ao excluir ong" });
+    console.error("Erro ao excluir ong:", error);
+    res.status(500).json({ error: "Erro ao excluir ong" });
   }
 });
 
@@ -456,41 +460,41 @@ app.get("/perfil", authenticateToken, async (req, res) => {
   const userId = req.user.id;
 
   try {
-      const [userRows] = await bd.execute("SELECT * FROM Usuario WHERE id_usuario = ?", [userId]);
+    const [userRows] = await bd.execute("SELECT * FROM Usuario WHERE id_usuario = ?", [userId]);
 
-      // Verificar se o usuário existe
-      if (userRows.length === 0) {
-          return res.status(404).json({ error: "Usuário não encontrado" });
-      }
+    // Verificar se o usuário existe
+    if (userRows.length === 0) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
 
-      const user = userRows[0];
+    const user = userRows[0];
 
-      // Obter materiais do usuário
-      const [materialRows] = await bd.execute(
-          `SELECT tm.nome_tipoMaterial 
+    // Obter materiais do usuário
+    const [materialRows] = await bd.execute(
+      `SELECT tm.nome_tipoMaterial 
            FROM Usuario_tipoMaterial AS utm
            JOIN Tipo_material AS tm ON utm.fk_id_tipoMaterial = tm.id_tipoMaterial
-           WHERE utm.fk_id_usuario = ?`, 
-           [userId]
-      );
+           WHERE utm.fk_id_usuario = ?`,
+      [userId]
+    );
 
-      // Adicionar materiais ao objeto de usuário
-      user.materiais = materialRows.map(row => row.nome_tipoMaterial);
+    // Adicionar materiais ao objeto de usuário
+    user.materiais = materialRows.map(row => row.nome_tipoMaterial);
 
-      res.json(user);
+    res.json(user);
   } catch (error) {
-      console.error("Erro ao buscar perfil:", error);
-      res.status(500).json({ error: "Erro ao buscar perfil" });
+    console.error("Erro ao buscar perfil:", error);
+    res.status(500).json({ error: "Erro ao buscar perfil" });
   }
 });
 
 app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
   const userId = req.user.id;
-    const { email, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
+  const { email, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
 
-    try {
-        await bd.execute(
-            `UPDATE Usuario SET 
+  try {
+    await bd.execute(
+      `UPDATE Usuario SET 
                 email = ?, 
                 nome_org = ?, 
                 CNPJ = ?, 
@@ -503,45 +507,45 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
                 estado = ?, 
                 status_usuario = FALSE 
             WHERE id_usuario = ?`,
-            [
-                email,
-                nome_org,
-                CNPJ,
-                telefone,
-                descricao,
-                tipo_servico,
-                endereco,
-                cep,
-                cidade,
-                estado,
-                userId,
-            ]
-        );
+      [
+        email,
+        nome_org,
+        CNPJ,
+        telefone,
+        descricao,
+        tipo_servico,
+        endereco,
+        cep,
+        cidade,
+        estado,
+        userId,
+      ]
+    );
 
-        // Verifique se 'materiais' está definido e é um array
-        if (!Array.isArray(materiais)) {
-            return res.status(400).json({ error: "Materiais deve ser um array." });
-        }
-
-        // Remover materiais antigos e inserir novos materiais
-        await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
-
-        if (materiais.length > 0) {
-            const materialQueries = materiais.map((materialNome) =>
-              bd.execute(
-                    `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
-                     SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
-                    [userId, materialNome]
-                )
-            );
-            await Promise.all(materialQueries);
-        }
-
-        res.json({ message: "Perfil atualizado com sucesso!" });
-    } catch (error) {
-        console.error("Erro ao atualizar perfil:", error);
-        res.status(500).json({ error: "Erro ao atualizar perfil" });
+    // Verifique se 'materiais' está definido e é um array
+    if (!Array.isArray(materiais)) {
+      return res.status(400).json({ error: "Materiais deve ser um array." });
     }
+
+    // Remover materiais antigos e inserir novos materiais
+    await bd.execute(`DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?`, [userId]);
+
+    if (materiais.length > 0) {
+      const materialQueries = materiais.map((materialNome) =>
+        bd.execute(
+          `INSERT INTO Usuario_tipoMaterial (fk_id_usuario, fk_id_tipoMaterial) 
+                     SELECT ?, id_tipoMaterial FROM Tipo_material WHERE nome_tipoMaterial = ?`,
+          [userId, materialNome]
+        )
+      );
+      await Promise.all(materialQueries);
+    }
+
+    res.json({ message: "Perfil atualizado com sucesso!" });
+  } catch (error) {
+    console.error("Erro ao atualizar perfil:", error);
+    res.status(500).json({ error: "Erro ao atualizar perfil" });
+  }
 });
 
 // app.delete("/excluir-conta", authenticateToken, async (req, res) => {
@@ -560,16 +564,16 @@ app.delete("/excluir-conta", authenticateToken, async (req, res) => {
   const userId = req.user.id;
 
   try {
-      // Excluir os registros associados na tabela `usuario_tipomaterial`
-      await bd.execute("DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?", [userId]);
+    // Excluir os registros associados na tabela `usuario_tipomaterial`
+    await bd.execute("DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?", [userId]);
 
-      // Excluir o registro do usuário na tabela `usuario`
-      await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [userId]);
+    // Excluir o registro do usuário na tabela `usuario`
+    await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [userId]);
 
-      res.json({ message: "Conta excluída com sucesso!" });
+    res.json({ message: "Conta excluída com sucesso!" });
   } catch (error) {
-      console.error("Erro ao excluir conta:", error);
-      res.status(500).json({ error: "Erro ao excluir conta" });
+    console.error("Erro ao excluir conta:", error);
+    res.status(500).json({ error: "Erro ao excluir conta" });
   }
 });
 
@@ -598,30 +602,30 @@ app.post("/alterar-senha", authenticateToken, async (req, res) => {
   const { senhaAtual, novaSenha } = req.body;
 
   try {
-      // Busca a senha atual do usuário no banco de dados
-      const [rows] = await bd.execute("SELECT senha FROM Usuario WHERE id_usuario = ?", [userId]);
-      if (rows.length === 0) {
-          return res.status(404).json({ error: "Usuário não encontrado" });
-      }
+    // Busca a senha atual do usuário no banco de dados
+    const [rows] = await bd.execute("SELECT senha FROM Usuario WHERE id_usuario = ?", [userId]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
 
-      const senhaHash = rows[0].senha;
+    const senhaHash = rows[0].senha;
 
-      // Verifica se a senha atual fornecida pelo usuário está correta
-      const isPasswordMatch = await bcrypt.compare(senhaAtual, senhaHash);
-      if (!isPasswordMatch) {
-          return res.status(400).json({ error: "Senha atual incorreta" });
-      }
+    // Verifica se a senha atual fornecida pelo usuário está correta
+    const isPasswordMatch = await bcrypt.compare(senhaAtual, senhaHash);
+    if (!isPasswordMatch) {
+      return res.status(400).json({ error: "Senha atual incorreta" });
+    }
 
-      // Gera o hash da nova senha
-      const novaSenhaHash = await bcrypt.hash(novaSenha, 10);
+    // Gera o hash da nova senha
+    const novaSenhaHash = await bcrypt.hash(novaSenha, 10);
 
-      // Atualiza a senha no banco de dados
-      await bd.execute("UPDATE Usuario SET senha = ? WHERE id_usuario = ?", [novaSenhaHash, userId]);
+    // Atualiza a senha no banco de dados
+    await bd.execute("UPDATE Usuario SET senha = ? WHERE id_usuario = ?", [novaSenhaHash, userId]);
 
-      res.json({ message: "Senha alterada com sucesso" });
+    res.json({ message: "Senha alterada com sucesso" });
   } catch (error) {
-      console.error("Erro ao alterar senha:", error);
-      res.status(500).json({ error: "Erro ao alterar senha" });
+    console.error("Erro ao alterar senha:", error);
+    res.status(500).json({ error: "Erro ao alterar senha" });
   }
 });
 
