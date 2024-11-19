@@ -130,13 +130,15 @@ const Perfil = () => {
 
     // Nova função para obter a mensagem baseada no status do usuário
     const getStatusMessage = (status) => {
-        if (status === true) {
+        if (status === 1) {
             return "Sua Organização foi aprovada e já está disponível para consulta no site!";
         }
-        if (status === false) {
+        if (status === 0) {
             return "Sua Organização está sendo avaliada pela plataforma.";
         }
-        return "Algumas informações sobre a sua Organização não estão corretas. Verifique e atualize suas informações para poder ter sua Organização disponível para consulta.";
+        if(status != 1 || status != 0){
+            return "Algumas informações sobre a sua Organização não estão corretas. Verifique e atualize suas informações para poder ter sua Organização disponível para consulta.";
+        }
     };
 
     if (!perfil) return <p>Carregando...</p>;
@@ -253,7 +255,7 @@ const Perfil = () => {
 
                     {!changePasswordMode ? (
                         <>
-                            <button onClick={() => setEditMode(true)}>Editar Perfil</button>
+                            {/* <button onClick={() => setEditMode(true)}>Editar Perfil</button> */}
                             <button onClick={() => setChangePasswordMode(true)}>Alterar Senha</button>
                         </>
                     ) : (
