@@ -486,15 +486,12 @@ app.get("/perfil", authenticateToken, async (req, res) => {
 
 app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
   const userId = req.user.id;
-    const { email, senha, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
+    const { email, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
 
     try {
-        const hashedPassword = senha ? await bcrypt.hash(senha, 10) : null;
-
         await bd.execute(
             `UPDATE Usuario SET 
                 email = ?, 
-                ${hashedPassword ? "senha = ?," : ""}
                 nome_org = ?, 
                 CNPJ = ?, 
                 telefone = ?, 
@@ -508,7 +505,6 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
             WHERE id_usuario = ?`,
             [
                 email,
-                ...(hashedPassword ? [hashedPassword] : []),
                 nome_org,
                 CNPJ,
                 telefone,
@@ -548,17 +544,35 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
     }
 });
 
+// app.delete("/excluir-conta", authenticateToken, async (req, res) => {
+//   const userId = req.user.id;
+
+//     try {
+//         await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [userId]);
+//         res.json({ message: "Conta excluída com sucesso!" });
+//     } catch (error) {
+//         console.error("Erro ao excluir conta:", error);
+//         res.status(500).json({ error: "Erro ao excluir conta" });
+//     }
+// });
+
 app.delete("/excluir-conta", authenticateToken, async (req, res) => {
   const userId = req.user.id;
 
-    try {
-        await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [userId]);
-        res.json({ message: "Conta excluída com sucesso!" });
-    } catch (error) {
-        console.error("Erro ao excluir conta:", error);
-        res.status(500).json({ error: "Erro ao excluir conta" });
-    }
+  try {
+      // Excluir os registros associados na tabela `usuario_tipomaterial`
+      await bd.execute("DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?", [userId]);
+
+      // Excluir o registro do usuário na tabela `usuario`
+      await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [userId]);
+
+      res.json({ message: "Conta excluída com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao excluir conta:", error);
+      res.status(500).json({ error: "Erro ao excluir conta" });
+  }
 });
+
 
 // Endpoint para obter senha real
 // app.get("/senha-decifrada", authenticateToken, async (req, res) => {
