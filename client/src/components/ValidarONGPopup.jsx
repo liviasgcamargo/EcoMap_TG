@@ -59,6 +59,30 @@ const ValidarONGPopup = ({ onClose }) => {
         }
     };
 
+    const handleRecusarOng = async (id_usuario) => {
+        try {
+            await axios.put(`${process.env.REACT_APP_API_URL}/recusar-ong/${id_usuario}`);
+            alert("ONG recusada com sucesso!");
+            fetchONGsPendentes();
+        } catch (error) {
+            console.error("Erro ao recusar ong:", error);
+            alert("Erro ao recusar ong. Tente novamente.");
+        }
+    };
+
+    const handleExcluirOng = async (id_usuario) => {
+        if (window.confirm("Tem certeza de que deseja excluir esta ong?")) {
+            try {
+                await axios.delete(`${process.env.REACT_APP_API_URL}/excluir-ong/${id_usuario}`);
+                alert("ONG excluída com sucesso!");
+                fetchONGsPendentes();
+            } catch (error) {
+                console.error("Erro ao excluir ong:", error);
+                alert("Erro ao excluir ong. Tente novamente.");
+            }
+        }
+    };
+
     return (
         <div className="popup-container">
             <div className="popup-content">
@@ -81,7 +105,11 @@ const ValidarONGPopup = ({ onClose }) => {
                             <p><strong>CEP:</strong> {ong.cep}</p>
                             <p><strong>Cidade:</strong> {ong.cidade}</p>
                             <p><strong>Estado:</strong> {ong.estado}</p>
-                            <button onClick={() => handleValidarONG(ong)}>VALIDAR</button>
+                            <div className="action-buttons">
+                                <button onClick={() => handleValidarONG(ong)}>VALIDAR</button>
+                                <button onClick={() => handleRecusarOng(ong.id_usuario)}>RECUSAR</button>
+                                <button onClick={() => handleExcluirOng(ong.id_usuario)}>EXCLUIR</button>
+                            </div>
                         </div>
                     ))
                 )}

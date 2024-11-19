@@ -128,6 +128,17 @@ const Perfil = () => {
         }
     };
 
+    // Nova função para obter a mensagem baseada no status do usuário
+    const getStatusMessage = (status) => {
+        if (status === true) {
+            return "Sua Organização foi aprovada e já está disponível para consulta no site!";
+        }
+        if (status === false) {
+            return "Sua Organização está sendo avaliada pela plataforma.";
+        }
+        return "Algumas informações sobre a sua Organização não estão corretas. Verifique e atualize suas informações para poder ter sua Organização disponível para consulta.";
+    };
+
     if (!perfil) return <p>Carregando...</p>;
 
     return (
@@ -138,6 +149,12 @@ const Perfil = () => {
             <div className="perfil-container">
                 <div className="perfil-info">
                     <img className="icone-perfil" src={IconePerfil} alt="" />
+
+                    {/* Adicionado o status do usuário */}
+                    <div className="status-container">
+                        <label>Status da Organização:</label>
+                        <p>{getStatusMessage(perfil.status_usuario)}</p>
+                    </div>
 
                     <div className="info-cadastro-principais">
                         <label>Email:</label>
