@@ -10,7 +10,7 @@ const Guia = () => {
     <>
       <Navbar />
 
-      <div className="infographic-container">
+      <div className="container-guia">
 
         <div className="section">
           <img src={Divider} alt="" />
