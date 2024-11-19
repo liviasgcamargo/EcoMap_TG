@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { googleMapsApiKey } from "./ChaveAPIGoogleMaps";
+import IconePonto from "../assets/images/ícone-pontos.png";
+import IconeUsuario from "../assets/images/ícone-usuario.png";
 
 const GoogleMap = ({ points, center, zoom }) => {
   const mapContainerRef = useRef(null);
@@ -25,11 +27,25 @@ const GoogleMap = ({ points, center, zoom }) => {
         zoom: zoom,
       });
 
+      new window.google.maps.Marker({
+        position: center,
+        map: map,
+        title: "Sua Localização",
+        icon: {
+          url: IconeUsuario, // Ícone personalizado
+          scaledSize: new window.google.maps.Size(45, 45), // Ajusta o tamanho do ícone, se necessário
+        },
+      });
+
       points.forEach((point) => {
         new window.google.maps.Marker({
           position: { lat: parseFloat(point.latitude), lng: parseFloat(point.longitude) },
           map: map,
           title: point.endereco,
+          icon: {
+            url: IconePonto, // Ícone diferente para os pontos de coleta
+            scaledSize: new window.google.maps.Size(35, 50),
+          },
         });
       });
     };

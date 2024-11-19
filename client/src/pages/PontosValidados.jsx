@@ -1,6 +1,8 @@
 // PontosValidados.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import '../assets/styles/PontosValidados.css';
+import BotaoVoltar from "../components/BotaoVoltar";
 
 const PontosValidados = () => {
     const [pontos, setPontos] = useState([]);
@@ -76,13 +78,16 @@ const PontosValidados = () => {
     };
 
     return (
-        <div className="validated-points-container">
+        <>
+        <BotaoVoltar/>
+
+        <div className="container-validados">
             <h2>Pontos Validados</h2>
             {pontos.length === 0 ? (
                 <p>Nenhum ponto validado encontrado.</p>
             ) : (
                 pontos.map((ponto) => (
-                    <div key={ponto.id_pontoColeta} className="validated-point">
+                    <div key={ponto.id_pontoColeta} className="ponto-validado">
                         {editPonto && editPonto.id_pontoColeta === ponto.id_pontoColeta ? (
                             <div>
                                 <label>Endereço:</label>
@@ -91,21 +96,21 @@ const PontosValidados = () => {
                                     name="endereco"
                                     value={editPonto.endereco}
                                     onChange={handleChange}
-                                />
+                                    />
                                 <label>CEP:</label>
                                 <input
                                     type="text"
                                     name="cep"
                                     value={editPonto.cep}
                                     onChange={handleChange}
-                                />
+                                    />
                                 <label>Cidade:</label>
                                 <input
                                     type="text"
                                     name="cidade"
                                     value={editPonto.cidade}
                                     onChange={handleChange}
-                                />
+                                    />
                                 <label>Estado:</label>
                                 <select name="estado" value={editPonto.estado} onChange={handleChange}>
                                     {estadosBrasil.map((estado) => (
@@ -123,7 +128,7 @@ const PontosValidados = () => {
                                                 value={material}
                                                 checked={editPonto.materiais.includes(material)}
                                                 onChange={handleCheckboxChange}
-                                            />
+                                                />
                                             {material}
                                         </label>
                                     ))}
@@ -152,6 +157,7 @@ const PontosValidados = () => {
                 ))
             )}
         </div>
+                        </>
     );
 };
 

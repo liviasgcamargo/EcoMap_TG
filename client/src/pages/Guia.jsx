@@ -17,17 +17,24 @@ const Guia = () => {
           <h2 className="section-title">O que é Coleta Seletiva?</h2>
           <p className="section-text">
             Coleta seletiva é o recolhimento de materiais recicláveis (papel, plástico, metal) que não devem ser misturados ao lixo comum
-             das residências ou local de trabalho. Trata-se de um cuidado dado ao resíduo que começa com a separação dos materiais em 
-             orgânicos e inorgânicos, e, em seguida, com a disposição correta para o reaproveitamento e reciclagem.
-            De forma a sensibilizar as pessoas para questão do correto tratamento que os resíduos sólidos produzidos no dia-a-dia devem 
-            receber, seja nos ambientes públicos ou privados, a coleta seletiva também funciona como um processo de educação ambiental, 
-            na medida em que conscientiza as pessoas sobre os problemas do desperdício de recursos naturais e da poluição causada pelo 
+            das residências ou local de trabalho. Trata-se de um cuidado dado ao resíduo que começa com a separação dos materiais em
+            orgânicos e inorgânicos, e, em seguida, com a disposição correta para o reaproveitamento e reciclagem.
+            De forma a sensibilizar as pessoas para questão do correto tratamento que os resíduos sólidos produzidos no dia-a-dia devem
+            receber, seja nos ambientes públicos ou privados, a coleta seletiva também funciona como um processo de educação ambiental,
+            na medida em que conscientiza as pessoas sobre os problemas do desperdício de recursos naturais e da poluição causada pelo
             lixo </p>
         </div>
 
         <div className="section">
-        <img src={Divider} alt="" />
+          <img src={Divider} alt="" />
           <h2 className="section-title">Cores dos Recipientes de Reciclagem</h2>
+          <p className="section-text">
+            De acordo com a Resolução CONAMA nº 275/2001, há um código de cores para a separação adequada dos resíduos, facilitando
+            sua identificação durante o transporte e o manuseio. Embora a norma apresente dez cores, aqui destacamos seis das mais comuns:
+            papel, plástico, vidro, metal, orgânico e resíduos não recicláveis. Essa seleção simplifica a compreensão e mantém o foco nos
+            tipos de materiais mais frequentemente descartados. Vale ressaltar que o código de cores torna o processo de reciclagem mais
+            ágil, já que os materiais são separados por tipos, facilitando assim a triagem.
+          </p>
           <div className="recycling-bins">
             <div className="bin bin-paper">
               <span className="bin-label">Papel</span>
@@ -112,7 +119,7 @@ const Guia = () => {
         </div>
 
         <div className="section">
-        <img src={Divider} alt="" />
+          <img src={Divider} alt="" />
           <h2 className="section-title">Benefícios da Coleta Seletiva</h2>
           <ul className="lista-beneficios">
             <li> → Reduz a poluição ambiental e o desperdício.</li>
@@ -129,8 +136,38 @@ const Guia = () => {
           </ul>
         </div>
 
-      <a className='creditos-divisoria' href="https://www.svgbackgrounds.com/elements/svg-shape-dividers/">SVG Shape Dividers by SVGBackgrounds.com</a>
+        <div className='container-creditos'>
+          <h1>Fontes:</h1>
+          <a className='creditos-faq' href="https://www.svgbackgrounds.com/elements/svg-shape-dividers/" target="_blank" rel="noopener noreferrer">
+            SVG Shape Dividers by SVGBackgrounds.com
+          </a> <br />
+
+          <a className='creditos-faq' href="https://www.df.gov.br/coleta-seletiva-2/" target="_blank" rel="noopener noreferrer">
+            O que é coleta seletiva - Acessado em: 14/11/2024
+          </a> <br />
+
+          <a className='creditos-faq' href="https://www.verdeghaia.com.br/como-separar-os-reciclaveis-para-a-coleta-seletiva/" target="_blank" rel="noopener noreferrer">
+            Como separar os recicláveis da coleta seletiva? - Acessado em: 14/11/2024
+          </a> <br />
+
+          <a className='creditos-faq' href="https://www.cgambiental.com.br/conheca-as-cores-oficiais-da-coleta-seletiva-conama-275/" target="_blank" rel="noopener noreferrer">
+            O que as cores da coleta seletiva representam? - Acessado em: 14/11/2024
+          </a> <br />
+
+          <a className='creditos-faq' href="https://portalresiduossolidos.com/coleta-seletiva/" target="_blank" rel="noopener noreferrer">
+            O que é a coleta seletiva de resíduos sólidos - Acessado em: 14/11/2024
+          </a> <br />
+
+          <a className='creditos-faq' href="https://sudema.pb.gov.br/noticias/voce-sabe-como-fazer-coleta-seletiva-em-casa" target="_blank" rel="noopener noreferrer">  
+            Você sabe como fazer coleta seletiva em casa? - Acessado em: 14/11/2024
+          </a> <br />
+
+          <a className='creditos-faq' href="https://meioambiente.sorocaba.sp.gov.br/limpeza-urbana/" target="_blank" rel="noopener noreferrer">
+            Limpeza Urbana - Acessado em: 19/11/2024
+          </a>
+        </div>
       </div>
+
 
       <Footer />
     </>

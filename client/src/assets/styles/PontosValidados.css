@@ -1,0 +1,42 @@
+.container-validados{
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.ponto-validado{
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #e9f1e2;
+}
+
+.ponto-validado p{
+    margin: 5px 0;
+    color: #405a41;
+}
+
+.ponto-validado button {
+    margin-right: 10px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #55703F;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.ponto-validado button:hover {
+    background-color: #65844c;
+}
+
+.ponto-validado button:last-of-type {
+    background-color: #e24959;
+}
+
+.ponto-validado button:last-of-type:hover {
+    background-color: #e75e65;
+}
