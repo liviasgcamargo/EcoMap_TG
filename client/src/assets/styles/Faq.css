@@ -75,3 +75,11 @@ h2 {
     margin: 20px 305px 25px 315px;
     text-align: justify;
   }
+
+  .paragrafo-faq{
+    color: #405A41;
+  }
+
+  .accordion p{
+    color: #111511;
+  }

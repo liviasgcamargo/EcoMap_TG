@@ -1,0 +1,10 @@
+.estados-pop-up{
+    width: calc(100% - 12px);
+    height: 50px;
+    padding: 0.65em;
+    border-radius: 5px;
+    margin-top: 1.3em;
+    margin-bottom: 1.3em;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}

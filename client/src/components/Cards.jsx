@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Icon1 from '../assets/images/icon_box1.png'
 import Icon2 from '../assets/images/icon_box2.png'
 import Icon3 from '../assets/images/icon_box3.png'
@@ -9,7 +10,9 @@ const Cards = () => {
     <div className="container-cards">
       <div className="card">
         <h4 className="tituloCard">O que reciclar?</h4>
+        <Link to="/guia">
         <img src={Icon1} alt="Avatar" />
+      </Link>
         <div className="container">
           <p className="textoCard">
             Clique para saber mais sobre os tipos de materiais que devem ser

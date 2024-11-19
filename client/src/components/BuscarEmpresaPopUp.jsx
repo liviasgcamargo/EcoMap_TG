@@ -37,7 +37,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
             });
 
             // Redireciona para a página de resultados com os dados obtidos
-            navigate("/resultados-empresas", { state: { resultados: response.data, center: {lat, lng}}});
+            navigate("/resultados-empresas", { state: { resultados: response.data, center: {lat, lng}, raio: radius}});
         } catch (error) {
             console.error("Erro ao buscar empresas próximas:", error);
         }

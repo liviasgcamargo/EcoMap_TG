@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 
 const ResultadoEmpresa = () => {
     const location = useLocation();
-    const { resultados, center} = location.state;
+    const { resultados, center, raio} = location.state;
 
     // Verificar se há resultados para evitar erros no mapa
     const points = resultados.map((point) => ({
@@ -16,6 +16,15 @@ const ResultadoEmpresa = () => {
         endereco: point.endereco,
         telefone: point.telefone,
     }));
+
+    const getZoomLevel = (raio) => {
+        if (raio <= 5) return 13; // Aproximado para 5 km
+        if (raio <= 10) return 12; // Aproximado para 10 km
+        if (raio <= 20) return 11; // Aproximado para 20 km
+        return 11; // Para áreas maiores
+    };
+
+    const zoom = getZoomLevel(raio);
 
     return (
         <div>
@@ -52,7 +61,7 @@ const ResultadoEmpresa = () => {
                 )}
             </div>
             <div class='mapa'>
-                <GoogleMap points={points} center={center} />
+                <GoogleMap points={points} center={center} zoom={zoom} />
             </div>
         </div>
         <Footer />
