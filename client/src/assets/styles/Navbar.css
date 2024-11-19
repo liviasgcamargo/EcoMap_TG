@@ -18,7 +18,7 @@
   .menu_item {
     color: #356037;
   }
-  
+
   .logoHeader {
     margin-left: 70px;
   }
@@ -42,4 +42,8 @@
   
   #btnContact:hover {
     background-color: #2a4f2d;
+  }
+
+  a.btn-sair{
+    color:white;
   }

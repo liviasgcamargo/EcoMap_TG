@@ -304,6 +304,33 @@ app.put("/validar-empresa/:id", async (req, res) => {
   }
 });
 
+// Atualiza o status do usuário para NULL (Recusar Empresa)
+app.put("/recusar-empresa/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      await bd.execute("UPDATE Usuario SET status_usuario = NULL WHERE id_usuario = ?", [id]);
+      res.json({ message: "Empresa recusada com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao recusar empresa:", error);
+      res.status(500).json({ error: "Erro ao recusar empresa" });
+  }
+});
+
+// Excluir Empresa
+app.delete("/excluir-empresa/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
+      res.json({ message: "Empresa excluída com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao excluir empresa:", error);
+      res.status(500).json({ error: "Erro ao excluir empresa" });
+  }
+});
+
+
 // Endpoint para buscar ONGs pendentes de validação
 app.get("/ongs-pendentes", async (req, res) => {
   try {
@@ -341,6 +368,32 @@ app.put("/validar-ong/:id", async (req, res) => {
   } catch (error) {
     console.error("Erro ao validar ONG:", error);
     res.status(500).json({ error: "Erro ao validar ONG" });
+  }
+});
+
+// Atualiza o status do usuário para NULL (Recusar Empresa)
+app.put("/recusar-ong/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      await bd.execute("UPDATE Usuario SET status_usuario = NULL WHERE id_usuario = ?", [id]);
+      res.json({ message: "ONG recusada com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao recusar ong:", error);
+      res.status(500).json({ error: "Erro ao recusar ong" });
+  }
+});
+
+// Excluir ONG
+app.delete("/excluir-ong/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
+      res.json({ message: "Ong excluída com sucesso!" });
+  } catch (error) {
+      console.error("Erro ao excluir ong:", error);
+      res.status(500).json({ error: "Erro ao excluir ong" });
   }
 });
 
