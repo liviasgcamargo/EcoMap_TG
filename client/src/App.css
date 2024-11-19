@@ -359,6 +359,8 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10px; /* Espaço entre cada label */
+    flex-wrap: wrap; /* Faz os itens "pularem" para a linha de baixo quando necessário */
+    text-align: center;
 }
 
 .radioEmpresa{
