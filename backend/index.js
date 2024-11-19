@@ -3,7 +3,7 @@ import express from "express";
 import mysql from "mysql2/promise";
 import cors from "cors";
 import axios from "axios";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import authenticateToken from "./middlewares/authenticateToken.js";
 import dotenv from "dotenv";

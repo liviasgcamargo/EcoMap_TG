@@ -1,6 +1,6 @@
 // backend/routes/userRoutes.js
 import express from "express";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import db from "../db.js";
 import authenticateToken from "../middlewares/authenticateToken.js";
 
