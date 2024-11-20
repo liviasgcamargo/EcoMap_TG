@@ -85,22 +85,22 @@ const Cadastro = () => {
                     </label>
 
                     <label>Email:</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+                    <input type="email" name="email" value={formData.email} placeholder="Exemplo: email@gmail.com" onChange={handleChange} required />
 
                     <label>Senha:</label>
-                    <input type="password" name="senha" value={formData.senha} onChange={handleChange} required />
+                    <input type="password" name="senha" value={formData.senha} placeholder="*****" onChange={handleChange} required />
 
                     <label>Confirme a Senha:</label>
-                    <input type="password" name="confirmarSenha" value={formData.confirmarSenha} onChange={handleChange} required />
+                    <input type="password" name="confirmarSenha" value={formData.confirmarSenha} placeholder="*****" onChange={handleChange} required />
 
                     <label>Nome da Organização:</label>
-                    <input type="text" name="nome_org" value={formData.nome_org} onChange={handleChange} required />
+                    <input type="text" name="nome_org" value={formData.nome_org} placeholder="Digite o nome da sua organização" onChange={handleChange} required />
 
                     <label>CNPJ:</label>
-                    <input type="text" name="CNPJ" value={formData.CNPJ} onChange={handleChange} required />
+                    <input type="text" name="CNPJ" value={formData.CNPJ} placeholder="Exemplo: 12.345.678/9123-45" onChange={handleChange} required />
 
                     <label>Telefone:</label>
-                    <input type="text" name="telefone" value={formData.telefone} onChange={handleChange} required />
+                    <input type="text" name="telefone" value={formData.telefone} placeholder="Exemplo: 1234-5678" onChange={handleChange} required />
 
                     <label>Descrição:</label>
                     {categoria === "Empresa" && (
@@ -124,13 +124,13 @@ const Cadastro = () => {
                     </select>
 
                     <label>Endereço:</label>
-                    <input type="text" name="endereco" value={formData.endereco} onChange={handleChange} required />
+                    <input type="text" name="endereco" value={formData.endereco}  placeholder="Exemplo: Rua das Margaridas 45 Jardim das Flores" onChange={handleChange} required />
 
                     <label>CEP:</label>
-                    <input type="text" name="cep" value={formData.cep} onChange={handleChange} required />
+                    <input type="text" name="cep" value={formData.cep} placeholder="Exemplo: 10000-000" onChange={handleChange} required />
 
                     <label>Cidade:</label>
-                    <input type="text" name="cidade" value={formData.cidade} onChange={handleChange} required />
+                    <input type="text" name="cidade" value={formData.cidade} placeholder="Exemplo: Sorocaba" onChange={handleChange} required />
 
                     <label htmlFor="estado">Estado</label>
                     <select
