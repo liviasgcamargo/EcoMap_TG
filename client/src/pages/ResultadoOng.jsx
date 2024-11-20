@@ -16,6 +16,7 @@ const ResultadoONG = () => {
         longitude: point.longitude,
         endereco: point.endereco,
         telefone: point.telefone,
+        descricao: point.descricao,
     }));
 
     const getZoomLevel = (raio) => {
@@ -41,6 +42,7 @@ const ResultadoONG = () => {
                             <div key={ong.id_usuario} className="card">
                                 <h2><strong></strong> {ong.nome_org}</h2>
                                 {/* <p><strong>Telefone:</strong> {ong.telefone}</p> */}
+                                <p><strong>Descrição:</strong> {ong.descricao}</p>
                                 <p><strong>Endereço:</strong> {ong.endereco}</p>
                                 {/* <p><strong>Contato:</strong> {ong.telefone}</p> */}
                                 <p><strong>Materiais Aceitos:</strong> {ong.materiais_aceitos || "Não especificado"}</p>

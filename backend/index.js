@@ -16,25 +16,25 @@ dotenv.config();
 const app = express();
 
 const db = mysql.createConnection({
-  // host: process.env.DB_HOST,
-  // user: process.env.DB_USER,
-  // password: process.env.DB_PASS,
-  // database: process.env.DB_NAME
-  host: "localhost",
-  user: "root",
-  password: "123456",
-  database: "ecomap",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
+  // host: "localhost",
+  // user: "root",
+  // password: "123456",
+  // database: "ecomap",
 });
 
 const bd = mysql.createPool({
-  // host: process.env.DB_HOST,
-  // user: process.env.DB_USER,
-  // password: process.env.DB_PASS,
-  // database: process.env.DB_NAME
-  host: "localhost",
-  user: "root",
-  password: "123456",
-  database: "ecomap",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
+  // host: "localhost",
+  // user: "root",
+  // password: "123456",
+  // database: "ecomap",
 });
 
 export default bd;
@@ -119,7 +119,7 @@ app.post("/buscar-empresas", async (req, res) => {
       JOIN Usuario_tipoMaterial AS utm ON emp.id_usuario = utm.fk_id_usuario
       JOIN Tipo_material AS tm ON utm.fk_id_tipoMaterial = tm.id_tipoMaterial
       WHERE utm.fk_id_tipoMaterial IN (${materiais.join(",")}) 
-        AND emp.tipo_transacao = ?  -- Filtra pelo tipo de transação (Compra, Vende ou Ambos)
+        AND emp.tipo_transacao IN (?, 'Compra e Vende')  -- Filtra pelo tipo de transação (Compra, Vende ou Ambos)
         AND emp.fk_id_categoria = 1  -- Supondo que a categoria 1 representa empresas de reciclagem
         AND emp.status_usuario = TRUE
       GROUP BY emp.id_usuario

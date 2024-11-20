@@ -112,7 +112,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
                         />
                         Vende
                     </label>
-                    <label>
+                    {/* <label>
                         <input
                             type="radio"
                             name="transactionType"
@@ -121,7 +121,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
                             onChange={() => setTransactionType("Compra e Vende")}
                         />
                         Compra e Vende
-                    </label>
+                    </label> */}
                 </div>
                 <button onClick={handleSearch}>BUSCAR</button>
             </div>

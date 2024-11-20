@@ -15,6 +15,8 @@ const ResultadoEmpresa = () => {
         longitude: point.longitude,
         endereco: point.endereco,
         telefone: point.telefone,
+        transacao: point.transacao,
+        descricao: point.descricao,
     }));
 
     const getZoomLevel = (raio) => {
@@ -38,9 +40,11 @@ const ResultadoEmpresa = () => {
                     resultados.map((empresa) => (
                         <div key={empresa.id_empresa} className="card">
                             <h2><strong></strong> {empresa.nome_org}</h2>
+                            <p><strong>Tipo de Transação:</strong> {empresa.tipo_transacao}</p>
+                            <p><strong>Descrição:</strong> {empresa.descricao}</p>
                             {/* <p>{empresa.nome}</p> */}
-                            <p>Endereço: {empresa.endereco}</p>
-                            <p>Distância: {empresa.distance.toFixed(2)} km</p>
+                            <p><strong>Endereço:</strong> {empresa.endereco}</p>
+                            <p><strong>Distância:</strong> {empresa.distance.toFixed(2)} km</p>
                             <p><strong>Materiais Aceitos:</strong> {empresa.materiais_aceitos || "Não especificado"}</p>
                             <a
                                 href={`https://www.google.com/maps/search/?api=1&query=${empresa.latitude},${empresa.longitude}`}
