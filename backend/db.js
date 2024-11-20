@@ -6,6 +6,10 @@ const db = mysql.createPool({
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME
+    // host: "localhost",
+    // user: "root",
+    // password: "123456",
+    // database: "ecomap",
 });
 
 export default db;

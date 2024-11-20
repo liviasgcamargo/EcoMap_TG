@@ -36,14 +36,14 @@ const Perfil = () => {
         const fetchPerfil = async () => {
             try {
                 const response = await api.get("/perfil");
-                
+
                 // Verifique se a API está retornando "materiais" como um array; 
                 // caso contrário, converta para array vazio.
                 const perfilData = {
                     ...response.data,
                     materiais: response.data.materiais || []
                 };
-                
+
                 setPerfil(perfilData);
                 setOriginalPerfil(perfilData);
             } catch (error) {
@@ -136,7 +136,7 @@ const Perfil = () => {
         if (status === 0) {
             return "Sua Organização está sendo avaliada pela plataforma.";
         }
-        if(status != 1 || status != 0){
+        if (status != 1 || status != 0) {
             return "Algumas informações sobre a sua Organização não estão corretas. Verifique e atualize suas informações para poder ter sua Organização disponível para consulta.";
         }
     };
@@ -147,7 +147,9 @@ const Perfil = () => {
         <div>
             <Navbar />
 
-            <h2>Perfil de {perfil.fk_id_categoria === 1 ? "Empresa" : "ONG"}</h2>
+            <div className="texto-acima">
+                <h2>Perfil de {perfil.fk_id_categoria === 1 ? "Empresa" : "ONG"}</h2>
+            </div>
             <div className="perfil-container">
                 <div className="perfil-info">
                     <img className="icone-perfil" src={IconePerfil} alt="" />
@@ -219,36 +221,36 @@ const Perfil = () => {
                         <label>Tipos de Material Aceito:</label>
                         {perfil.fk_id_categoria === 1 && (
                             <div className="info-materiais">
-                            {materiaisDisponiveis.map((material) => (
-                                <label key={material}>
-                                    <input
-                                        type="checkbox"
-                                        value={material}
-                                        checked={perfil.materiais && perfil.materiais.includes(material)}
-                                        onChange={handleMaterialChange}
-                                        disabled={!editMode}
-                                    />{" "}
-                                    {material}
-                                </label>
-                            ))}
-                        </div>
+                                {materiaisDisponiveis.map((material) => (
+                                    <label key={material}>
+                                        <input
+                                            type="checkbox"
+                                            value={material}
+                                            checked={perfil.materiais && perfil.materiais.includes(material)}
+                                            onChange={handleMaterialChange}
+                                            disabled={!editMode}
+                                        />{" "}
+                                        {material}
+                                    </label>
+                                ))}
+                            </div>
                         )}
-                        
+
                         {perfil.fk_id_categoria === 2 && (
                             <div className="info-materiais">
-                            {materiaisDisponiveisOng.map((material) => (
-                                <label key={material}>
-                                    <input
-                                        type="checkbox"
-                                        value={material}
-                                        checked={perfil.materiais && perfil.materiais.includes(material)}
-                                        onChange={handleMaterialChange}
-                                        disabled={!editMode}
-                                    />{" "}
-                                    {material}
-                                </label>
-                            ))}
-                        </div>
+                                {materiaisDisponiveisOng.map((material) => (
+                                    <label key={material}>
+                                        <input
+                                            type="checkbox"
+                                            value={material}
+                                            checked={perfil.materiais && perfil.materiais.includes(material)}
+                                            onChange={handleMaterialChange}
+                                            disabled={!editMode}
+                                        />{" "}
+                                        {material}
+                                    </label>
+                                ))}
+                            </div>
                         )}
 
                     </div>
@@ -293,7 +295,7 @@ const Perfil = () => {
                             <button onClick={handleCancel}>Cancelar</button>
                         </div>
                     ) : (
-                         <button onClick={() => { setEditMode(true); setPasswordVisible(true); }}>Editar Perfil</button>
+                        <button onClick={() => { setEditMode(true); setPasswordVisible(true); }}>Editar Perfil</button>
 
                     )}
 

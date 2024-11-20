@@ -9,6 +9,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
     const [transactionType, setTransactionType] = useState("Compra");
+    const [serviceType, setServiceType] = useState("Retira no Local");
     const navigate = useNavigate();
 
     const handleMaterialChange = (event) => {
@@ -34,6 +35,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
                 raio: radius,
                 materiais: materials,
                 tipoTransacao: transactionType,
+                tipoServico: serviceType,
             });
 
             // Redireciona para a página de resultados com os dados obtidos
@@ -112,7 +114,7 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
                         />
                         Vende
                     </label>
-                    <label>
+                    {/* <label>
                         <input
                             type="radio"
                             name="transactionType"
@@ -121,6 +123,29 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
                             onChange={() => setTransactionType("Compra e Vende")}
                         />
                         Compra e Vende
+                    </label> */}
+                </div>
+                <label>Tipo de Serviço:</label>
+                <div className="radioEmpresa">
+                    <label>
+                        <input
+                            type="radio"
+                            name="serviceType"
+                            value="Retira no Local"
+                            checked={serviceType === "Retira no Local"}
+                            onChange={() => setServiceType("Retira no Local")}
+                        />
+                        Retira no Local
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="serviceType"
+                            value="Não Retira"
+                            checked={serviceType === "Não Retira"}
+                            onChange={() => setServiceType("Não Retira")}
+                        />
+                        Não Retira
                     </label>
                 </div>
                 <button onClick={handleSearch}>BUSCAR</button>

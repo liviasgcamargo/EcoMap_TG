@@ -55,7 +55,7 @@ const BuscarPontoPopUp = ({ onClose }) => {
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Digite o endereço"
+                    placeholder="Exemplo: Rua Das Margaridas 12 Jardim das Flores Sorocaba"
                 />
                 <label>Raio de Distância (km):</label>
                 <select value={radius} onChange={(e) => setRadius(Number(e.target.value))}>

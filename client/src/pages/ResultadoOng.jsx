@@ -16,6 +16,8 @@ const ResultadoONG = () => {
         longitude: point.longitude,
         endereco: point.endereco,
         telefone: point.telefone,
+        descricao: point.descricao,
+        tipo_servico: point.tipo_servico,
     }));
 
     const getZoomLevel = (raio) => {
@@ -30,41 +32,44 @@ const ResultadoONG = () => {
     return (
         <div>
             <Navbar />
-            {/* <BotaoVoltar /> */}
-            <div className="resultados-mapa-container">
-                <div className="resultados-container">
-                    <h2>ONGs Próximas de Você</h2>
-                    {resultados.length === 0 ? (
-                        <p>Nenhuma ONG encontrada.</p>
-                    ) : (
-                        resultados.map((ong) => (
-                            <div key={ong.id_usuario} className="card">
-                                <h2><strong></strong> {ong.nome_org}</h2>
-                                {/* <p><strong>Telefone:</strong> {ong.telefone}</p> */}
-                                <p><strong>Endereço:</strong> {ong.endereco}</p>
-                                {/* <p><strong>Contato:</strong> {ong.telefone}</p> */}
-                                <p><strong>Materiais Aceitos:</strong> {ong.materiais_aceitos || "Não especificado"}</p>
-                                <p><strong>Distância:</strong> {ong.distance.toFixed(2)} km</p>
-                                <a
-                                    href={`https://www.google.com/maps/search/?api=1&query=${ong.latitude},${ong.longitude}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    VER NO MAPA
-                                </a>
-                                <a
-                                    href={`https://wa.me/55${ong.telefone}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    ENTRAR EM CONTATO
-                                </a>
-                            </div>
-                        ))
-                    )}
-                </div>
-                <div className="mapa">
-                    <GoogleMap points={points} center={center} zoom={zoom} />
+            <div className="tela-resultados-container">
+                <h2>ONGs Próximas de Você</h2>
+                <div className="resultados-mapa-container">
+                    <div className="resultados-container">
+                        {resultados.length === 0 ? (
+                            <p>Nenhuma ONG encontrada.</p>
+                        ) : (
+                            resultados.map((ong) => (
+                                <div key={ong.id_usuario} className="card">
+                                    <h2><strong></strong> {ong.nome_org}</h2>
+                                    {/* <p><strong>Telefone:</strong> {ong.telefone}</p> */}
+                                    <p><strong>Descrição:</strong> {ong.descricao}</p>
+                                    <p><strong>Endereço:</strong> {ong.endereco}</p>
+                                    <p><strong>Tipo de Serviço:</strong> {ong.tipo_servico}</p>
+                                    {/* <p><strong>Contato:</strong> {ong.telefone}</p> */}
+                                    <p><strong>Materiais Aceitos:</strong> {ong.materiais_aceitos || "Não especificado"}</p>
+                                    <p><strong>Distância:</strong> {ong.distance.toFixed(2)} km</p>
+                                    <a
+                                        href={`https://www.google.com/maps/search/?api=1&query=${ong.latitude},${ong.longitude}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        VER NO MAPA
+                                    </a>
+                                    <a
+                                        href={`https://wa.me/55${ong.telefone}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        ENTRAR EM CONTATO
+                                    </a>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                    <div className="mapa">
+                        <GoogleMap points={points} center={center} zoom={zoom} />
+                    </div>
                 </div>
             </div>
             <Footer />

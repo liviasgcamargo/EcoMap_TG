@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 import authenticateToken from "./middlewares/authenticateToken.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
-import pkg from "../client/src/components/ChaveAPIGoogleMaps.js"; // Importação padrão
+import pkg from "../client/src/components/ChaveAPIGoogleMaps.js";
 const { googleMapsApiKey } = pkg;
 
 dotenv.config();
@@ -20,6 +20,10 @@ const db = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME
+  // host: "localhost",
+  // user: "root",
+  // password: "123456",
+  // database: "ecomap",
 });
 
 const bd = mysql.createPool({
@@ -27,6 +31,10 @@ const bd = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME
+  // host: "localhost",
+  // user: "root",
+  // password: "123456",
+  // database: "ecomap",
 });
 
 export default bd;
@@ -71,7 +79,7 @@ app.post("/buscar-pontos-coleta", async (req, res) => {
 
 //Endpoint para buscar ONGs próximas
 app.post("/buscar-ongs", async (req, res) => {
-  const { latitude, longitude, raio, materiais } = req.body;
+  const { latitude, longitude, raio, materiais, tipoServico } = req.body;
 
   try {
     const connection = await db;
@@ -87,12 +95,13 @@ app.post("/buscar-ongs", async (req, res) => {
       WHERE utm.fk_id_tipoMaterial IN (${materiais.join(",")}) 
         AND ong.fk_id_categoria = 2
         AND ong.status_usuario = TRUE
+        AND ong.tipo_servico = ?
       GROUP BY ong.id_usuario
       HAVING distance < ?
       ORDER BY distance
     `;
 
-    const [results] = await connection.execute(query, [latitude, longitude, latitude, raio]);
+    const [results] = await connection.execute(query, [latitude, longitude, latitude, tipoServico, raio]);
     res.json(results);
   } catch (error) {
     console.error(error);
@@ -101,7 +110,7 @@ app.post("/buscar-ongs", async (req, res) => {
 });
 
 app.post("/buscar-empresas", async (req, res) => {
-  const { latitude, longitude, raio, materiais, tipoTransacao } = req.body;
+  const { latitude, longitude, raio, materiais, tipoTransacao, tipoServico } = req.body;
 
   try {
     const connection = await db;
@@ -115,15 +124,16 @@ app.post("/buscar-empresas", async (req, res) => {
       JOIN Usuario_tipoMaterial AS utm ON emp.id_usuario = utm.fk_id_usuario
       JOIN Tipo_material AS tm ON utm.fk_id_tipoMaterial = tm.id_tipoMaterial
       WHERE utm.fk_id_tipoMaterial IN (${materiais.join(",")}) 
-        AND emp.tipo_transacao = ?  -- Filtra pelo tipo de transação (Compra, Vende ou Ambos)
+        AND emp.tipo_transacao IN (?, 'Compra e Vende')  -- Filtra pelo tipo de transação (Compra, Vende ou Ambos)
         AND emp.fk_id_categoria = 1  -- Supondo que a categoria 1 representa empresas de reciclagem
         AND emp.status_usuario = TRUE
+        AND emp.tipo_servico = ?
       GROUP BY emp.id_usuario
       HAVING distance < ?
       ORDER BY distance
     `;
 
-    const [results] = await connection.execute(query, [latitude, longitude, latitude, tipoTransacao, raio]);
+    const [results] = await connection.execute(query, [latitude, longitude, latitude, tipoTransacao, tipoServico, raio]);
     res.json(results);
   } catch (error) {
     console.error(error);

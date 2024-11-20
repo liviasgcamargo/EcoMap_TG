@@ -22,7 +22,9 @@ const Cards = () => {
       </div>
       <div className="card">
         <h4 className="tituloCard">Como reciclar?</h4>
+        <Link to="/guia">
         <img src={Icon2} alt="Avatar" />
+        </Link>
         <div className="container" >
           <p className="textoCard">
             Você conhece os métodos ideais para descartar cada tipo de material?
@@ -31,7 +33,9 @@ const Cards = () => {
       </div>
       <div className="card">
         <h4 className="tituloCard">Os impactos da reciclagem</h4>
+        <Link to="/guia">
         <img src={Icon3} alt="Avatar" />
+        </Link>
         <div className="container">
           <p className="textoCard">
             Aprenda sobre os impactos da reciclagem no meio ambiente

@@ -8,6 +8,7 @@ const BuscarOngPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
+    const [serviceType, setServiceType] = useState("Retira no Local");
     const navigate = useNavigate();
 
     const handleMaterialChange = (event) => {
@@ -32,6 +33,7 @@ const BuscarOngPopUp = ({ onClose }) => {
                 longitude: lng,
                 raio: radius,
                 materiais: materials,
+                tipoServico: serviceType,
             });
 
             // Redireciona para a página de resultados com os dados obtidos
@@ -97,6 +99,29 @@ const BuscarOngPopUp = ({ onClose }) => {
                     </label>
                     <label>
                         <input type="checkbox" value="11" onChange={handleMaterialChange} /> Móveis
+                    </label>
+                </div>
+                <label>Tipo de Serviço:</label>
+                <div className="radioEmpresa">
+                    <label>
+                        <input
+                            type="radio"
+                            name="serviceType"
+                            value="Retira no Local"
+                            checked={serviceType === "Retira no Local"}
+                            onChange={() => setServiceType("Retira no Local")}
+                        />
+                        Retira no Local
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="serviceType"
+                            value="Não Retira"
+                            checked={serviceType === "Não Retira"}
+                            onChange={() => setServiceType("Não Retira")}
+                        />
+                        Não Retira
                     </label>
                 </div>
                 <button onClick={handleSearch}>BUSCAR</button>

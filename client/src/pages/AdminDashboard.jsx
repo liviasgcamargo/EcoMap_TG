@@ -9,6 +9,7 @@ import Sugeridos from '../assets/images/pontos-sugeridos.png'
 import AddPonto from '../assets/images/adicionar-ponto.png'
 import ValidarEmpresa from '../assets/images/validar-empresa.png'
 import ValidarONG from '../assets/images/validar-ong.png'
+import Footer from "../components/Footer"
 import { Link } from "react-router-dom"
 import '../assets/styles/AdminDashboard.css'
 
@@ -40,17 +41,19 @@ const AdminDashboard = () => {
 
     return (
 
-        <>
-        <nav className="menu_navegacao">
-            <Link to="/">
-                <img className="logoHeader" src={Logo} alt="Logo" />
-            </Link>            
-            <a className="btn-sair">
-                <Link to="/perfil-adm">Sair</Link>
-            </a>
-        </nav>
+        <div className="conteudo-footer">
+            <nav className="menu_navegacao">
+                <Link to="/">
+                    <img className="logoHeader" src={Logo} alt="Logo" />
+                </Link>
+                <a className="btn-sair">
+                    <Link to="/perfil-adm">Sair</Link>
+                </a>
+            </nav>
 
-            <h2>Painel de Gerenciamento do Administrador</h2>
+            <div className="texto-acima">
+                <h2>Painel de Gerenciamento do Administrador</h2>
+            </div>
             <div className="dashboard-container">
 
                 <button className="btn-dashboard ">
@@ -119,7 +122,9 @@ const AdminDashboard = () => {
                 )}
             </div>
 
-        </>
+            <Footer />
+
+        </div>
     );
 };
 
