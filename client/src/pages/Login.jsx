@@ -60,12 +60,7 @@ const Login = () => {
                         onChange={(e) => setSenha(e.target.value)}
                         required
                     />
-
-                    <p>
-                        <a href="esqueci-senha" className="esqueci-senha">
-                            Esqueci minha senha
-                        </a>
-                    </p>
+                    
                     <p className="cadastro-redirect">
                         Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
                     </p>
