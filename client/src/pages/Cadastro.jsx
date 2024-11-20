@@ -61,8 +61,8 @@ const Cadastro = () => {
                 status_usuario: false,
             });
 
-            // Redireciona o usuário para o perfil após o cadastro
-            navigate("/perfil");
+            // Redireciona o usuário para o login após o cadastro
+            navigate("/login");
         } catch (error) {
             console.error("Erro ao cadastrar usuário:", error);
             alert("Erro ao cadastrar. Verifique os dados e tente novamente.");

@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 import authenticateToken from "./middlewares/authenticateToken.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/userRoutes.js";
-import pkg from "../client/src/components/ChaveAPIGoogleMaps.js"; // Importação padrão
+import pkg from "../client/src/components/ChaveAPIGoogleMaps.js";
 const { googleMapsApiKey } = pkg;
 
 dotenv.config();

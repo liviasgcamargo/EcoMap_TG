@@ -21,7 +21,6 @@ const GoogleMap = ({ points, center, zoom }) => {
 
     // Função de inicialização do mapa
     window.initMap = () => {
-      console.log("Nível de Zoom inicial:", zoom); // Exibe o zoom inicial no console
       const map = new window.google.maps.Map(mapContainerRef.current, {
         center: center, // Posição inicial do mapa
         zoom: zoom,
