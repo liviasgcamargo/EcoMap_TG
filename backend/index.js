@@ -105,7 +105,7 @@ app.post("/buscar-ongs", async (req, res) => {
 });
 
 app.post("/buscar-empresas", async (req, res) => {
-  const { latitude, longitude, raio, materiais, tipoTransacao } = req.body;
+  const { latitude, longitude, raio, materiais, tipoTransacao, tipoServico } = req.body;
 
   try {
     const connection = await db;
@@ -122,12 +122,13 @@ app.post("/buscar-empresas", async (req, res) => {
         AND emp.tipo_transacao IN (?, 'Compra e Vende')  -- Filtra pelo tipo de transação (Compra, Vende ou Ambos)
         AND emp.fk_id_categoria = 1  -- Supondo que a categoria 1 representa empresas de reciclagem
         AND emp.status_usuario = TRUE
+        AND emp.tipo_servico = ?
       GROUP BY emp.id_usuario
       HAVING distance < ?
       ORDER BY distance
     `;
 
-    const [results] = await connection.execute(query, [latitude, longitude, latitude, tipoTransacao, raio]);
+    const [results] = await connection.execute(query, [latitude, longitude, latitude, tipoTransacao, tipoServico, raio]);
     res.json(results);
   } catch (error) {
     console.error(error);

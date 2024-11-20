@@ -17,6 +17,7 @@ const ResultadoEmpresa = () => {
         telefone: point.telefone,
         transacao: point.transacao,
         descricao: point.descricao,
+        tipo_servico: point.tipo_servico,
     }));
 
     const getZoomLevel = (raio) => {
@@ -44,6 +45,7 @@ const ResultadoEmpresa = () => {
                             <p><strong>Descrição:</strong> {empresa.descricao}</p>
                             {/* <p>{empresa.nome}</p> */}
                             <p><strong>Endereço:</strong> {empresa.endereco}</p>
+                            <p><strong>Tipo de Serviço:</strong> {empresa.tipo_servico}</p>
                             <p><strong>Distância:</strong> {empresa.distance.toFixed(2)} km</p>
                             <p><strong>Materiais Aceitos:</strong> {empresa.materiais_aceitos || "Não especificado"}</p>
                             <a
