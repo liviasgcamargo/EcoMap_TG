@@ -49,6 +49,24 @@ input[type="email"], [type="password"] {
   box-sizing: border-box;
 }
 
+button{
+  align-items: end;
+  width: 150px;
+  height: 45px;
+  color: #ffffff;
+  background-color: #405a41;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: none;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  margin-top: 8px;
+}
+
 button[type="submit"] {
   align-items: end;
   width: 150px;
@@ -70,18 +88,6 @@ p {
   font-size: 22px;
   color: #9a9999;
   margin-bottom: 0.4em;
-}
-
-
-.esqueci-senha {
-  color: rgba(0, 0, 0, 0.5);
-  text-align: left;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.esqueci-senha:hover {
-  text-decoration: underline;
 }
 
 .cadastro-redirect { 
