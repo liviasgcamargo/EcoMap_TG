@@ -75,7 +75,7 @@ app.post("/buscar-pontos-coleta", async (req, res) => {
 
 //Endpoint para buscar ONGs próximas
 app.post("/buscar-ongs", async (req, res) => {
-  const { latitude, longitude, raio, materiais } = req.body;
+  const { latitude, longitude, raio, materiais, tipoServico } = req.body;
 
   try {
     const connection = await db;
@@ -91,12 +91,13 @@ app.post("/buscar-ongs", async (req, res) => {
       WHERE utm.fk_id_tipoMaterial IN (${materiais.join(",")}) 
         AND ong.fk_id_categoria = 2
         AND ong.status_usuario = TRUE
+        AND ong.tipo_servico = ?
       GROUP BY ong.id_usuario
       HAVING distance < ?
       ORDER BY distance
     `;
 
-    const [results] = await connection.execute(query, [latitude, longitude, latitude, raio]);
+    const [results] = await connection.execute(query, [latitude, longitude, latitude, tipoServico, raio]);
     res.json(results);
   } catch (error) {
     console.error(error);
