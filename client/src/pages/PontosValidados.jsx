@@ -79,85 +79,88 @@ const PontosValidados = () => {
 
     return (
         <>
-        <BotaoVoltar/>
+            <BotaoVoltar />
 
-        <div className="container-validados">
-            <h2>Pontos Validados</h2>
-            {pontos.length === 0 ? (
-                <p>Nenhum ponto validado encontrado.</p>
-            ) : (
-                pontos.map((ponto) => (
-                    <div key={ponto.id_pontoColeta} className="ponto-validado">
-                        {editPonto && editPonto.id_pontoColeta === ponto.id_pontoColeta ? (
-                            <div>
-                                <label>Endereço:</label>
-                                <input
-                                    type="text"
-                                    name="endereco"
-                                    value={editPonto.endereco}
-                                    onChange={handleChange}
+            <div className="container-validados">
+                <div className="texto-acima">
+                    <h2>Pontos Validados</h2>
+                </div>
+                
+                {pontos.length === 0 ? (
+                    <p>Nenhum ponto validado encontrado.</p>
+                ) : (
+                    pontos.map((ponto) => (
+                        <div key={ponto.id_pontoColeta} className="ponto-validado">
+                            {editPonto && editPonto.id_pontoColeta === ponto.id_pontoColeta ? (
+                                <div>
+                                    <label>Endereço:</label>
+                                    <input
+                                        type="text"
+                                        name="endereco"
+                                        value={editPonto.endereco}
+                                        onChange={handleChange}
                                     />
-                                <label>CEP:</label>
-                                <input
-                                    type="text"
-                                    name="cep"
-                                    value={editPonto.cep}
-                                    onChange={handleChange}
+                                    <label>CEP:</label>
+                                    <input
+                                        type="text"
+                                        name="cep"
+                                        value={editPonto.cep}
+                                        onChange={handleChange}
                                     />
-                                <label>Cidade:</label>
-                                <input
-                                    type="text"
-                                    name="cidade"
-                                    value={editPonto.cidade}
-                                    onChange={handleChange}
+                                    <label>Cidade:</label>
+                                    <input
+                                        type="text"
+                                        name="cidade"
+                                        value={editPonto.cidade}
+                                        onChange={handleChange}
                                     />
-                                <label>Estado:</label>
-                                <select name="estado" value={editPonto.estado} onChange={handleChange}>
-                                    {estadosBrasil.map((estado) => (
-                                        <option key={estado} value={estado}>
-                                            {estado}
-                                        </option>
-                                    ))}
-                                </select>
-                                <label>Materiais Aceitos:</label>
-                                <div className="material-checkboxes">
-                                    {tiposMateriais.map((material) => (
-                                        <label key={material}>
-                                            <input
-                                                type="checkbox"
-                                                value={material}
-                                                checked={editPonto.materiais.includes(material)}
-                                                onChange={handleCheckboxChange}
+                                    <label>Estado:</label>
+                                    <select name="estado" value={editPonto.estado} onChange={handleChange}>
+                                        {estadosBrasil.map((estado) => (
+                                            <option key={estado} value={estado}>
+                                                {estado}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <label>Materiais Aceitos:</label>
+                                    <div className="material-checkboxes">
+                                        {tiposMateriais.map((material) => (
+                                            <label key={material}>
+                                                <input
+                                                    type="checkbox"
+                                                    value={material}
+                                                    checked={editPonto.materiais.includes(material)}
+                                                    onChange={handleCheckboxChange}
                                                 />
-                                            {material}
-                                        </label>
-                                    ))}
+                                                {material}
+                                            </label>
+                                        ))}
+                                    </div>
+                                    <div className="btn-validated">
+                                        <button onClick={() => handleUpdate(ponto.id_pontoColeta)}>Salvar</button>
+                                        <button onClick={() => setEditPonto(null)}>Cancelar</button>
+                                    </div>
                                 </div>
-                                <div className="btn-validated">
-                                    <button onClick={() => handleUpdate(ponto.id_pontoColeta)}>Salvar</button>
-                                    <button onClick={() => setEditPonto(null)}>Cancelar</button>
+                            ) : (
+                                <div>
+                                    <p><strong>Endereço:</strong> {ponto.endereco}</p>
+                                    <p><strong>CEP:</strong> {ponto.cep}</p>
+                                    <p><strong>Cidade:</strong> {ponto.cidade}</p>
+                                    <p><strong>Estado:</strong> {ponto.estado}</p>
+                                    <p><strong>Latitude:</strong> {ponto.latitude}</p>
+                                    <p><strong>Longitude:</strong> {ponto.longitude}</p>
+                                    <p><strong>Materiais Aceitos:</strong> {ponto.materiais.join(", ")}</p>
+                                    <div className="btn-validated">
+                                        <button onClick={() => handleEditar(ponto)}>Editar</button>
+                                        <button onClick={() => handleExcluir(ponto.id_pontoColeta)}>Excluir</button>
+                                    </div>
                                 </div>
-                            </div>
-                        ) : (
-                            <div>
-                                <p><strong>Endereço:</strong> {ponto.endereco}</p>
-                                <p><strong>CEP:</strong> {ponto.cep}</p>
-                                <p><strong>Cidade:</strong> {ponto.cidade}</p>
-                                <p><strong>Estado:</strong> {ponto.estado}</p>
-                                <p><strong>Latitude:</strong> {ponto.latitude}</p>
-                                <p><strong>Longitude:</strong> {ponto.longitude}</p>
-                                <p><strong>Materiais Aceitos:</strong> {ponto.materiais.join(", ")}</p>
-                                <div className="btn-validated">
-                                    <button onClick={() => handleEditar(ponto)}>Editar</button>
-                                    <button onClick={() => handleExcluir(ponto.id_pontoColeta)}>Excluir</button>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                ))
-            )}
-        </div>
-                        </>
+                            )}
+                        </div>
+                    ))
+                )}
+            </div>
+        </>
     );
 };
 

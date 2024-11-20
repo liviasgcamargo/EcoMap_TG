@@ -9,11 +9,12 @@ import "../assets/styles/SobreNos.css"
 
 function SobreNos() {
     return (
-        <>
-
+        <div className='conteudo-footer'>
             <Navbar />
 
-            <h2>Sobre nós</h2>
+            <div className='texto-acima'>
+                <h2>Sobre nós</h2>
+            </div>
             <p className='descricao-sobre-nos'>
                 Somos um grupo de estudantes de Análise e Desenvolvimento de Sistemas da FATEC Sorocaba, e criamos esta plataforma
                 para conectar você aos pontos de coleta mais próximos. Acreditamos que pequenas ações podem gerar grandes mudanças, e
@@ -132,7 +133,7 @@ function SobreNos() {
 
             <Footer />
 
-        </>
+        </div>
 
     )
 }

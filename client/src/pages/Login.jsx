@@ -36,46 +36,46 @@ const Login = () => {
     };
 
     return (
-        <>
-        <Navbar/>
-        <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <label>Email:</label>
-                <input
-                    type="email"
-                    value={email}
-                    placeholder="email@gmail.com"
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
+        <div className="conteudo-footer">
+            <Navbar />
+            <div className="login-container">
+                <h2>Login</h2>
+                <form onSubmit={handleLogin}>
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        value={email}
+                        placeholder="email@gmail.com"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
 
-                <label>Senha:</label>
-                <input
-                    type="password"
-                    value={senha}
-                    placeholder="**********"
-                    onChange={(e) => setSenha(e.target.value)}
-                    required
-                />
+                    <label>Senha:</label>
+                    <input
+                        type="password"
+                        value={senha}
+                        placeholder="**********"
+                        onChange={(e) => setSenha(e.target.value)}
+                        required
+                    />
 
-                <p>
-                    <a href="esqueci-senha" className="esqueci-senha">
-                        Esqueci minha senha
-                    </a>
-                </p>
-                <p className="cadastro-redirect">
-                    Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
-                </p>
-                <button type="submit">Entrar</button>
-            </form>
+                    <p>
+                        <a href="esqueci-senha" className="esqueci-senha">
+                            Esqueci minha senha
+                        </a>
+                    </p>
+                    <p className="cadastro-redirect">
+                        Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
+                    </p>
+                    <button type="submit">Entrar</button>
+                </form>
 
-            {error && <p className="error-message">{error}</p>}
+                {error && <p className="error-message">{error}</p>}
+            </div>
+
+            <Footer />
+
         </div>
-
-        <Footer/>
-
-        </>
     );
 };
 

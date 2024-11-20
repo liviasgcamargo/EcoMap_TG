@@ -9,13 +9,15 @@ h2 {
 
 .accordion {
     margin: auto;
-    max-width: 800px;
+    width: 800px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     overflow: hidden;
     font-family: "Quicksand", sans-serif; 
     background-color: #55703f;
-    margin-bottom: 50px; 
+    margin-bottom: 25rem; 
+    margin-top: 1rem;
+    flex: 1;
    }
   
   .accordion__label,

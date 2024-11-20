@@ -5,6 +5,11 @@
   font-family: "Roboto", sans-serif;
 }
 
+html, body, #root {
+  height: 100%; /* Garante que o root ocupe toda a altura da viewport */
+  margin: 0;
+}
+
 /* Corpo */
 body {
   background-image: url("./assets/images/index.png");
@@ -12,8 +17,34 @@ body {
   background-position: top center; /* Garante que a imagem de fundo fique alinhada */
   background-repeat: no-repeat;
   background-attachment: scroll; /* Faz como que a imagem de fundo role junto com a tela */
-  height: 100vh;
+  min-height: 100vh;
   background-color: #dcebba;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column; /* Organização vertical: conteúdo + footer */
+  min-height: 100vh; /* Força o App a ocupar a altura da tela */
+}
+
+.conteudo-footer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que a página ocupe toda a altura da tela */
+}
+
+.texto-acima {
+  display: flex;
+  flex-direction: column;
+  /* Garante que a página ocupe toda a altura da tela */
+  align-items: center;
+  text-align: center;
 }
 
 /* Conteúdo principal do index*/

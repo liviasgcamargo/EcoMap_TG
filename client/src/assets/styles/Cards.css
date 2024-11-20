@@ -1,9 +1,11 @@
 .container-cards {
-    margin-top: 80px;
+    margin-top: 5%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 39px;
+    flex: 1;
+    margin-bottom: 5%;
   }
   
   .card {

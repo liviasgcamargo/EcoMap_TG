@@ -74,7 +74,9 @@ const Cadastro = () => {
             <Navbar />
 
             <div className="cadastro-container">
-                <h2>Cadastro de {categoria}</h2>
+                <div className="texto-acima">
+                    <h2>Cadastro de {categoria}</h2>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <label>
                         Tipo de Cadastro:
@@ -124,7 +126,7 @@ const Cadastro = () => {
                     </select>
 
                     <label>Endereço:</label>
-                    <input type="text" name="endereco" value={formData.endereco}  placeholder="Exemplo: Rua das Margaridas 45 Jardim das Flores" onChange={handleChange} required />
+                    <input type="text" name="endereco" value={formData.endereco} placeholder="Exemplo: Rua das Margaridas 45 Jardim das Flores" onChange={handleChange} required />
 
                     <label>CEP:</label>
                     <input type="text" name="cep" value={formData.cep} placeholder="Exemplo: 10000-000" onChange={handleChange} required />
@@ -190,13 +192,13 @@ const Cadastro = () => {
 
                     {categoria === "Empresa" && (
                         <div className="material-options">
-                        <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
-                        <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
-                        <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
-                        <label><input type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
-                        <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
-                        <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
-                    </div>
+                            <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
+                            <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
+                            <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
+                            <label><input type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
+                            <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
+                            <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
+                        </div>
                     )}
 
                     {categoria === "Empresa" && (
