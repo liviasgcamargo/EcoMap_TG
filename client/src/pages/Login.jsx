@@ -18,6 +18,8 @@ const Login = () => {
         setError(null); // Limpa qualquer erro anterior
 
         try {
+            localStorage.removeItem("token");
+
             // Envia a requisição de login para o backend
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
                 email,
