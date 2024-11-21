@@ -185,7 +185,7 @@ const Cadastro = () => {
                             <label><input type="checkbox" value="Roupa" onChange={handleCheckboxChange} /> Roupa</label>
                             <label><input type="checkbox" value="Alimento" onChange={handleCheckboxChange} /> Alimento</label>
                             <label><input type="checkbox" value="Brinquedo" onChange={handleCheckboxChange} /> Brinquedo</label>
-                            <label><input type="checkbox" value="ProdutoHigiene" onChange={handleCheckboxChange} /> Produto de Higiene</label>
+                            <label><input type="checkbox" value="Produto de Higiene" onChange={handleCheckboxChange} /> Produto de Higiene</label>
                             <label><input type="checkbox" value="Moveis" onChange={handleCheckboxChange} /> Móveis</label>
                         </div>
                     )}
