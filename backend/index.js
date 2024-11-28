@@ -336,8 +336,11 @@ app.delete("/excluir-empresa/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
-    res.json({ message: "Empresa excluída com sucesso!" });
+      // Excluir os registros associados na tabela `usuario_tipomaterial`
+      await bd.execute("DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?", [id]);
+      // Excluir o registro do usuário na tabela `usuario`
+      await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
+      res.json({ message: "Empresa excluída com sucesso!" });
   } catch (error) {
     console.error("Erro ao excluir empresa:", error);
     res.status(500).json({ error: "Erro ao excluir empresa" });
@@ -403,8 +406,11 @@ app.delete("/excluir-ong/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
-    res.json({ message: "Ong excluída com sucesso!" });
+      // Excluir os registros associados na tabela `usuario_tipomaterial`
+      await bd.execute("DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?", [id]);
+      // Excluir o registro do usuário na tabela `usuario`
+      await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
+      res.json({ message: "Ong excluída com sucesso!" });
   } catch (error) {
     console.error("Erro ao excluir ong:", error);
     res.status(500).json({ error: "Erro ao excluir ong" });
