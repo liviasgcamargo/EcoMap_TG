@@ -332,6 +332,9 @@ app.delete("/excluir-empresa/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
+      // Excluir os registros associados na tabela `usuario_tipomaterial`
+      await bd.execute("DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?", [id]);
+      // Excluir o registro do usuário na tabela `usuario`
       await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
       res.json({ message: "Empresa excluída com sucesso!" });
   } catch (error) {
@@ -399,6 +402,9 @@ app.delete("/excluir-ong/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
+      // Excluir os registros associados na tabela `usuario_tipomaterial`
+      await bd.execute("DELETE FROM Usuario_tipoMaterial WHERE fk_id_usuario = ?", [id]);
+      // Excluir o registro do usuário na tabela `usuario`
       await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [id]);
       res.json({ message: "Ong excluída com sucesso!" });
   } catch (error) {
