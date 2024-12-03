@@ -14,6 +14,12 @@
     margin: 0 6px;
     color: inherit;
   }
+
+  .menu_itens {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
   
   .menu_item {
     color: #356037;
@@ -46,4 +52,26 @@
 
   a.btn-sair{
     color:white;
+  }
+
+  @media (max-width: 1135px) {
+    .menu_itens .menu_item {
+      display: none; /* Oculta os itens do menu */
+    }
+  }
+
+  @media (max-width: 573px) {
+    #btnContact {
+      width: auto; /* Remove a largura fixa */
+      flex: 1; /* Permite que os botões ocupem o espaço disponível */
+      margin: 0 2px; /* Margens reduzidas */
+      font-size: 12px; /* Reduz o tamanho da fonte */
+      height: 30px;  /* Reduz a altura */
+      padding: 5px 8px; /* Padding ajustado */
+
+    }
+    .buttons-container { /* Adiciona um container para os botões */
+        display: flex;
+        justify-content: space-around; /* Espaça os botões uniformemente */
+    }
   }
