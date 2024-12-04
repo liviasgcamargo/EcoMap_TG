@@ -1,50 +1,94 @@
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    color: white;
-    background-color: #55703f;
-    padding: 30px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #55703f;
+  padding: 30px;
+}
+
+.footerP {
+  color: #fff;
+  font-size: 14px;
+  margin: 0 0 10px 0;
+  text-align: right;
+}
+
+.linhaFooter {
+  border: none;
+  border-top: 1px solid #fff;
+  margin: 10px 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Permite que os elementos se ajustem em várias linhas */
+  gap: 20px; /* Adiciona espaço entre elementos para dispositivos menores */
+}
+
+.linksUteis {
+  font-size: 14px;
+  display: flex;
+  gap: 2rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* Faz com que os links quebrem em outra linha se necessário */
+}
+
+.linksUteis a {
+  color: white;
+  text-decoration: none;
+}
+
+.linksUteis a:hover {
+  text-decoration: underline;
+}
+
+.redes_sociais {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .footer-content {
+    padding: 20px; /* Reduz o padding em telas menores */
   }
-  
-  .footerP{
-    color: #fff;
-    font-size: 14px;
-    margin: 0 0 10px 0;
-  }
-  
-  .linhaFooter {
-    border: none;
-    border-top: 1px solid #fff;
-    margin: 10px 0;
-  }
-  
+
   .footer-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Empilha os elementos em uma coluna */
+    align-items: flex-start; /* Alinha os elementos à esquerda */
   }
-  
+
   .linksUteis {
-    font-size: 14px;
-    display: flex;
-    gap: 2rem;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    flex-direction: column; /* Links em coluna */
+    gap: 10px; /* Menor espaçamento entre links */
   }
-  
-  .linksUteis a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .linksUteis a:hover {
-    text-decoration: underline;
-  }
-  
+
   .redes_sociais {
-    display: flex;
-    gap: 10px;
-    cursor: pointer;
+    justify-content: flex-start; /* Alinha as redes sociais à esquerda */
+    gap: 15px; /* Espaçamento adicional entre ícones */
   }
-  
+}
+
+/* Responsividade para telas muito pequenas (ex.: smartphones) */
+@media (max-width: 480px) {
+  .footer-content {
+    padding: 15px; /* Reduz ainda mais o padding */
+  }
+
+  .footerP {
+    font-size: 12px; /* Diminui o tamanho do texto */
+  }
+
+  .linksUteis {
+    gap: 5px; /* Reduz o espaçamento entre links */
+  }
+
+  .redes_sociais {
+    gap: 10px; /* Menor espaçamento entre ícones */
+  }
+}

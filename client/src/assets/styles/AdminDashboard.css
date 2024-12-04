@@ -9,11 +9,9 @@
 
 h2 {
   text-align: center;
-  /* Centraliza o texto horizontalmente */
   font-size: 24px;
   color: #2a4f2d;
   margin: 20px 0;
-  /* Ajusta o espaçamento em cima e embaixo */
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -35,17 +33,17 @@ h2 {
   line-height: 32.53px;
 }
 
+.btn-sair a:hover {
+  background-color: #2a4f2d;
+}
+
 .dashboard-container {
   display: flex;
   flex-direction: row;
   gap: 50px;
   justify-content: center;
   flex: 1;
-  /* Faz o conteúdo expandir e empurrar o footer para baixo */
-}
-
-.btn-sair a:hover {
-  background-color: #2a4f2d;
+  flex-wrap: wrap; /* Allows wrapping in smaller screens */
 }
 
 .btn-dashboard {
@@ -59,6 +57,7 @@ h2 {
   cursor: pointer;
   width: 150px;
   height: 100px;
+  margin-bottom: 20px; /* Adds spacing for wrapping */
 }
 
 .button-icon {
@@ -66,7 +65,6 @@ h2 {
   height: 40px;
   margin-bottom: 8px;
 }
-
 
 .material-options {
   display: flex;
@@ -84,4 +82,81 @@ h2 {
 
 .titulo-btn-adm {
   color: #2a4f2d;
+  font-size: 15px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .logoHeader {
+    margin-left: 20px; /* Reduce margin for smaller screens */
+    flex-wrap: wrap;
+  }
+
+  .btn-sair a {
+    width: 100px;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+  }
+
+  .dashboard-container {
+    gap: 20px; /* Reduce gap between buttons */
+  }
+
+  .btn-dashboard {
+    width: 120px;
+    height: 90px;
+  }
+
+  .button-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoHeader {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .btn-sair a {
+    width: 90px;
+    font-size: 12px;
+    height: 28px;
+    line-height: 28px;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .btn-dashboard {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    padding: 15px;
+  }
+
+  .button-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  .material-options label {
+    font-size: 14px;
+  }
 }

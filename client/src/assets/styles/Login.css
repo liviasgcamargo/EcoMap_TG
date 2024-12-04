@@ -1,24 +1,26 @@
 .login-container {
-  flex: 1; /* Faz com que o conteúdo principal ocupe o espaço disponível */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centraliza o formulário verticalmente */
+  justify-content: center;
   align-items: center;
   padding: 0;
+  margin: 20px;
 }
 
 h2 {
   font-size: 24px;
   color: #405A41;
   margin: 20px;
-  text-align: start;
+  text-align: center; /* Altera para centralizado em dispositivos menores */
   font-weight: bold;
   text-transform: uppercase;
 }
 
 form {
   margin: auto;
-  width: 600px;
+  max-width: 600px;
+  width: 100%;
   height: auto;
   background-color: #FFFFFF;
   border-radius: 8px;
@@ -28,9 +30,10 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona um leve sombreamento */
 }
 
-label { 
+label {
   display: flex;
   align-items: start;
   margin-right: 18px;
@@ -39,7 +42,8 @@ label {
   color: #000000;
 }
 
-input[type="email"], [type="password"] {
+input[type="email"],
+input[type="password"] {
   width: calc(100% - 12px);
   height: 50px;
   padding: .65em;
@@ -49,7 +53,7 @@ input[type="email"], [type="password"] {
   box-sizing: border-box;
 }
 
-button{
+button {
   align-items: end;
   width: 150px;
   height: 45px;
@@ -68,8 +72,7 @@ button{
 }
 
 button[type="submit"] {
-  align-items: end;
-  width: 150px;
+  width: 100%; /* Altera para 100% em dispositivos menores */
   height: 45px;
   color: #ffffff;
   background-color: #405a41;
@@ -88,10 +91,11 @@ p {
   font-size: 22px;
   color: #9a9999;
   margin-bottom: 0.4em;
+  text-align: center; /* Centraliza o texto em dispositivos menores */
 }
 
-.cadastro-redirect { 
-  text-align: start;
+.cadastro-redirect {
+  text-align: center; /* Centraliza em dispositivos menores */
   margin-bottom: 20px;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.5);
@@ -107,4 +111,61 @@ p {
 
 .cadastro-redirect a:hover {
   text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  form {
+    padding: 1em;
+    margin-top: 15px;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    height: 45px;
+    font-size: 14px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .cadastro-redirect {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 18px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .cadastro-redirect {
+    font-size: 10px;
+  }
 }

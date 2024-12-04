@@ -34,11 +34,14 @@
 .recycling-bins {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap; /* Adicionado para responsividade */
   margin-top: 20px;
+  gap: 15px; /* Adicionado para espaçamento entre os itens */
 }
 
 .bin {
   text-align: center;
+  flex: 1 1 120px; /* Itens se adaptam com largura mínima de 120px */
 }
 
 .bin-label {
@@ -95,6 +98,8 @@
 .recyclables {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap; /* Adicionado para responsividade */
+  gap: 20px;
 }
 
 .recyclables-list,
@@ -124,6 +129,7 @@
 
 .ul-materiais-reciclagem {
   display: flex;
+  flex-wrap: wrap; /* Adicionado para responsividade */
   margin: 10px 15px;
   list-style: none;
   gap: 5px;
@@ -131,18 +137,19 @@
 }
 
 .li-materiais-reciclagem {
-  border: 1px solid #405a41; 
-  border-radius: 8px; 
-  padding: 10px 15px; 
-  margin: 8px 0; 
-  background-color: #f9f9f9; 
-  font-size: 14px; 
-  color: #333; 
-  transition: background 0.3s; 
+  border: 1px solid #405a41;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin: 8px 0;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.3s;
+  flex: 1 1 calc(50% - 10px); /* Itens ocupam metade da largura com gap */
 }
 
 .li-materiais-reciclagem:hover {
-  background-color: #658166; 
+  background-color: #658166;
   color: #ffffff;
 }
 
@@ -153,7 +160,6 @@
 .dicas-reciclagem {
   text-align: justify;
   color: #405a41;
-
 }
 
 .dicas-reciclagem li {
@@ -162,17 +168,68 @@
   font-size: 16px;
 }
 
-.dicas-reciclagem h1{
-    font-size: 18px;
-    color: #405a41;
+.dicas-reciclagem h1 {
+  font-size: 18px;
+  color: #405a41;
 }
 
-.creditos-faq{
+.creditos-faq {
   font-size: 8px;
   text-decoration: none;
   color: #333;
 }
 
-.container-creditos h1{
-font-size: 10px;
+.container-creditos h1 {
+  font-size: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .recyclables-list,
+  .non-recyclables-list {
+    width: 100%; /* Ocupam largura total em telas menores */
+  }
+
+  .li-materiais-reciclagem {
+    flex: 1 1 100%; /* Cada item ocupa largura total em telas menores */
+  }
+
+  .recycling-bins {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .section-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .section-text {
+    font-size: 12px;
+  }
+
+  .bin-color {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icone-lixo {
+    width: 40px;
+  }
+
+  .li-materiais-reciclagem {
+    font-size: 12px;
+    padding: 8px;
+  }
 }

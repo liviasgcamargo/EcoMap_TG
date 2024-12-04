@@ -58,3 +58,96 @@ input[type="text"] {
 .cadastro-container p {
   font-size: 12px;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  input[type="text"] {
+    height: 45px;
+    padding: 0.6em;
+    font-size: 14px;
+  }
+
+  .tipo_transacao,
+  .tipoServico {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .form-tipo-transacao,
+  .form-cadastro-dropdown {
+    margin-bottom: 1em;
+  }
+
+  .select-tipo-cadastro {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .text-descricao {
+    height: 80px;
+    padding: 0.6em;
+  }
+
+  .material-options {
+    gap: 8px;
+    margin-top: 2px;
+    margin-bottom: 1em;
+  }
+
+  .material-options label {
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .cadastro-container p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  input[type="text"] {
+    height: 40px;
+    padding: 0.5em;
+    font-size: 12px;
+  }
+
+  .tipo_transacao,
+  .tipoServico {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+  }
+
+  .form-tipo-transacao,
+  .form-cadastro-dropdown {
+    margin-bottom: 0.8em;
+  }
+
+  .select-tipo-cadastro {
+    margin-left: 0;
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .text-descricao {
+    height: 70px;
+    padding: 0.5em;
+  }
+
+  .material-options {
+    gap: 6px;
+    margin-top: 1px;
+    margin-bottom: 0.8em;
+  }
+
+  .material-options label {
+    font-size: 12px;
+    gap: 5px;
+  }
+
+  .cadastro-container p {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+}
+

@@ -1,4 +1,4 @@
-.estados-pop-up{
+.estados-pop-up {
     width: calc(100% - 12px);
     height: 50px;
     padding: 0.65em;
@@ -7,4 +7,23 @@
     margin-bottom: 1.3em;
     border: 1px solid #ccc;
     box-sizing: border-box;
-}
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .estados-pop-up {
+      width: 100%; /* Garante que ocupe toda a largura disponível em telas menores */
+      height: 45px; /* Reduz um pouco a altura para telas menores */
+      font-size: 14px; /* Ajusta o tamanho da fonte */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .estados-pop-up {
+      width: 100%; /* Continua ocupando toda a largura em telas muito pequenas */
+      height: 40px; /* Altura ainda menor para telas de celular */
+      font-size: 12px; /* Reduz o tamanho da fonte para caber melhor */
+      padding: 0.5em; /* Ajusta o padding para dispositivos móveis */
+    }
+  }
+  

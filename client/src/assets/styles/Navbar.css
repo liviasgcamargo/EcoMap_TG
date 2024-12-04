@@ -1,49 +1,102 @@
 .menu_navegacao {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px;
-    margin-right: 40px;
-    color: #356037;
-  }
-  
-  .menu_navegacao a {
-    text-decoration: none;
-    font-weight: bold;
-    margin: 0 6px;
-    color: inherit;
-  }
-  
-  .menu_item {
-    color: #356037;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  margin-right: 40px;
+  color: #356037;
+}
+
+.menu_navegacao a {
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 6px;
+  color: inherit;
+}
+
+.menu_item {
+  color: #356037;
+}
+
+.logoHeader {
+  margin-left: 70px;
+}
+
+#btnContact {
+  font-size: 14px;
+  width: 129px;
+  height: 32.53px;
+  color: #ffffff;
+  background-color: #55703f;
+  border-radius: 8px;
+  border-style: none;
+  font-weight: medium;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  line-height: 32.53px;
+}
+
+#btnContact:hover {
+  background-color: #2a4f2d;
+}
+
+a.btn-sair {
+  color: white;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .menu_navegacao {
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: flex-start; /* Alinha os itens à esquerda */
+    padding: 8px;
+    margin-right: 0;
   }
 
   .logoHeader {
-    margin-left: 70px;
-  }
-  
-  #btnContact {
-    font-size: 14px;
-    width: 129px;
-    height: 32.53px;
-    color: #ffffff;
-    background-color: #55703f;
-    border-radius: 8px;
-    border-style: none;
-    font-weight: medium;
-    cursor: pointer;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
-    text-align: center;
-    line-height: 32.53px;
-  }
-  
-  #btnContact:hover {
-    background-color: #2a4f2d;
+    margin-left: 20px; /* Reduz o espaço para telas menores */
+    margin-bottom: 10px;
   }
 
-  a.btn-sair{
-    color:white;
+  .menu_navegacao a {
+    margin: 5px 0; /* Aumenta o espaçamento entre links no menu */
+    font-size: 14px; /* Reduz o tamanho da fonte */
   }
+
+  #btnContact {
+    font-size: 12px; /* Reduz o tamanho do botão */
+    width: 100%; /* O botão ocupa toda a largura */
+    max-width: 150px; /* Define um limite de largura */
+    height: 35px; /* Ajusta a altura */
+  }
+}
+
+/* Responsividade para telas muito pequenas (ex.: smartphones) */
+@media (max-width: 480px) {
+  .menu_navegacao {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logoHeader {
+    margin-left: 0;
+    margin-bottom: 15px;
+    text-align: center; /* Centraliza o logo */
+  }
+
+  .menu_navegacao a {
+    margin: 10px 0; /* Aumenta o espaçamento entre os links */
+    font-size: 12px; /* Reduz ainda mais o tamanho da fonte */
+  }
+
+  #btnContact {
+    font-size: 12px;
+    width: 90%; /* Quase toda a largura da tela */
+    max-width: 120px;
+    height: 35px;
+  }
+}
