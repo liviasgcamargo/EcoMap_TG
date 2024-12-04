@@ -124,8 +124,8 @@ function SobreNos() {
                             <img src={Github} alt="" />
                         </a>
 
-                        <a href="">
-                            <img src={Linkedin} alt="https://www.linkedin.com/in/sara-gongora-a41aa221a/" />
+                        <a href="https://www.linkedin.com/in/sara-gongora-a41aa221a/">
+                            <img src={Linkedin} alt="" />
                         </a>
                     </div>
                 </div>
