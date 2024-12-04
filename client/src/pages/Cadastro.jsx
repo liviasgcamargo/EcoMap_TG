@@ -70,7 +70,8 @@ const Cadastro = () => {
     };
 
     return (
-        <>
+        <div>
+
             <Navbar />
 
             <div className="cadastro-container">
@@ -218,7 +219,7 @@ const Cadastro = () => {
 
             <Footer />
 
-        </>
+        </div>
     );
 };
 

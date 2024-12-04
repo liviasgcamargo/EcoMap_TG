@@ -1,49 +1,143 @@
 .menu_navegacao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  margin-right: 40px;
+  color: #356037;
+}
+
+.menu_navegacao a {
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 6px;
+  color: inherit;
+}
+
+.menu_itens {
+  display: flex;
+  flex-direction: row; /* Garante que os itens fiquem em linha */
+  align-items: center;
+}
+
+.menu_item {
+  color: #356037;
+  margin: 0 10px; /* Espaçamento horizontal entre os itens */
+}
+
+.logoHeader {
+  margin-left: 70px;
+}
+
+/* Botão Contact */
+#btnContact {
+  font-size: 14px;
+  width: 129px;
+  height: 32.53px;
+  color: #ffffff;
+  background-color: #55703f;
+  border-radius: 8px;
+  border-style: none;
+  font-weight: medium;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  line-height: 32.53px;
+}
+
+#btnContact:hover {
+  background-color: #2a4f2d;
+}
+
+a.btn-sair {
+  color: white;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .menu_navegacao {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    margin-right: 0;
+  }
+
+  .menu_itens {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Itens continuam em linha */
     align-items: center;
-    justify-content: space-between;
-    padding: 12px;
-    margin-right: 40px;
-    color: #356037;
-  }
-  
-  .menu_navegacao a {
-    text-decoration: none;
-    font-weight: bold;
-    margin: 0 6px;
-    color: inherit;
-  }
-  
-  .menu_item {
-    color: #356037;
   }
 
   .logoHeader {
-    margin-left: 70px;
-  }
-  
-  #btnContact {
-    font-size: 14px;
-    width: 129px;
-    height: 32.53px;
-    color: #ffffff;
-    background-color: #55703f;
-    border-radius: 8px;
-    border-style: none;
-    font-weight: medium;
-    cursor: pointer;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
-    text-align: center;
-    line-height: 32.53px;
-  }
-  
-  #btnContact:hover {
-    background-color: #2a4f2d;
+    margin-left: 20px;
+    margin-bottom: 10px;
   }
 
-  a.btn-sair{
-    color:white;
+  .menu_navegacao a {
+    margin: 5px 0;
+    font-size: 14px;
   }
+
+  #btnContact {
+    font-size: 12px;
+    width: 100%;
+    max-width: 150px;
+    height: 35px;
+  }
+}
+
+/* Responsividade para telas muito pequenas (ex.: smartphones) */
+@media (max-width: 480px) {
+  .menu_navegacao {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logoHeader {
+    margin-left: 0;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .menu_navegacao a {
+    margin: 10px 0;
+    font-size: 12px;
+  }
+
+  #btnContact {
+    font-size: 12px;
+    width: 90%;
+    max-width: 120px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 1135px) {
+  .menu_itens {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .menu_itens .menu_item {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 573px) {
+  #btnContact {
+    width: auto;
+    flex: 1;
+    margin: 0 2px;
+    font-size: 12px;
+    height: 30px;
+    padding: 5px 8px;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-around;
+  }
+}

@@ -1,12 +1,37 @@
-input[type="text"] {
-  width: calc(100% - 12px);
-  height: 50px;
-  padding: 0.65em;
-  border-radius: 5px;
-  margin-top: 1.3em;
-  margin-bottom: 1.3em;
+/* Estilo padrão (para telas maiores) */
+.cadastro-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
   border: 1px solid #ccc;
+  border-radius: 5px;
   box-sizing: border-box;
+}
+
+button[type="submit"] {
+  padding: 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .tipo_transacao {
@@ -55,6 +80,145 @@ input[type="text"] {
   gap: 8px;
 }
 
+
 .cadastro-container p {
   font-size: 12px;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  input[type="text"] {
+    height: 45px;
+    padding: 0.6em;
+    font-size: 14px;
+  }
+
+  .tipo_transacao,
+  .tipoServico {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .form-tipo-transacao,
+  .form-cadastro-dropdown {
+    margin-bottom: 1em;
+  }
+
+  .select-tipo-cadastro {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .text-descricao {
+    height: 80px;
+    padding: 0.6em;
+  }
+
+  .material-options {
+    gap: 8px;
+    margin-top: 2px;
+    margin-bottom: 1em;
+  }
+
+  .material-options label {
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .cadastro-container p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  input[type="text"] {
+    height: 40px;
+    padding: 0.5em;
+    font-size: 12px;
+  }
+
+  .tipo_transacao,
+  .tipoServico {
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+  }
+
+  .form-tipo-transacao,
+  .form-cadastro-dropdown {
+    margin-bottom: 0.8em;
+  }
+
+  .select-tipo-cadastro {
+    margin-left: 0;
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .text-descricao {
+    height: 70px;
+    padding: 0.5em;
+  }
+
+  .material-options {
+    gap: 6px;
+    margin-top: 1px;
+    margin-bottom: 0.8em;
+  }
+
+  .material-options label {
+    font-size: 12px;
+    gap: 5px;
+  }
+
+  .cadastro-container p {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+}
+
+/* Responsividade para telas médias (tablets) */
+@media (max-width: 768px) {
+  .cadastro-container {
+    padding: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  button[type="submit"] {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+}
+
+/* Responsividade para telas pequenas (smartphones) */
+@media (max-width: 480px) {
+  .cadastro-container {
+    padding: 10px;
+  }
+
+  .material-options {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  button[type="submit"] {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+
+  .select-tipo-cadastro,
+  .form-cadastro-dropdown,
+  .form-tipo-transacao {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+

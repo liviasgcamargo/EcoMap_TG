@@ -2,6 +2,7 @@
   margin-top: 8px;
   font-size: 25px;
   color: #3e583c;
+  text-align: center;
 }
 
 .card-icon {
@@ -9,6 +10,7 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
+  flex-wrap: wrap; /* Ajusta os ícones em linhas, se necessário */
 }
 
 .card-icon a {
@@ -42,7 +44,15 @@
   background-color: #a8b88d;
 }
 
-.descricao-sobre-nos{
+/* Responsividade para os cards */
+@media (max-width: 768px) {
+  .card-sobre-nos {
+    width: 90%; /* Ajusta a largura em telas menores */
+    margin: 10px auto; /* Centraliza os cards */
+  }
+}
+
+.descricao-sobre-nos {
   max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
@@ -51,4 +61,20 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 0;
+  text-align: justify;
+}
+
+/* Responsividade para descrição */
+@media (max-width: 768px) {
+  .descricao-sobre-nos {
+    padding: 15px; /* Reduz o padding */
+    font-size: 14px; /* Diminui o tamanho da fonte */
+  }
+}
+
+@media (max-width: 480px) {
+  .descricao-sobre-nos {
+    font-size: 12px; /* Fonte menor para dispositivos muito pequenos */
+    padding: 10px; /* Mais compacto */
+  }
 }

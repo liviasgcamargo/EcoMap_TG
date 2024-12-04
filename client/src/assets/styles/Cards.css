@@ -1,43 +1,85 @@
 .container-cards {
-    margin-top: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 39px;
-    flex: 1;
-    margin-bottom: 5%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 39px;
+  flex: 1;
+  margin-bottom: 5%;
+  flex-wrap: wrap; /* Adicionado para permitir quebra de linha em telas menores */
+}
+
+.card {
+  background-color: #55703f;
+  color: #ffffff;
+  border-radius: 7px;
+  text-align: center;
+  width: 220px;
+  height: auto;
+  transition: 0.3s ease-in;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 15px;
+}
+
+.card:hover {
+  transform: scale(1.075);
+  transition: 0.3s ease-in;
+  cursor: pointer;
+}
+
+.tituloCard {
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.textoCard {
+  font-size: 18px;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .container-cards {
+    gap: 20px; /* Reduz o espaçamento entre os cartões */
   }
-  
+
   .card {
-    background-color: #55703f;
-    color: #ffffff;
-    border-radius: 7px;
-    text-align: center;
-    width: 220px;
-    height: auto;
-    transition: 0.3s ease-in;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
-    padding: 15px;
+    width: 180px; /* Reduz a largura dos cartões */
+    padding: 10px; /* Ajusta o preenchimento interno */
   }
-  
-  .card:hover {
-    transform: scale(1.075);
-    transition: 0.3s ease-in;
-    cursor: pointer;
-  }
-  
+
   .tituloCard {
-    font-size: 22px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
+    font-size: 18px; /* Reduz o tamanho do título */
   }
-  
+
   .textoCard {
-    font-size: 18px;
-    color: #ffffff;
-    margin-top: 10px;
+    font-size: 16px; /* Reduz o tamanho do texto */
   }
+}
+
+@media (max-width: 480px) {
+  .container-cards {
+    flex-direction: column; /* Exibe os cartões em coluna */
+    align-items: center; /* Centraliza os cartões */
+  }
+
+  .card {
+    width: 100%; /* Os cartões ocupam a largura total */
+    max-width: 300px; /* Define uma largura máxima */
+    padding: 15px; /* Mantém um bom espaçamento interno */
+  }
+
+  .tituloCard {
+    font-size: 16px; /* Ajusta o tamanho do título */
+  }
+
+  .textoCard {
+    font-size: 14px; /* Ajusta o tamanho do texto */
+  }
+}
