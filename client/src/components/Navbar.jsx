@@ -10,22 +10,18 @@ const Navbar = () => {
         <img className="logoHeader" src={Logo} alt="Logo" />
       </Link>
       <div className="menu_itens">
+        <Link className="menu_item" to="/">Home</Link>
+        <Link className="menu_item" to="/guia">Guia de Reciclagem</Link>
+        <Link className="menu_item" to="/faq">Perguntas Frequentes</Link>
+        <Link className="menu_item" to="/sobre-nos">Sobre Nós</Link>
 
-        <a className="menu_item" ><Link to="/">Home</Link></a>
-        <a className="menu_item" ><Link to="/guia">Guia de Reciclagem</Link></a>
-        <a className="menu_item" ><Link to="/faq">Perguntas Frequentes</Link></a>
-        <a className="menu_item" ><Link to="/sobre-nos">Sobre Nós</Link></a>
+        <div className='buttons-container'>
+          <Link id="btnContact" to="/Cadastro">Cadastrar</Link>
+          <Link id="btnContact" to="/Login">Entrar</Link>
+        </div>
 
-        <a id="btnContact">
-          <Link to="/Cadastro">Cadastrar</Link>
-        </a>
-        <a id="btnContact">
-          <Link to="/Login">Entrar</Link>
-        </a>
       </div>
     </nav>
-
-
   )
 }
 
