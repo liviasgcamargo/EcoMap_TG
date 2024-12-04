@@ -39,11 +39,11 @@ function SobreNos() {
                     <h4 className="titulo-sobre-nos">Lívia</h4>
 
                     <div className='card-icon'>
-                        <a href="">
+                        <a href="https://github.com/liviasgcamargo">
                             <img src={Github} alt="" />
                         </a>
 
-                        <a href="">
+                        <a href="https://www.linkedin.com/in/l%C3%ADvia-sanches-gonzaga-de-camargo-861847247/">
                             <img src={Linkedin} alt="" />
                         </a>
                     </div>
@@ -66,11 +66,11 @@ function SobreNos() {
                     <h4 className="titulo-sobre-nos">Rebeca</h4>
 
                     <div className='card-icon'>
-                        <a href="">
+                        <a href="https://github.com/rebcs">
                             <img src={Github} alt="" />
                         </a>
 
-                        <a href="">
+                        <a href="https://www.linkedin.com/in/rebeca-santos-1b9766257/">
                             <img src={Linkedin} alt="" />
                         </a>
                     </div>
@@ -93,11 +93,11 @@ function SobreNos() {
                     <h4 className="titulo-sobre-nos">Renan</h4>
 
                     <div className='card-icon'>
-                        <a href="">
+                        <a href="https://github.com/renan-mion">
                             <img src={Github} alt="" />
                         </a>
 
-                        <a href="">
+                        <a href="https://www.linkedin.com/in/renan-mion/">
                             <img src={Linkedin} alt="" />
                         </a>
                     </div>
@@ -120,12 +120,12 @@ function SobreNos() {
                     <h4 className="titulo-sobre-nos">Sara</h4>
 
                     <div className='card-icon'>
-                        <a href="">
+                        <a href="https://github.com/saragongora">
                             <img src={Github} alt="" />
                         </a>
 
                         <a href="">
-                            <img src={Linkedin} alt="" />
+                            <img src={Linkedin} alt="https://www.linkedin.com/in/sara-gongora-a41aa221a/" />
                         </a>
                     </div>
                 </div>
