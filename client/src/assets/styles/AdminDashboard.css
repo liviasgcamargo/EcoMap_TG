@@ -85,6 +85,14 @@ h2 {
   font-size: 15px;
 }
 
+input[type="text"] {
+  max-width: calc(100% - 12px);
+}
+
+.menu-navegacao {
+  flex-direction: row;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .logoHeader {

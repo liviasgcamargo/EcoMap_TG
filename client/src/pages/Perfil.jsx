@@ -283,14 +283,16 @@ const Perfil = () => {
                                 value={confirmarSenha}
                                 onChange={(e) => setConfirmarSenha(e.target.value)}
                             />
+                            <div className="botoes-alterar-senha">
+                                <button onClick={handleChangePassword}>Salvar Nova Senha</button>
+                                <button onClick={handleCancelChangePassword}>Cancelar</button>
+                            </div>
 
-                            <button onClick={handleChangePassword}>Salvar Nova Senha</button>
-                            <button onClick={handleCancelChangePassword}>Cancelar</button>
                         </div>
                     )}
 
                     {editMode ? (
-                        <div>
+                        <div className="botoes-alterar-perfil">
                             <button onClick={() => { setPasswordVisible(true); handleSave(); }}>Salvar</button>
                             <button onClick={handleCancel}>Cancelar</button>
                         </div>

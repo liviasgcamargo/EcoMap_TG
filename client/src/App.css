@@ -25,6 +25,7 @@ body {
 
 #root {
   height: 100%;
+  width: 100%;
 }
 
 .App {
@@ -435,6 +436,10 @@ body {
 
 .btn-sugeridos {
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Responsividade geral */

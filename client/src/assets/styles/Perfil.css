@@ -11,28 +11,12 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsividade para tamanhos menores */
-@media (max-width: 768px) {
-  .perfil-container {
-    width: 95%; /* Ajusta a largura para telas menores */
-    padding: 15px; /* Reduz o padding */
-  }
-}
-
 .icone-perfil {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   margin-bottom: 10px;
   object-fit: cover;
-}
-
-/* Responsividade para o ícone em telas menores */
-@media (max-width: 768px) {
-  .icone-perfil {
-    width: 100px;
-    height: 100px;
-  }
 }
 
 .perfil-info {
@@ -69,19 +53,18 @@
   font-size: 16px;
 }
 
-/* Ajuste para telas muito pequenas */
-@media (max-width: 480px) {
-  .info-cadastro-principais input,
-  .info-cadastro-principais select,
-  .info-cadastro-principais textarea {
-    flex: 1 1 100%; /* Cada elemento ocupa toda a largura */
-    font-size: 14px;
-  }
+.botoes-alterar-senha {
+  display: flex;
+  gap: 10px;
 }
 
 .info-cadastro-principais textarea {
   height: 80px;
   resize: vertical;
+}
+
+.info-materiais label {
+  font-size: 12px;
 }
 
 .btn-perfil-container {
@@ -107,8 +90,26 @@
   background-color: #2e4224;
 }
 
+.botoes-alterar-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+
 /* Ajuste para botões em telas pequenas */
 @media (max-width: 768px) {
+  .perfil-container {
+    width: 90%; /* Ajusta a largura para telas menores */
+    padding: 15px; /* Reduz o padding */
+  }
+
+  .icone-perfil {
+    width: 100px;
+    height: 100px;
+  }
+
   .btn-perfil {
     padding: 8px 16px;
     font-size: 14px;
@@ -129,9 +130,21 @@
   font-size: 14px; /* Ajusta o tamanho da fonte */
 }
 
-/* Ajuste geral para materiais em telas pequenas */
+.perfil-info button {
+  width: 50%;
+}
+
+/* Ajuste para telas muito pequenas */
 @media (max-width: 480px) {
-  .info-materiais label {
-    font-size: 12px;
+  .perfil-container {
+    width: 80%;
+  }
+
+  .info-cadastro-principais input,
+  .info-cadastro-principais select,
+  .info-cadastro-principais textarea {
+    flex: 1 1 100%; /* Cada elemento ocupa toda a largura */
+    font-size: 14px;
   }
 }
+

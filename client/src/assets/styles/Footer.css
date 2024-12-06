@@ -35,6 +35,7 @@
   margin: 0;
   padding: 0;
   flex-wrap: wrap; /* Faz com que os links quebrem em outra linha se necessário */
+  justify-content: space-between;
 }
 
 .linksUteis a {
@@ -50,6 +51,10 @@
   display: flex;
   gap: 10px;
   cursor: pointer;
+}
+
+.links-responsivos {
+  display: none;
 }
 
 /* Responsividade para telas menores */
@@ -84,11 +89,22 @@
     font-size: 12px; /* Diminui o tamanho do texto */
   }
 
+  
+  .links-responsivos {
+    display: flex;
+
+  }
+
   .linksUteis {
-    gap: 5px; /* Reduz o espaçamento entre links */
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px; /* Reduz o espaçamento entre links */
+    justify-content: center;
   }
 
   .redes_sociais {
     gap: 10px; /* Menor espaçamento entre ícones */
   }
+
 }

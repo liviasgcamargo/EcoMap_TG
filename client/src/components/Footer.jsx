@@ -13,18 +13,13 @@ const Footer = () => {
       <p className='footerP'>© 2024 Ecomap</p>
       <hr className="linhaFooter" />
       <div className="footer-links">
-        <ul className="linksUteis">
-          <li>
-            <a href=""><Link to="/">Home</Link></a>
-          </li>
-          <li>
-            <a href=""><Link to="/sobre-nos">Sobre nós</Link></a>
-          </li>
-          <li>
-          <a href=""><Link to="/perfil-adm">Administrador</Link></a>
-          </li>
-          
-        </ul>
+        <div className="linksUteis">
+          <Link to="/">Home</Link>
+          <Link className='links-responsivos' to="/guia">Guia de reciclagem</Link>
+          <Link className='links-responsivos' to="/faq">Perguntas Frequentes</Link>
+          <Link className='links-responsivos' to="/sobre-nos">Sobre nós</Link>
+          <Link to="/perfil-adm">Administrador</Link>
+        </div>
         <div className="redes_sociais">
           <img src={Facebook} alt="" />
           <img src={Linkedin} alt="" />
