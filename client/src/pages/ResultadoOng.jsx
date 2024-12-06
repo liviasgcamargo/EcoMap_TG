@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import GoogleMap from "../components/GoogleMap";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import BotaoVoltar from "../components/BotaoVoltar";
 
 const ResultadoONG = () => {
     const location = useLocation();

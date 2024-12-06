@@ -5,6 +5,12 @@
     text-align: left;
 }
 
+.btn-validated {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 /* Ajuste para telas menores */
 @media (max-width: 768px) {
     .container-validados {
