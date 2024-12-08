@@ -45,7 +45,7 @@ const ResultadoPontoColeta = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        Ver no mapa
+                                        VER NO MAPA
                                     </a>
                                 </div>
                             ))

@@ -54,7 +54,7 @@ const ResultadoEmpresa = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        Ver no mapa
+                                        VER NO MAPA
                                     </a>
                                     <a
                                         href={`https://wa.me/55${empresa.telefone}`}

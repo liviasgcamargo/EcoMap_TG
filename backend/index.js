@@ -560,18 +560,6 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
     }
 });
 
-// app.delete("/excluir-conta", authenticateToken, async (req, res) => {
-//   const userId = req.user.id;
-
-//     try {
-//         await bd.execute("DELETE FROM Usuario WHERE id_usuario = ?", [userId]);
-//         res.json({ message: "Conta excluída com sucesso!" });
-//     } catch (error) {
-//         console.error("Erro ao excluir conta:", error);
-//         res.status(500).json({ error: "Erro ao excluir conta" });
-//     }
-// });
-
 app.delete("/excluir-conta", authenticateToken, async (req, res) => {
   const userId = req.user.id;
 
@@ -588,26 +576,6 @@ app.delete("/excluir-conta", authenticateToken, async (req, res) => {
       res.status(500).json({ error: "Erro ao excluir conta" });
   }
 });
-
-
-// Endpoint para obter senha real
-// app.get("/senha-decifrada", authenticateToken, async (req, res) => {
-//   const userId = req.user.id;
-
-//   try {
-//       const [rows] = await bd.execute("SELECT senha FROM Usuario WHERE id_usuario = ?", [userId]);
-
-//       if (rows.length === 0) {
-//           return res.status(404).json({ error: "Usuário não encontrado" });
-//       }
-
-//       // Retorna a senha real
-//       res.json({ senha: rows[0].senha });
-//   } catch (error) {
-//       console.error("Erro ao buscar senha:", error);
-//       res.status(500).json({ error: "Erro ao buscar senha" });
-//   }
-// });
 
 app.post("/alterar-senha", authenticateToken, async (req, res) => {
   const userId = req.user.id; // O ID do usuário autenticado
@@ -662,9 +630,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-
-// backend/index.js
-
 // Endpoint para buscar pontos validados
 app.get("/pontos-validados", async (req, res) => {
   try {
@@ -683,7 +648,6 @@ app.get("/pontos-validados", async (req, res) => {
   }
 });
 
-// Endpoint para atualizar um ponto de coleta
 // Endpoint para atualizar um ponto de coleta com validação de endereço
 app.put("/atualizar-ponto/:id", async (req, res) => {
   const { id } = req.params;
