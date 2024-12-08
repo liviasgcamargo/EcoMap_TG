@@ -177,6 +177,7 @@ const Cadastro = () => {
                     <label>Tipos de Material Aceito:</label>
                     {categoria === "ONG" && (
                         <div className="material-options">
+                            <label><input type="checkbox" value="Papel" onChange={handleCheckboxChange} /> Papel</label>
                             <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
                             <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
                             <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
@@ -193,6 +194,7 @@ const Cadastro = () => {
 
                     {categoria === "Empresa" && (
                         <div className="material-options">
+                            <label><input type="checkbox" value="Papel" onChange={handleCheckboxChange} /> Papel</label>
                             <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
                             <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
                             <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>

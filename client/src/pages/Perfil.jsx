@@ -24,8 +24,8 @@ const Perfil = () => {
         "RS", "RO", "RR", "SC", "SP", "SE", "TO"
     ];
 
-    const materiaisDisponiveis = ["Papelão", "Plástico", "Vidro", "Metal", "Orgânico", "Eletrônico"];
-    const materiaisDisponiveisOng = ["Papelão", "Plástico", "Vidro", "Metal", "Orgânico", "Eletrônico", "Roupa", "Alimento", "Brinquedo", "Produto de Higiene", "Móveis"];
+    const materiaisDisponiveis = ["Papel", "Papelão", "Plástico", "Vidro", "Metal", "Orgânico", "Eletrônico"];
+    const materiaisDisponiveisOng = ["Papel", "Papelão", "Plástico", "Vidro", "Metal", "Orgânico", "Eletrônico", "Roupa", "Alimento", "Brinquedo", "Produto de Higiene", "Móveis"];
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -136,7 +136,7 @@ const Perfil = () => {
         if (status === 0) {
             return "Sua Organização está sendo avaliada pela plataforma.";
         }
-        if (status != 1 || status != 0) {
+        if (status !== 1 || status !== 0) {
             return "Algumas informações sobre a sua Organização não estão corretas. Verifique e atualize suas informações para poder ter sua Organização disponível para consulta.";
         }
     };

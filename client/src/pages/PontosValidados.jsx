@@ -11,7 +11,7 @@ const PontosValidados = () => {
         "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
         "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
     ];
-    const tiposMateriais = ["Papelão", "Plástico", "Vidro", "Metal", "Orgânico", "Eletrônico"];
+    const tiposMateriais = ["Papel", "Papelão", "Plástico", "Vidro", "Metal", "Orgânico", "Eletrônico"];
 
     const fetchPontosValidados = async () => {
         try {

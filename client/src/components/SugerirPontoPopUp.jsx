@@ -66,6 +66,9 @@ const SugerirPontoPopUp = ({ onClose }) => {
                 <label>Tipos de Material:</label>
                 <div className="material-checkboxes">
                     <label>
+                        <input type="checkbox" value="12" onChange={handleMaterialChange} /> Papel
+                    </label>
+                    <label>
                         <input type="checkbox" value="1" onChange={handleMaterialChange} /> Papelão
                     </label>
                     <label>
