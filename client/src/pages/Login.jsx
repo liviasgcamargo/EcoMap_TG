@@ -30,7 +30,7 @@ const Login = () => {
             localStorage.setItem("token", response.data.token);
 
             // Redireciona para a página de perfil após o login bem-sucedido
-            navigate("/perfil");
+            window.location.assign("/perfil");
         } catch (error) {
             console.error("Erro ao fazer login:", error);
             setError("Email ou senha incorretos.");
