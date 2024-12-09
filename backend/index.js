@@ -506,7 +506,7 @@ app.get("/perfil", authenticateToken, async (req, res) => {
 
 app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
   const userId = req.user.id;
-  const { email, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
+  const { email, nome_org, CNPJ, telefone, descricao, tipo_servico, tipo_transacao, endereco, cep, cidade, estado, materiais } = req.body;
 
   try {
     await bd.execute(
@@ -517,26 +517,28 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
                 telefone = ?, 
                 descricao = ?, 
                 tipo_servico = ?, 
+                tipo_transacao = ?,
                 endereco = ?, 
                 cep = ?, 
                 cidade = ?, 
                 estado = ?, 
                 status_usuario = FALSE 
             WHERE id_usuario = ?`,
-      [
-        email,
-        nome_org,
-        CNPJ,
-        telefone,
-        descricao,
-        tipo_servico,
-        endereco,
-        cep,
-        cidade,
-        estado,
-        userId,
-      ]
-    );
+            [
+                email,
+                nome_org,
+                CNPJ,
+                telefone,
+                descricao,
+                tipo_servico,
+                tipo_transacao, 
+                endereco,
+                cep,
+                cidade,
+                estado,
+                userId,
+            ]
+        );
 
     // Verifique se 'materiais' está definido e é um array
     if (!Array.isArray(materiais)) {

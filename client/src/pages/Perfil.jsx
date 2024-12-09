@@ -198,6 +198,17 @@ const Perfil = () => {
                             <option value="Não Retira">Não Retira</option>
                         </select>
 
+                        
+                        {perfil.fk_id_categoria === 1 && (
+                            <>
+                            <label>Tipo de Transação:</label>
+                            <select name="tipo_transacao" value={perfil.tipo_transacao || ''} onChange={handleChange} disabled={!editMode}>
+                                <option value="Compra">Compra</option>
+                                <option value="Vende">Vende</option>
+                            </select>
+                            </>
+                        )}
+
                         <label>Endereço:</label>
                         <input type="text" name="endereco" value={perfil.endereco || ''} onChange={handleChange} disabled={!editMode} />
                     </div>
