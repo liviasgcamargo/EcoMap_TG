@@ -502,7 +502,7 @@ app.get("/perfil", authenticateToken, async (req, res) => {
 
 app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
   const userId = req.user.id;
-    const { email, nome_org, CNPJ, telefone, descricao, tipo_servico, endereco, cep, cidade, estado, materiais } = req.body;
+    const { email, nome_org, CNPJ, telefone, descricao, tipo_servico, tipo_transacao, endereco, cep, cidade, estado, materiais } = req.body;
 
     try {
         await bd.execute(
@@ -513,6 +513,7 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
                 telefone = ?, 
                 descricao = ?, 
                 tipo_servico = ?, 
+                tipo_transacao = ?,
                 endereco = ?, 
                 cep = ?, 
                 cidade = ?, 
@@ -526,6 +527,7 @@ app.put("/atualizar-perfil", authenticateToken, async (req, res) => {
                 telefone,
                 descricao,
                 tipo_servico,
+                tipo_transacao, 
                 endereco,
                 cep,
                 cidade,
