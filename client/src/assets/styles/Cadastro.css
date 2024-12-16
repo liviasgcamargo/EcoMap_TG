@@ -1,7 +1,6 @@
 /* Estilo padrão (para telas maiores) */
 .cadastro-container {
-  width: 600px;
-  max-width: 800px;
+  width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -141,10 +140,28 @@ button[type="submit"] {
   margin-top: 1.3rem;
 }
 
+.containerBotoes button {
+  align-items: end;
+  width: 150px;
+  height: 45px;
+  color: #ffffff;
+  background-color: #55703f;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: none;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  margin-top: 8px;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .cadastro-container {
-    max-width: 350px;
+    width: 400px;
   }
 
   input[type="text"] {
@@ -207,6 +224,7 @@ button[type="submit"] {
 /* Responsividade para telas pequenas (smartphones) */
 @media (max-width: 480px) {
   .cadastro-container {
+    width: 300px;
     padding: 10px;
   }
 

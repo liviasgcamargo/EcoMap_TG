@@ -87,14 +87,14 @@ body {
 
 .btnPainel {
   /* Botões de busca*/
-  width: 155px;
+  width: 150px;
   height: 45px;
   border-radius: 9px;
   background-color: #55703f;
   color: #ffffff;
   border-style: none;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
   margin: 0px 0px 15px 20px;
   cursor: pointer;
@@ -227,6 +227,7 @@ body {
 }
 
 .suggested-point {
+  width: 600px;
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #ddd;
@@ -242,13 +243,14 @@ body {
 .btn-sugeridos {
   display: flex;
   flex-direction: row;
+  gap: 20px;
   align-self: center;
 }
 
 .suggested-point button {
-  margin-right: 10px;
-  padding: 8px 12px;
-  font-size: 14px;
+  width: 150px;
+  height: 45px;
+  font-size: 18px;
   color: #fff;
   background-color: #55703f;
   border: none;
@@ -444,9 +446,22 @@ body {
 .btn-sugeridos {
   color: white;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: row !important;
+  justify-content: center !important;
   gap: 10px;
+}
+
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.action-buttons button {
+  width: 150px;
+  font-size: 18px;
 }
 
 /* Responsividade geral */
@@ -506,13 +521,9 @@ body {
   }
 
   .btnPainel {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btnPainel button {
-    width: 90%;
-    margin: 5px auto;
+    width: 120px;
+    height: 40px;
+    font-size: 12px;
   }
 
   .popup-content {
@@ -539,9 +550,19 @@ body {
     font-size: 20px;
   }
 
-  .suggested-point button {
-    width: 90%;
-    margin: 5px auto;
+  .btn-sugeridos button {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .suggested-point {
+    width: 400px;
+  }
+
+  .action-buttons button {
+    width: 120px;
+    font-size: 14px;
   }
 }
 
@@ -560,16 +581,19 @@ body {
     font-size: 14px;
   }
 
-  .btnPainel {
+  .btnPrincipais {
+    margin: 0;
     width: 100%;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    font-size: 8px;
+    padding-right: auto;
+    gap: 10px;
   }
 
-  .btnPainel button {
-    width: 100%;
-    margin: 5px 0;
+  .btnPainel {
+    width: 100px;
+    margin: 0;
+    font-size: 10px;
   }
 
   .mapa {
@@ -581,7 +605,15 @@ body {
   }
 
   .suggested-points-container {
-    width: 100%;
+  }
+
+  .suggested-point {
+    width: 250px;
+    justify-self: center;
+  }
+
+  .suggested-point button {
+    font-size: 12px;
   }
 
   .popup-content {
@@ -597,7 +629,8 @@ body {
     gap: 5px;
   }
 
-  .suggested-point button {
-    font-size: 12px;
+  .action-buttons button {
+    width: 100px;
+    font-size: 14px;
   }
 }

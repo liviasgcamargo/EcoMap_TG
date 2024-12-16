@@ -382,9 +382,13 @@ const Cadastro = () => {
                                 onChange={handleChange}
                                 required
                             />
-                            <button className="botao-proximo" type="button" onClick={nextStep}>
-                                Próximo
-                            </button>
+
+                            <div className="container-botoes">
+                                <button className="botao-proximo" type="button" onClick={nextStep}>
+                                    Próximo
+                                </button>
+                            </div>
+
                         </div>
                     )}
 
@@ -550,12 +554,12 @@ const Cadastro = () => {
                             </select>
 
                             <div className="containerBotoes">
-                            <button type="button" onClick={prevStep}>
-                                Voltar
-                            </button>
-                            <button className="botao-cadastro" type="submit">Cadastrar</button>
+                                <button type="button" onClick={prevStep}>
+                                    Voltar
+                                </button>
+                                <button className="botao-cadastro" type="submit">Cadastrar</button>
                             </div>
-                            
+
                         </div>
                     )}
                 </form>
