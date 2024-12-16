@@ -343,7 +343,7 @@ const Cadastro = () => {
                     </div>
 
                     {currentStep === 1 && (
-                        <div>
+                        <div className="container-form">
                             <label>
                                 Tipo de Cadastro:
                                 <select
@@ -382,7 +382,7 @@ const Cadastro = () => {
                                 onChange={handleChange}
                                 required
                             />
-                            <button type="button" onClick={nextStep}>
+                            <button className="botao-proximo" type="button" onClick={nextStep}>
                                 Próximo
                             </button>
                         </div>
@@ -549,10 +549,13 @@ const Cadastro = () => {
                                 <option value="TO">Tocantins</option>
                             </select>
 
+                            <div className="containerBotoes">
                             <button type="button" onClick={prevStep}>
                                 Voltar
                             </button>
-                            <button type="submit">Cadastrar</button>
+                            <button className="botao-cadastro" type="submit">Cadastrar</button>
+                            </div>
+                            
                         </div>
                     )}
                 </form>

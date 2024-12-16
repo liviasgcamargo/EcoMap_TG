@@ -47,7 +47,9 @@ const AdminLogin = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Digite a senha"
                     />
-                    <button type="submit">Entrar</button>
+                    <div className="containerBotoes">
+                        <button type="submit">Entrar</button>
+                    </div>
                 </form>
             </div>
 
