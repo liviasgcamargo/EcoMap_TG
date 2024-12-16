@@ -84,6 +84,64 @@ button[type="submit"] {
   font-size: 12px;
 }
 
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  position: relative;
+  padding: 10px 20px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.step .circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.step.active .circle {
+  background-color: #55703f;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.step-indicator::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background-color: #ccc;
+  z-index: -1;
+}
+
+.step.active ~ .step-indicator::before {
+  background-color: #55703f;
+}
+
+/* Remove a borda azul quando o select está focado */
+.multi-select .css-t3ipsp-control {
+  box-shadow: none !important;
+  border-color: #ccc !important;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   input[type="text"] {
@@ -174,6 +232,11 @@ button[type="submit"] {
     font-size: 10px;
     line-height: 1.4;
   }
+}
+
+.divBotoes {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Responsividade para telas médias (tablets) */

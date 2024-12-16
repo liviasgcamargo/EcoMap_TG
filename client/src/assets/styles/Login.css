@@ -10,7 +10,7 @@
 
 h2 {
   font-size: 24px;
-  color: #405A41;
+  color: #405a41;
   margin: 20px;
   text-align: center; /* Altera para centralizado em dispositivos menores */
   font-weight: bold;
@@ -22,7 +22,7 @@ form {
   max-width: 600px;
   width: 100%;
   height: auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 8px;
   padding: 1em;
   margin-top: 20px;
@@ -46,7 +46,7 @@ input[type="email"],
 input[type="password"] {
   width: calc(100% - 12px);
   height: 50px;
-  padding: .65em;
+  padding: 0.65em;
   border-radius: 5px;
   margin-bottom: 1.3em;
   border: 1px solid #ccc;
@@ -58,7 +58,7 @@ button {
   width: 150px;
   height: 45px;
   color: #ffffff;
-  background-color: #405a41;
+  background-color: #55703f;
   text-align: center;
   border-radius: 8px;
   box-shadow: none;
@@ -75,7 +75,7 @@ button[type="submit"] {
   width: 100%; /* Altera para 100% em dispositivos menores */
   height: 45px;
   color: #ffffff;
-  background-color: #405a41;
+  background-color: #55703f;
   text-align: center;
   border-radius: 8px;
   box-shadow: none;
