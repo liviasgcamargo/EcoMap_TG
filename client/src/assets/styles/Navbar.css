@@ -90,22 +90,6 @@ a.btn-sair {
   }
 }
 
-@media (max-width: 573px) {
-  #btnContact {
-    width: auto;
-    flex: 1;
-    margin: 0 2px;
-    font-size: 12px;
-    height: 30px;
-    padding: 5px 8px;
-  }
-
-  .buttons-container {
-    display: flex;
-    justify-content: space-around;
-  }
-}
-
 /* Responsividade para telas muito pequenas (ex.: smartphones) */
 @media (max-width: 480px) {
   .menu_navegacao {
@@ -133,10 +117,17 @@ a.btn-sair {
   }
 
   #btnContact {
+    width: auto;
+    flex: 1;
+    margin: 0 2px;
     font-size: 12px;
-    width: 90%;
-    max-width: 120px;
-    height: 35px;
+    height: 30px;
+    padding: 5px 8px;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-around;
   }
 }
 

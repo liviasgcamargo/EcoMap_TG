@@ -34,6 +34,13 @@ body {
   min-height: 100vh; /* Força o App a ocupar a altura da tela */
 }
 
+.container-total {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .conteudo-footer {
   display: flex;
   flex-direction: column;
@@ -545,11 +552,12 @@ body {
   }
 
   .pontoProximo {
-    font-size: 24px;
+    font-size: 22px;
+    padding-left: 10px;
   }
 
   .encontrarPontos {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .btnPainel {

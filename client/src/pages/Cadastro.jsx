@@ -322,7 +322,7 @@ const Cadastro = () => {
     };
 
     return (
-        <div>
+        <div className="container-total">
             <Navbar />
             <div className="cadastro-container">
                 <div className="texto-acima">
