@@ -232,6 +232,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Select from 'react-select';
 import "../assets/styles/Cadastro.css";
 
 const Cadastro = () => {
@@ -255,6 +256,31 @@ const Cadastro = () => {
         tipo_transacao: "Compra",
     });
 
+    const materialOptionsONG = [
+        { value: "Papel", label: "Papel" },
+        { value: "Papelao", label: "Papelão" },
+        { value: "Plastico", label: "Plástico" },
+        { value: "Vidro", label: "Vidro" },
+        { value: "Metal", label: "Metal" },
+        { value: "Organico", label: "Orgânico" },
+        { value: "Eletronico", label: "Eletrônico" },
+        { value: "Roupa", label: "Roupa" },
+        { value: "Alimento", label: "Alimento" },
+        { value: "Brinquedo", label: "Brinquedo" },
+        { value: "Produto de Higiene", label: "Produto de Higiene" },
+        { value: "Moveis", label: "Móveis" },
+    ];
+
+    const materialOptionsEmpresa = [
+        { value: "Papel", label: "Papel" },
+        { value: "Papelao", label: "Papelão" },
+        { value: "Plastico", label: "Plástico" },
+        { value: "Vidro", label: "Vidro" },
+        { value: "Metal", label: "Metal" },
+        { value: "Organico", label: "Orgânico" },
+        { value: "Eletronico", label: "Eletrônico" },
+    ];
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -263,13 +289,10 @@ const Cadastro = () => {
         }));
     };
 
-    const handleCheckboxChange = (e) => {
-        const { value, checked } = e.target;
+    const handleMaterialChange = (selectedOptions) => {
         setFormData((prevData) => ({
             ...prevData,
-            materiais: checked
-                ? [...prevData.materiais, value]
-                : prevData.materiais.filter((item) => item !== value),
+            materiais: selectedOptions ? selectedOptions.map(option => option.value) : [],
         }));
     };
 
@@ -384,60 +407,46 @@ const Cadastro = () => {
                             />
 
                             <label>Descrição:</label>
-                            {categoria === "Empresa" && (
-                                <label>
-                                    <p>*Faça uma breve descrição da {categoria} e quais materiais compra e/ou vende.</p>
-                                    <textarea className="text-descricao" name="descricao" value={formData.descricao} onChange={handleChange} />
-                                </label>
-                            )}
-
-                            {categoria === "ONG" && (
-                                <label>
-                                    <p>*Faça uma breve descrição da {categoria} e preferência de materiais.</p>
-                                    <textarea className="text-descricao" name="descricao" value={formData.descricao} onChange={handleChange} />
-                                </label>
-                            )}
+                            <textarea
+                                className="text-descricao"
+                                name="descricao"
+                                value={formData.descricao}
+                                placeholder={categoria === "ONG" ? "Descrição e preferência de materiais." : "Descrição e materiais disponíveis para compra/venda."}
+                                onChange={handleChange}
+                            />
 
                             <label className="tipoServico">Tipo de Serviço:</label>
-                            <select className="form-cadastro-dropdown" name="tipo_servico" value={formData.tipo_servico} onChange={handleChange}>
+                            <select
+                                className="form-cadastro-dropdown"
+                                name="tipo_servico"
+                                value={formData.tipo_servico}
+                                onChange={handleChange}
+                            >
                                 <option value="Retira no Local">Retira no Local</option>
                                 <option value="Não Retira">Não Retira</option>
                             </select>
 
                             <label>Tipos de Material Aceito:</label>
-                            {categoria === "ONG" && (
-                                <div className="material-options">
-                                    <label><input type="checkbox" value="Papel" onChange={handleCheckboxChange} /> Papel</label>
-                                    <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
-                                    <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
-                                    <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
-                                    <label><input type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
-                                    <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
-                                    <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
-                                    <label><input type="checkbox" value="Roupa" onChange={handleCheckboxChange} /> Roupa</label>
-                                    <label><input type="checkbox" value="Alimento" onChange={handleCheckboxChange} /> Alimento</label>
-                                    <label><input type="checkbox" value="Brinquedo" onChange={handleCheckboxChange} /> Brinquedo</label>
-                                    <label><input type="checkbox" value="Produto de Higiene" onChange={handleCheckboxChange} /> Produto de Higiene</label>
-                                    <label><input type="checkbox" value="Moveis" onChange={handleCheckboxChange} /> Móveis</label>
-                                </div>
-                            )}
+                            <Select
+                                isMulti
+                                options={categoria === "ONG" ? materialOptionsONG : materialOptionsEmpresa}
+                                className="multi-select"
+                                placeholder="Selecione os materiais"
+                                onChange={handleMaterialChange}
+                                value={
+                                    formData.materiais.map((material) => ({ value: material, label: material }))
+                                }
+                            />
 
                             {categoria === "Empresa" && (
-                                <div className="material-options">
-                                    <label><input type="checkbox" value="Papel" onChange={handleCheckboxChange} /> Papel</label>
-                                    <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
-                                    <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
-                                    <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
-                                    <label><input type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
-                                    <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
-                                    <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
-                                </div>
-                            )}
-
-                            {categoria === "Empresa" && (
-                                <label className="tipo_transacao" >
+                                <label className="tipo_transacao">
                                     Tipo de Transação:
-                                    <select className="form-tipo-transacao" name="tipo_transacao" value={formData.tipo_transacao} onChange={handleChange}>
+                                    <select
+                                        className="form-tipo-transacao"
+                                        name="tipo_transacao"
+                                        value={formData.tipo_transacao}
+                                        onChange={handleChange}
+                                    >
                                         <option value="Compra">Compra</option>
                                         <option value="Vende">Venda</option>
                                         <option value="Compra e Vende">Compra e Venda</option>
@@ -456,15 +465,35 @@ const Cadastro = () => {
 
                     {currentStep === 3 && (
                         <div>
-
                             <label>Endereço:</label>
-                            <input type="text" name="endereco" value={formData.endereco} placeholder="Exemplo: Rua das Margaridas 45 Jardim das Flores" onChange={handleChange} required />
+                            <input
+                                type="text"
+                                name="endereco"
+                                value={formData.endereco}
+                                placeholder="Exemplo: Rua das Margaridas 45 Jardim das Flores"
+                                onChange={handleChange}
+                                required
+                            />
 
                             <label>CEP:</label>
-                            <input type="text" name="cep" value={formData.cep} placeholder="Exemplo: 10000-000" onChange={handleChange} required />
+                            <input
+                                type="text"
+                                name="cep"
+                                value={formData.cep}
+                                placeholder="Exemplo: 10000-000"
+                                onChange={handleChange}
+                                required
+                            />
 
                             <label>Cidade:</label>
-                            <input type="text" name="cidade" value={formData.cidade} placeholder="Exemplo: Sorocaba" onChange={handleChange} required />
+                            <input
+                                type="text"
+                                name="cidade"
+                                value={formData.cidade}
+                                placeholder="Exemplo: Sorocaba"
+                                onChange={handleChange}
+                                required
+                            />
 
                             <label htmlFor="estado">Estado</label>
                             <select
@@ -515,7 +544,7 @@ const Cadastro = () => {
             </div>
 
             <Footer />
-        </div >
+        </div>
     );
 };
 
