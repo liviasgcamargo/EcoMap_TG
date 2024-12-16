@@ -330,6 +330,18 @@ const Cadastro = () => {
                 </div>
 
                 <form onSubmit={handleSubmit}>
+                    <div className="step-indicator">
+                        <div className={`step ${currentStep >= 1 ? "active" : ""}`}>
+                            <div className="circle">1</div>
+                        </div>
+                        <div className={`step ${currentStep >= 2 ? "active" : ""}`}>
+                            <div className="circle">2</div>
+                        </div>
+                        <div className={`step ${currentStep >= 3 ? "active" : ""}`}>
+                            <div className="circle">3</div>
+                        </div>
+                    </div>
+
                     {currentStep === 1 && (
                         <div>
                             <label>
@@ -454,12 +466,15 @@ const Cadastro = () => {
                                 </label>
                             )}
 
-                            <button type="button" onClick={prevStep}>
-                                Voltar
-                            </button>
-                            <button type="button" onClick={nextStep}>
-                                Próximo
-                            </button>
+                            <div className="containerBotoes">
+                                <button type="button" onClick={prevStep}>
+                                    Voltar
+                                </button>
+                                <button type="button" onClick={nextStep}>
+                                    Próximo
+                                </button>
+                            </div>
+
                         </div>
                     )}
 
