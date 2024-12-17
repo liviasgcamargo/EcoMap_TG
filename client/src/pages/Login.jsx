@@ -60,11 +60,14 @@ const Login = () => {
                         onChange={(e) => setSenha(e.target.value)}
                         required
                     />
-                    
+
                     <p className="cadastro-redirect">
                         Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
                     </p>
-                    <button type="submit">Entrar</button>
+                    <div className="container-botoes">
+                        <button type="submit">Entrar</button>
+                    </div>
+
                 </form>
 
                 {error && <p className="error-message">{error}</p>}

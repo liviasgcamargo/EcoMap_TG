@@ -93,8 +93,39 @@ input[type="text"] {
   flex-direction: row;
 }
 
+.botao-voltar-container {
+  padding-right: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.botao-voltar-container button {
+  align-items: end;
+  width: 150px;
+  height: 45px;
+  color: #ffffff;
+  background-color: #55703f;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: none;
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  border: none;
+  margin-top: 20px;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .botao-voltar-container button {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+  }
+
   .logoHeader {
     margin-left: 20px; /* Reduce margin for smaller screens */
     flex-wrap: wrap;
@@ -128,6 +159,11 @@ input[type="text"] {
 }
 
 @media (max-width: 480px) {
+  .botao-voltar-container button {
+    width: 100px;
+    font-size: 14px;
+  }
+
   .logoHeader {
     flex-direction: column;
     align-items: center;
@@ -142,15 +178,11 @@ input[type="text"] {
   }
 
   .dashboard-container {
-    flex-direction: column;
     align-items: center;
-    gap: 15px;
   }
 
   .btn-dashboard {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
+    height: 100px;
     padding: 15px;
   }
 

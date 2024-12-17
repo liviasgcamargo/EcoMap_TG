@@ -21,10 +21,10 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className="container-total">
             <Navbar />
 
-            <>
+            <div>
                 <div className="painelCentral">
                     <h1 className="pontoProximo">
                         Encontre o ponto mais <br /> próximo de você
@@ -47,7 +47,7 @@ const Home = () => {
                         quero comprar <br /> ou vender
                     </button>
                 </div>
-            </>
+            </div>
 
             {activePopup === "descarte" && <BuscarPontoPopUp onClose={closePopup} />}
             {activePopup === "doacao" && <BuscarOngPopUp onClose={closePopup} />}

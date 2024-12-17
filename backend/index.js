@@ -40,11 +40,7 @@ const bd = mysql.createPool({
 export default bd;
 
 app.use(express.json());
-app.use(cors({
-  origin: 'https://ecomap.lat', // Permita apenas seu domínio frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
-}));
+app.use(cors());
 
 app.use("/api", userRoutes);
 
