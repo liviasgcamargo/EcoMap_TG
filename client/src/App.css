@@ -100,6 +100,10 @@ body {
   cursor: pointer;
 }
 
+.btnPainel:hover {
+  background-color: #2a4f2d;
+}
+
 .btnPrincipais {
   /* Container onde estão os botões de busca */
   display: flex;

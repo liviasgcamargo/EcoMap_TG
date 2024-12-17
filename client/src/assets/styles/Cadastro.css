@@ -158,6 +158,10 @@ button[type="submit"] {
   margin-top: 8px;
 }
 
+.containerBotoes button:hover {
+  background-color: #2a4f2d;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .cadastro-container {
