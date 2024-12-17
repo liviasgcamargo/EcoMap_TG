@@ -64,7 +64,7 @@ const Login = () => {
                     <p className="cadastro-redirect">
                         Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
                     </p>
-                    <div className="container-botoes">
+                    <div className="containerBotoes">
                         <button type="submit">Entrar</button>
                     </div>
 

@@ -383,7 +383,7 @@ const Cadastro = () => {
                                 required
                             />
 
-                            <div className="container-botoes">
+                            <div className="containerBotoes">
                                 <button className="botao-proximo" type="button" onClick={nextStep}>
                                     Próximo
                                 </button>
