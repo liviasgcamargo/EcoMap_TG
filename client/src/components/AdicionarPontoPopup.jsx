@@ -1,6 +1,6 @@
-// AdicionarPontoPopup.js
 import React, { useState } from "react";
 import axios from "axios";
+import Select from "react-select";
 import { googleMapsApiKey } from "./ChaveAPIGoogleMaps";
 
 const AdicionarPontoPopup = ({ onClose }) => {
@@ -10,16 +10,19 @@ const AdicionarPontoPopup = ({ onClose }) => {
     const [estado, setEstado] = useState("");
     const [materiais, setMateriais] = useState([]);
 
-    const handleCheckboxChange = (event) => {
-        const { value, checked } = event.target;
-        setMateriais((prev) =>
-            checked ? [...prev, value] : prev.filter((item) => item !== value)
-        );
-    };
+    const materiaisOptions = [
+        { value: "Papel", label: "Papel" },
+        { value: "Papelao", label: "Papelão" },
+        { value: "Plastico", label: "Plástico" },
+        { value: "Vidro", label: "Vidro" },
+        { value: "Metal", label: "Metal" },
+        { value: "Organico", label: "Orgânico" },
+        { value: "Eletronico", label: "Eletrônico" },
+    ];
 
     const handleAdicionarPonto = async () => {
         const enderecoCompleto = `${endereco}, ${cidade}, ${estado}, ${cep}`;
-        
+
         try {
             // Valida o endereço usando a API de Geocoding do Google Maps
             const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(enderecoCompleto)}&key=${googleMapsApiKey}`;
@@ -28,7 +31,7 @@ const AdicionarPontoPopup = ({ onClose }) => {
             if (geocodeResponse.data.status === "OK") {
                 const location = geocodeResponse.data.results[0].geometry.location;
                 const enderecoFormatado = geocodeResponse.data.results[0].formatted_address;
-                
+
                 // Extraímos detalhes específicos do endereço (cidade, estado, etc.)
                 const addressComponents = geocodeResponse.data.results[0].address_components;
                 const cidade = addressComponents.find(component => component.types.includes("administrative_area_level_2"))?.long_name || "";
@@ -43,7 +46,7 @@ const AdicionarPontoPopup = ({ onClose }) => {
                     estado: estado,
                     latitude: location.lat,
                     longitude: location.lng,
-                    materiais,
+                    materiais: materiais.map((material) => material.value), // Extrai os valores selecionados
                 });
 
                 alert("Ponto de coleta adicionado com sucesso!");
@@ -64,7 +67,7 @@ const AdicionarPontoPopup = ({ onClose }) => {
                 <h1 className="popup-title">Adicionar Novo Ponto de Coleta</h1>
                 <label>Endereço:</label>
                 <input type="text" value={endereco} onChange={(e) => setEndereco(e.target.value)} />
-                
+
                 <label>CEP:</label>
                 <input type="text" value={cep} onChange={(e) => setCep(e.target.value)} />
 
@@ -75,17 +78,16 @@ const AdicionarPontoPopup = ({ onClose }) => {
                 <input type="text" value={estado} onChange={(e) => setEstado(e.target.value)} />
 
                 <label>Tipos de Material Aceito:</label>
-                <div className="material-popup">
-                    <label><input type="checkbox" value="Papel" onChange={handleCheckboxChange} /> Papel</label>
-                    <label><input type="checkbox" value="Papelao" onChange={handleCheckboxChange} /> Papelão</label>
-                    <label><input type="checkbox" value="Plastico" onChange={handleCheckboxChange} /> Plástico</label>
-                    <label><input type="checkbox" value="Vidro" onChange={handleCheckboxChange} /> Vidro</label>
-                    <label><input type="checkbox" value="Metal" onChange={handleCheckboxChange} /> Metal</label>
-                    <label><input type="checkbox" value="Organico" onChange={handleCheckboxChange} /> Orgânico</label>
-                    <label><input type="checkbox" value="Eletronico" onChange={handleCheckboxChange} /> Eletrônico</label>
-                </div>
+                <Select
+                    isMulti
+                    options={materiaisOptions}
+                    value={materiais}
+                    onChange={setMateriais}
+                    className="material-select"
+                    placeholder="Selecione os materiais..."
+                />
 
-                <button onClick={handleAdicionarPonto}>ADICIONAR</button>
+                <button className="btn-add-ponto" onClick={handleAdicionarPonto}>ADICIONAR</button>
             </div>
         </div>
     );

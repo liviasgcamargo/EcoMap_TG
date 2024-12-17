@@ -1,22 +1,36 @@
-// BuscarOngPopUp.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 import { googleMapsApiKey } from "./ChaveAPIGoogleMaps";
 
 const BuscarOngPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
-    const [serviceType, setServiceType] = useState("Retira no Local");
+    const [serviceType, setServiceType] = useState(null);
     const navigate = useNavigate();
 
-    const handleMaterialChange = (event) => {
-        const { value, checked } = event.target;
-        setMaterials((prevMaterials) =>
-            checked ? [...prevMaterials, value] : prevMaterials.filter((item) => item !== value)
-        );
-    };
+    // Opções para React Select
+    const materialOptions = [
+        { value: "12", label: "Papel" },
+        { value: "1", label: "Papelão" },
+        { value: "2", label: "Plástico" },
+        { value: "3", label: "Vidro" },
+        { value: "4", label: "Metal" },
+        { value: "5", label: "Orgânico" },
+        { value: "6", label: "Eletrônico" },
+        { value: "7", label: "Roupa" },
+        { value: "8", label: "Alimento" },
+        { value: "9", label: "Brinquedo" },
+        { value: "10", label: "Produto de Higiene" },
+        { value: "11", label: "Móveis" },
+    ];
+
+    const serviceTypeOptions = [
+        { value: "Retira no Local", label: "Retira no Local" },
+        { value: "Não Retira", label: "Não Retira" },
+    ];
 
     const handleSearch = async () => {
         try {
@@ -32,12 +46,12 @@ const BuscarOngPopUp = ({ onClose }) => {
                 latitude: lat,
                 longitude: lng,
                 raio: radius,
-                materiais: materials,
-                tipoServico: serviceType,
+                materiais: materials.map((material) => material.value), // Extrai valores dos materiais
+                tipoServico: serviceType?.value, // Extrai o valor selecionado
             });
 
             // Redireciona para a página de resultados com os dados obtidos
-            navigate("/resultados-ongs", { state: { resultados: response.data, center: {lat, lng}, raio: radius}});
+            navigate("/resultados-ongs", { state: { resultados: response.data, center: { lat, lng }, raio: radius } });
         } catch (error) {
             console.error("Erro ao buscar ONGs próximas:", error);
         }
@@ -50,7 +64,7 @@ const BuscarOngPopUp = ({ onClose }) => {
                     &times;
                 </span>
                 <div className="popup-content-title">
-                <h1>Buscar ONGs</h1>
+                    <h1>Buscar ONGs</h1>
                 </div>
                 <label>Endereço:</label>
                 <input
@@ -66,67 +80,22 @@ const BuscarOngPopUp = ({ onClose }) => {
                     <option value={20}>20 km</option>
                 </select>
                 <label>Tipos de Material:</label>
-                <div className="material-checkboxes">
-                    <label>
-                        <input type="checkbox" value="12" onChange={handleMaterialChange} /> Papel
-                    </label>
-                    <label>
-                        <input type="checkbox" value="1" onChange={handleMaterialChange} /> Papelão
-                    </label>
-                    <label>
-                        <input type="checkbox" value="2" onChange={handleMaterialChange} /> Plástico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="3" onChange={handleMaterialChange} /> Vidro
-                    </label>
-                    <label>
-                        <input type="checkbox" value="4" onChange={handleMaterialChange} /> Metal
-                    </label>
-                    <label>
-                        <input type="checkbox" value="5" onChange={handleMaterialChange} /> Orgânico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="6" onChange={handleMaterialChange} /> Eletrônico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="7" onChange={handleMaterialChange} /> Roupa
-                    </label>
-                    <label>
-                        <input type="checkbox" value="8" onChange={handleMaterialChange} /> Alimento
-                    </label>
-                    <label>
-                        <input type="checkbox" value="9" onChange={handleMaterialChange} /> Brinquedo
-                    </label>
-                    <label>
-                        <input type="checkbox" value="10" onChange={handleMaterialChange} /> Produto de Higiene
-                    </label>
-                    <label>
-                        <input type="checkbox" value="11" onChange={handleMaterialChange} /> Móveis
-                    </label>
-                </div>
+                <Select
+                    isMulti
+                    options={materialOptions}
+                    value={materials}
+                    onChange={setMaterials} // Atualiza o estado ao selecionar/desselecionar
+                    className="material-select"
+                    placeholder="Selecione os materiais..."
+                />
                 <label>Tipo de Serviço:</label>
-                <div className="radioEmpresa">
-                    <label>
-                        <input
-                            type="radio"
-                            name="serviceType"
-                            value="Retira no Local"
-                            checked={serviceType === "Retira no Local"}
-                            onChange={() => setServiceType("Retira no Local")}
-                        />
-                        Retira no Local
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="serviceType"
-                            value="Não Retira"
-                            checked={serviceType === "Não Retira"}
-                            onChange={() => setServiceType("Não Retira")}
-                        />
-                        Não Retira
-                    </label>
-                </div>
+                <Select
+                    options={serviceTypeOptions}
+                    value={serviceType}
+                    onChange={setServiceType} // Atualiza o estado ao selecionar
+                    className="service-type-select"
+                    placeholder="Selecione o tipo de serviço..."
+                />
                 <button onClick={handleSearch}>BUSCAR</button>
             </div>
         </div>

@@ -1,23 +1,38 @@
-// BuscarEmpresaPopUp.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 import { googleMapsApiKey } from "./ChaveAPIGoogleMaps";
 
 const BuscarEmpresaPopUp = ({ onClose }) => {
     const [address, setAddress] = useState("");
     const [radius, setRadius] = useState(5);
     const [materials, setMaterials] = useState([]);
-    const [transactionType, setTransactionType] = useState("Compra");
-    const [serviceType, setServiceType] = useState("Retira no Local");
+    const [transactionType, setTransactionType] = useState(null);
+    const [serviceType, setServiceType] = useState(null);
     const navigate = useNavigate();
 
-    const handleMaterialChange = (event) => {
-        const { value, checked } = event.target;
-        setMaterials((prevMaterials) =>
-            checked ? [...prevMaterials, value] : prevMaterials.filter((item) => item !== value)
-        );
-    };
+    // Opções para React Select
+    const materialOptions = [
+        { value: "12", label: "Papel" },
+        { value: "1", label: "Papelão" },
+        { value: "2", label: "Plástico" },
+        { value: "3", label: "Vidro" },
+        { value: "4", label: "Metal" },
+        { value: "5", label: "Orgânico" },
+        { value: "6", label: "Eletrônico" },
+    ];
+
+    const transactionTypeOptions = [
+        { value: "Compra", label: "Compra" },
+        { value: "Vende", label: "Vende" },
+        { value: "Compra e Vende", label: "Compra e Vende" },
+    ];
+
+    const serviceTypeOptions = [
+        { value: "Retira no Local", label: "Retira no Local" },
+        { value: "Não Retira", label: "Não Retira" },
+    ];
 
     const handleSearch = async () => {
         try {
@@ -33,13 +48,13 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
                 latitude: lat,
                 longitude: lng,
                 raio: radius,
-                materiais: materials,
-                tipoTransacao: transactionType,
-                tipoServico: serviceType,
+                materiais: materials.map((material) => material.value), // Extrai valores dos materiais
+                tipoTransacao: transactionType?.value, // Extrai o valor selecionado
+                tipoServico: serviceType?.value, // Extrai o valor selecionado
             });
 
             // Redireciona para a página de resultados com os dados obtidos
-            navigate("/resultados-empresas", { state: { resultados: response.data, center: {lat, lng}, raio: radius}});
+            navigate("/resultados-empresas", { state: { resultados: response.data, center: { lat, lng }, raio: radius } });
         } catch (error) {
             console.error("Erro ao buscar empresas próximas:", error);
         }
@@ -49,14 +64,13 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
         <div className="popup">
             <div className="popup-content">
                 <div>
-
-                <span className="close-button" onClick={onClose}>
-                    &times;
-                </span>
+                    <span className="close-button" onClick={onClose}>
+                        &times;
+                    </span>
                 </div>
 
                 <div className="popup-content-title">
-                <h1>Buscar Empresas</h1>
+                    <h1>Buscar Empresas</h1>
                 </div>
                 <label>Endereço:</label>
                 <input
@@ -72,85 +86,30 @@ const BuscarEmpresaPopUp = ({ onClose }) => {
                     <option value={20}>20 km</option>
                 </select>
                 <label>Tipos de Material:</label>
-                <div className="material-checkboxes">
-                    <label>
-                        <input type="checkbox" value="12" onChange={handleMaterialChange} /> Papel
-                    </label>
-                    <label>
-                        <input type="checkbox" value="1" onChange={handleMaterialChange} /> Papelão
-                    </label>
-                    <label>
-                        <input type="checkbox" value="2" onChange={handleMaterialChange} /> Plástico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="3" onChange={handleMaterialChange} /> Vidro
-                    </label>
-                    <label>
-                        <input type="checkbox" value="4" onChange={handleMaterialChange} /> Metal
-                    </label>
-                    <label>
-                        <input type="checkbox" value="5" onChange={handleMaterialChange} /> Orgânico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="6" onChange={handleMaterialChange} /> Eletrônico
-                    </label>
-                </div>
+                <Select
+                    isMulti
+                    options={materialOptions}
+                    value={materials}
+                    onChange={setMaterials} // Atualiza o estado ao selecionar/desselecionar
+                    className="material-select"
+                    placeholder="Selecione os materiais..."
+                />
                 <label>Tipo de Transação:</label>
-                <div className="radioEmpresa">
-                    <label>
-                        <input
-                            type="radio"
-                            name="transactionType"
-                            value="Compra"
-                            checked={transactionType === "Compra"}
-                            onChange={() => setTransactionType("Compra")}
-                        />
-                        Compra
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="transactionType"
-                            value="Vende"
-                            checked={transactionType === "Vende"}
-                            onChange={() => setTransactionType("Vende")}
-                        />
-                        Vende
-                    </label>
-                    {/* <label>
-                        <input
-                            type="radio"
-                            name="transactionType"
-                            value="Compra e Vende"
-                            checked={transactionType === "Compra e Vende"}
-                            onChange={() => setTransactionType("Compra e Vende")}
-                        />
-                        Compra e Vende
-                    </label> */}
-                </div>
+                <Select
+                    options={transactionTypeOptions}
+                    value={transactionType}
+                    onChange={setTransactionType} // Atualiza o estado ao selecionar
+                    className="transaction-type-select"
+                    placeholder="Selecione o tipo de transação..."
+                />
                 <label>Tipo de Serviço:</label>
-                <div className="radioEmpresa">
-                    <label>
-                        <input
-                            type="radio"
-                            name="serviceType"
-                            value="Retira no Local"
-                            checked={serviceType === "Retira no Local"}
-                            onChange={() => setServiceType("Retira no Local")}
-                        />
-                        Retira no Local
-                    </label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="serviceType"
-                            value="Não Retira"
-                            checked={serviceType === "Não Retira"}
-                            onChange={() => setServiceType("Não Retira")}
-                        />
-                        Não Retira
-                    </label>
-                </div>
+                <Select
+                    options={serviceTypeOptions}
+                    value={serviceType}
+                    onChange={setServiceType} // Atualiza o estado ao selecionar
+                    className="service-type-select"
+                    placeholder="Selecione o tipo de serviço..."
+                />
                 <button onClick={handleSearch}>BUSCAR</button>
             </div>
         </div>

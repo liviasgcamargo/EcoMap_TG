@@ -1,7 +1,7 @@
-// BuscarPontoPopUp.jsx
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 import { googleMapsApiKey } from "./ChaveAPIGoogleMaps";
 
 const BuscarPontoPopUp = ({ onClose }) => {
@@ -10,12 +10,16 @@ const BuscarPontoPopUp = ({ onClose }) => {
     const [materials, setMaterials] = useState([]);
     const navigate = useNavigate();
 
-    const handleMaterialChange = (event) => {
-        const { value, checked } = event.target;
-        setMaterials((prevMaterials) =>
-            checked ? [...prevMaterials, value] : prevMaterials.filter((item) => item !== value)
-        );
-    };
+    // Opções para React Select
+    const materialOptions = [
+        { value: "12", label: "Papel" },
+        { value: "1", label: "Papelão" },
+        { value: "2", label: "Plástico" },
+        { value: "3", label: "Vidro" },
+        { value: "4", label: "Metal" },
+        { value: "5", label: "Orgânico" },
+        { value: "6", label: "Eletrônico" },
+    ];
 
     const handleSearch = async () => {
         try {
@@ -31,11 +35,11 @@ const BuscarPontoPopUp = ({ onClose }) => {
                 latitude: lat,
                 longitude: lng,
                 raio: radius,
-                materiais: materials,
+                materiais: materials.map((material) => material.value), // Extrai apenas os valores selecionados
             });
 
             // Redireciona para a página de resultados com os dados obtidos
-            navigate("/resultado-ponto-coleta", { state: { resultados: response.data, center: {lat, lng}, raio: radius } });
+            navigate("/resultado-ponto-coleta", { state: { resultados: response.data, center: { lat, lng }, raio: radius } });
         } catch (error) {
             console.error("Erro ao buscar pontos próximos:", error);
         }
@@ -48,7 +52,7 @@ const BuscarPontoPopUp = ({ onClose }) => {
                     &times;
                 </span>
                 <div className="popup-content-title">
-                <h1>Buscar Ponto de Descarte</h1>
+                    <h1>Buscar Ponto de Descarte</h1>
                 </div>
                 <label>Endereço:</label>
                 <input
@@ -64,29 +68,14 @@ const BuscarPontoPopUp = ({ onClose }) => {
                     <option value={20}>20 km</option>
                 </select>
                 <label>Tipos de Material:</label>
-                <div className="material-checkboxes">
-                    <label>
-                        <input type="checkbox" value="12" onChange={handleMaterialChange} /> Papel
-                    </label>
-                    <label>
-                        <input type="checkbox" value="1" onChange={handleMaterialChange} /> Papelão
-                    </label>
-                    <label>
-                        <input type="checkbox" value="2" onChange={handleMaterialChange} /> Plástico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="3" onChange={handleMaterialChange} /> Vidro
-                    </label>
-                    <label>
-                        <input type="checkbox" value="4" onChange={handleMaterialChange} /> Metal
-                    </label>
-                    <label>
-                        <input type="checkbox" value="5" onChange={handleMaterialChange} /> Orgânico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="6" onChange={handleMaterialChange} /> Eletrônico
-                    </label>
-                </div>
+                <Select
+                    isMulti
+                    options={materialOptions}
+                    value={materials}
+                    onChange={setMaterials} // Atualiza o estado ao selecionar/desselecionar
+                    className="material-select"
+                    placeholder="Selecione os materiais..."
+                />
                 <button onClick={handleSearch}>BUSCAR</button>
             </div>
         </div>
