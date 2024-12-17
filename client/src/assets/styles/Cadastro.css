@@ -111,7 +111,7 @@ button[type="submit"] {
   align-items: center;
   font-size: 13px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   transition: all 0.3s ease;
 }
 
@@ -136,10 +136,24 @@ button[type="submit"] {
   background-color: #55703f;
 }
 
-/* Remove a borda azul quando o select está focado */
 .multi-select .css-t3ipsp-control {
   box-shadow: none !important;
   border-color: #ccc !important;
+}
+.multi-select .css-13cymwt-control {
+  width: calc(100% - 12px);
+}
+
+.btn-cadastro {
+  margin-top: 15px;
+}
+
+.containerBotoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 12px);
+  padding: 10px;
 }
 
 /* Responsive Styles */
