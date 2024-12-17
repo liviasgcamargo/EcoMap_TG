@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Select from 'react-select';
 import '../assets/styles/ModalSugerir.css'
 
 const estadosBrasileiros = [
@@ -15,12 +16,15 @@ const SugerirPontoPopUp = ({ onClose }) => {
     const [state, setState] = useState("");
     const [materials, setMaterials] = useState([]);
 
-    const handleMaterialChange = (event) => {
-        const { value, checked } = event.target;
-        setMaterials((prevMaterials) =>
-            checked ? [...prevMaterials, value] : prevMaterials.filter((item) => item !== value)
-        );
-    };
+    const materialOptions = [
+        { value: "12", label: "Papel" },
+        { value: "1", label: "Papelão" },
+        { value: "2", label: "Plástico" },
+        { value: "3", label: "Vidro" },
+        { value: "4", label: "Metal" },
+        { value: "5", label: "Orgânico" },
+        { value: "6", label: "Eletrônico" },
+    ];
 
     const handleSubmit = async () => {
         try {
@@ -29,7 +33,7 @@ const SugerirPontoPopUp = ({ onClose }) => {
                 cep: cep,
                 cidade: city,
                 estado: state,
-                materiais: materials,
+                materiais: materials.map((material) => material.value),
             });
             alert("Ponto de coleta sugerido com sucesso! Aguarde a validação do administrador.");
             onClose();
@@ -64,29 +68,14 @@ const SugerirPontoPopUp = ({ onClose }) => {
                     ))}
                 </select>
                 <label>Tipos de Material:</label>
-                <div className="material-checkboxes">
-                    <label>
-                        <input type="checkbox" value="12" onChange={handleMaterialChange} /> Papel
-                    </label>
-                    <label>
-                        <input type="checkbox" value="1" onChange={handleMaterialChange} /> Papelão
-                    </label>
-                    <label>
-                        <input type="checkbox" value="2" onChange={handleMaterialChange} /> Plástico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="3" onChange={handleMaterialChange} /> Vidro
-                    </label>
-                    <label>
-                        <input type="checkbox" value="4" onChange={handleMaterialChange} /> Metal
-                    </label>
-                    <label>
-                        <input type="checkbox" value="5" onChange={handleMaterialChange} /> Orgânico
-                    </label>
-                    <label>
-                        <input type="checkbox" value="6" onChange={handleMaterialChange} /> Eletrônico
-                    </label>
-                </div>
+                <Select
+                    isMulti
+                    options={materialOptions}
+                    value={materials}
+                    onChange={setMaterials} // Atualiza o estado ao selecionar/desselecionar
+                    className="material-select"
+                    placeholder="Selecione os materiais..."
+                />
                 <button onClick={handleSubmit}>Confirmar Sugestão</button>
             </div>
         </div>
